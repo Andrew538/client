@@ -1,0 +1,19 @@
+.header {
+    margin: 30px 0px 0px 0px;
+}
+.container {
+    max-width: 1380px;
+    padding: 0px 15px 0px 15px;
+    margin: auto;
+
+}
+.nav {
+    max-width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
