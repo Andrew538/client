@@ -4,15 +4,15 @@ import classes from './Header.module.css'
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
 const  Header = observer(() => {
-    const {user} = useContext(Context)
-    console.log(user)
+    const {users} = useContext(Context)
+    // console.log(users)
   return (
     <header className={classes.header}>
         <div className={classes.container}> 
             <nav className={classes.nav}>
                 <NavLink className={classes.link} to='/'>Главная</NavLink>
 
-              {  user &&
+              {  users.isAuth &&
                 <> 
                 <NavLink className={classes.link} to='/map'>Карты обзвона клиентов</NavLink>
                   <NavLink className={classes.link} to='/guarantee'>Гарантия</NavLink>

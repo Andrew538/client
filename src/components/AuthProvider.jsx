@@ -3,9 +3,9 @@ import { check } from "./http/userAPI";
 import { Context } from "../index";
 
 export const AuthContext = createContext(null)
-    // const {user} = useContext(Context)
 
 export const AuthProvider = ({children}) => {
+    const {users} = useContext(Context)
 
 
     const [user, setUser] = useState(true)
@@ -20,10 +20,16 @@ export const AuthProvider = ({children}) => {
     }
     useEffect(() => {
         // check().then(data => {
-        //     user.setUser(true)
-        //     user.setIsAuth(true)
+        //     users.setUser(true)
+        //     users.setIsAuth(true)
         // })
         setUser(localStorage.getItem('token'))
+        if(localStorage.getItem('token')) {
+            check().then(data => {
+                users.setUser(true)
+                users.setIsAuth(true)
+            })
+        }
 
     }, [])
 
