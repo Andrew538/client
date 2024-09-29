@@ -19,6 +19,9 @@ const App = observer(() => {
 
   return (
     <div className="App">
+      <div className='App__box'>
+
+  
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Layout/>}>          
@@ -40,12 +43,13 @@ const App = observer(() => {
             <Route path='admin-panel' element={
                 <RequireAuth>
                   <AdminPanel/>
-                </RequireAuth>                            
+               </RequireAuth>                            
               }/>
             <Route path='*' element={<Home/>}/>
           </Route>    
         </Routes>
-      </AuthProvider>      
+      </AuthProvider>   
+      </div>   
     </div>
   );
 })

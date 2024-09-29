@@ -1,5 +1,5 @@
 .header {
-    margin: 30px 0px 0px 0px;
+    margin: 0px 0px 60px 0px;
 }
 .container {
     max-width: 1380px;
@@ -9,11 +9,24 @@
 }
 .nav {
     max-width: 70%;
+    height: 60px;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .link {
     text-decoration: none;
     color: black;
+    font-size: 20px;
+}
+.header__button {
+    display: block;
+    width: 100%;
+    max-width: 100px;
+    padding: 10px 5px;
+    background-color: transparent;
+    border: 2px solid rgb(41, 180, 41);
+    cursor: pointer;
+    font-size: 15px;
 }

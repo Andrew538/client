@@ -4,6 +4,8 @@ import {BrowserRouter} from 'react-router-dom'
 import './index.css';
 import App from './App';
 import UserStore from './components/store/UserStore';
+import GuaranteeStore from './components/store/GuaranteeStore';
+
 
 export const Context = createContext(null)
 
@@ -11,7 +13,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Context.Provider value={{users: new UserStore()}}>
+    <Context.Provider value={{ 
+      users: new UserStore(),
+      examination: new GuaranteeStore()
+      }}>
       <App />
       </Context.Provider>
     </BrowserRouter>

@@ -1,11 +1,39 @@
-import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import classes from './Header.module.css'
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
+import { check } from '../../http/userAPI'
+import { useAuth } from '../../hook/useAuth'
+import './header.css'
 const  Header = observer(() => {
     const {users} = useContext(Context)
-    // console.log(users)
+    const [admin, setAdmin] = useState([])
+    const [name, setName] = useState([])
+
+
+  
+    const navigate = useNavigate()
+    const {singout} = useAuth()
+    const clearStorge = function() {
+     
+      users.setIsAuth(false)
+      localStorage.clear();
+      singout(() => navigate('/map', {replace: true}))
+     
+    }
+
+    useEffect(() => {
+      if (localStorage.getItem('token') ) {
+        check().then(data => {
+          console.log(data)
+          setName(data) 
+        }) 
+      } 
+      
+    },[])
+
+
   return (
     <header className={classes.header}>
         <div className={classes.container}> 
@@ -14,16 +42,24 @@ const  Header = observer(() => {
 
               {  users.isAuth &&
                 <> 
-                <NavLink className={classes.link} to='/map'>Карты обзвона клиентов</NavLink>
+                  <NavLink className={classes.link} to='/map'>Карты обзвона клиентов</NavLink>
                   <NavLink className={classes.link} to='/guarantee'>Гарантия</NavLink>
-                  <NavLink className={classes.link} to='/used-batteries'>Б/У Акб</NavLink>
+                  <NavLink className={classes.link} to='/used-batteries'>Б/У Акб</NavLink>    
                   <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>
-                
+              
+                  <button 
+                    className={classes.header__button} 
+                    onClick={clearStorge}
+                  >
+                    Выйти
+                  </button>
+                  <span>{name.email}</span>
+
                 </>
                
               } 
                 
-
+                
 
             </nav>            
         </div>        

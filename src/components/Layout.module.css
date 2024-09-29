@@ -1,0 +1,21 @@
+.container {
+    max-width: 1380px;
+    padding: 0px 15px 0px 15px;
+    margin: auto;
+}
+.main {
+    flex: 1 1 auto;
+}
+
+.footer {
+    height: 60px;
+}
+.footer__box {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.date {
+    font-size: 24px;
+ }
