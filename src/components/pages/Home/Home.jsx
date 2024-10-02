@@ -13,6 +13,7 @@ const  Home = observer(() => {
   const  [errors, setErrors] = useState('')
   const navigate = useNavigate()
   const {singin} = useAuth()
+  const [name, setName] = useState([])
 
   const signIn = async () => {
     // event.prentDefault()
@@ -35,6 +36,13 @@ const  Home = observer(() => {
     }
   }
 
+  useEffect(() => {       
+    if (localStorage.getItem('token') ) {
+      check().then(data => {
+       setName(data) 
+      }) 
+    } 
+},[])
 
 
   return (

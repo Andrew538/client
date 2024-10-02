@@ -19,18 +19,22 @@ const  Header = observer(() => {
      
       users.setIsAuth(false)
       localStorage.clear();
+      // setName('') 
+
       singout(() => navigate('/map', {replace: true}))
      
     }
 
-    useEffect(() => {
-      if (localStorage.getItem('token') ) {
-        check().then(data => {
-          console.log(data)
-          setName(data) 
-        }) 
-      } 
-      
+
+
+ 
+      useEffect(() => {       
+          if (localStorage.getItem('token') ) {
+            check().then(data => {
+              setName(data)
+            }).finally()
+          } 
+          
     },[])
 
 
