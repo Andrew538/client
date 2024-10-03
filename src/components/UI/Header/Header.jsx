@@ -50,7 +50,7 @@ const  Header = observer(() => {
                   <NavLink className={classes.link} to='/guarantee'>Гарантия</NavLink>
                   <NavLink className={classes.link} to='/used-batteries'>Б/У Акб</NavLink>    
                   <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>
-              
+                  <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>
                   <button 
                     className={classes.header__button} 
                     onClick={clearStorge}
@@ -62,7 +62,7 @@ const  Header = observer(() => {
                 </>
                
               } 
-                  <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>
+                  
                 
                 
 
