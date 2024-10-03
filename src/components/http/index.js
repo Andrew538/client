@@ -2,15 +2,14 @@ import axios from "axios";
 
 const $host = axios.create({
     // baseURL: 'https://localhost:5000/'
-    baseURL: 'https://lk-opt.store:5000/'
+    baseURL: 'http://lk-opt.store:5000/'
 // 
 })
 
 const $authHost = axios.create({
     // baseURL: 'https://localhost:5000/'
-    baseURL: 'https://lk-opt.store:5000/'
+    baseURL: 'http://lk-opt.store:5000/'
 })
-
 
 const authInterceptor = config => {
     config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
