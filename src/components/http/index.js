@@ -4,7 +4,7 @@ const $host = axios.create({
     // baseURL: 'https://localhost:5000/'
     // baseURL: 'http://lk-opt.store:5000/'
     proxy: {
-        host: 'http://lk-opt.store:5000',
+        host: '45.146.165.155:5000',
         port: 80,
         protocol: 'http',
     }
