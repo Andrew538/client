@@ -62,6 +62,7 @@ const  Header = observer(() => {
                 </>
                
               } 
+                  <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>
                 
                 
 
