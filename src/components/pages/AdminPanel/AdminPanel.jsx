@@ -13,7 +13,8 @@ function AdminPanel() {
     try {
       const data  = await registration(email, password)
     } catch (err) {
-      setRole(err.response.data.message)
+      // setRole(err.response.data.message)
+      console.log(err)
     }
   }
 
