@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hook/useAuth'
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
-import {check, login } from '../../http/userAPI'
+import {check, login, usersList } from '../../http/userAPI'
 import classes from './Home.module.css'
+
+
 
 const  Home = observer(() => {
   const {users} = useContext(Context)
@@ -14,19 +16,18 @@ const  Home = observer(() => {
   const navigate = useNavigate()
   const {singin} = useAuth()
   const [name, setName] = useState([])
-
+    console.log(name)
   const signIn = async () => {
-    // event.prentDefault()
    
-    let data;
     try {
   
-      // const email = email;
-      // const password = password;
-      // console.log(form)
+   
       const data  = await login(email, password)
+      console.log(data.name)
       users.setUser(users)
       users.setIsAuth(true)
+      users.setRole(data.role)
+      console.log(users.role)
       setEmail('')
       setPassword('')
       singin(users, () => navigate('/home', {replace: true}))
@@ -38,9 +39,10 @@ const  Home = observer(() => {
 
   useEffect(() => {       
     if (localStorage.getItem('token') ) {
-      check().then(data => {
-       setName(data) 
-      }) 
+      // usersList.then(data => {
+      //  setName(data.name) 
+      // })
+      
     } 
 },[])
 
@@ -60,7 +62,7 @@ const  Home = observer(() => {
           </label>
         </div>
       </form>
-    <button className={classes.form__button} onClick={signIn} type='submit'>Войти</button>
+    <button className={classes.form__button} onKeyDown={signIn}  onClick={signIn} type='submit'>Войти</button>
       
     </div>
     

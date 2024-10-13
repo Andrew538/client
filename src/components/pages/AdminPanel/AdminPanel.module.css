@@ -1,0 +1,36 @@
+.form {
+    margin: auto;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+.form__input {
+    height: 30px;
+    box-sizing: border-box;
+    flex-basis: 80%;
+    border: 2px solid rgb(41, 180, 41);
+    padding: 10px;
+    margin: 15px 0px 0px 0px;
+}
+.form__select {
+    margin: 15px 0px 15px 0px;
+    border-color: rgb(41, 180, 41);
+    /* border: 2px solid rgb(41, 180, 41); */
+    border-radius: 0px;
+}
+.form__button {
+    display: block;
+    width: 100%;
+    /* max-width: 150px; */
+    margin-left: auto;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid rgb(41, 180, 41);
+    cursor: pointer;
+    font-size: 19px;
+}
+
+.css-13cymwt-control {
+    border-color: rgb(41, 180, 41);
+
+}

@@ -9,12 +9,13 @@ import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
 import { AuthProvider } from './components/AuthProvider';
 import { observer } from 'mobx-react-lite';
+import { Context } from '.';
 import { useContext } from 'react';
-import { Context } from './index';
 
 
 
 const App = observer(() => {
+  const {users} = useContext(Context)
 
 
   return (
@@ -42,7 +43,9 @@ const App = observer(() => {
               }/>
             <Route path='admin-panel' element={
                 <RequireAuth>
-                  <AdminPanel/>
+                  { users.role === 'ADMIN' &&
+                    <AdminPanel/>
+                  }
               </RequireAuth>                            
               }/>
             <Route path='*' element={<Home/>}/>

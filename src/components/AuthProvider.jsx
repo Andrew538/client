@@ -19,15 +19,15 @@ export const AuthProvider = ({children}) => {
         callback()
     }
     useEffect(() => {
-        // check().then(data => {
-        //     users.setUser(true)
-        //     users.setIsAuth(true)
-        // })
+     
         setUser(localStorage.getItem('token'))
+
         if(localStorage.getItem('token')) {
             check().then(data => {
                 users.setUser(true)
                 users.setIsAuth(true)
+                users.setRole(data.role)
+                console.log(users.role)
             })
         }
 

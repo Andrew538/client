@@ -1,0 +1,63 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+.list__button {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    
+    margin: 0px auto 15px auto;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid rgb(41, 180, 41);
+    cursor: pointer;
+    font-size: 19px;
+}
+.list__box {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid lightgreen;
+    margin: 0px 0px 15px 0px;
+    align-items: center;
+    
+}
+.list__item {
+    text-align: left;
+    min-height: 30px;
+   
+}
+
+.list__item_one {
+    border-right: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+
+}
+.list__item_two  {
+    border-right: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+
+}
+.list__item_three {
+    border-right: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+
+}
+.list__item_four {
+    border-right: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+
+}
+.list__item_five {
+    border-right: 1px solid lightgreen;
+    border-left: 1px solid lightgreen;
+
+}
+.list__item_six {
+    flex-basis: 200px;
+    padding: 5px;
+    border-left: 1px solid lightgreen;
+
+}

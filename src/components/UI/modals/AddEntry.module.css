@@ -1,0 +1,38 @@
+.modal {
+    position: absolute;
+    transform: scale(0);
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+
+}
+.modal__show {
+    transform: scale(0);
+
+}
+.modal__box{
+   
+
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgb(41, 180, 41);
+    background-color: rgb(159, 168, 159);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+}
+
+.modal__button {
+    position: absolute;
+    right: 25px;
+}
+.modal__input {
+    min-height: 20px;
+    margin: 0px 0px 20px 0px;
+}
