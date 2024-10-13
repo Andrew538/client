@@ -1,8 +1,11 @@
 import axios from "axios";
 
+// const $host = axios.create({
+//     baseURL: 'http://localhost:5000/'
+// })
+
 const $host = axios.create({
-    // baseURL: 'http://localhost:5000/'
-    // baseURL: 'https://lk-opt.store:5000/'
+ 
     proxy: {
         host: '45.146.165.155:5000',
         port: 80,
@@ -11,9 +14,11 @@ const $host = axios.create({
 
 })
 
+// const $authHost = axios.create({
+//     baseURL: 'http://localhost:5000/'
+// })
+
 const $authHost = axios.create({
-    // baseURL: 'http://localhost:5000/'
-    // baseURL: 'https://lk-opt.store:5000/'  
     proxy: {
         host: '45.146.165.155:5000',
         port: 80,
