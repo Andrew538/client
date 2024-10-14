@@ -42,11 +42,11 @@ const App = observer(() => {
                 </RequireAuth>              
               }/>
             <Route path='admin-panel' element={
-                <RequireAuth>
-                  { users.role === 'ADMIN' &&
+                // <RequireAuth>
+                  {/* { users.role === 'ADMIN' && */}
                     <AdminPanel/>
-                   } 
-              </RequireAuth>                            
+                  {/* //  }  */}
+              // </RequireAuth>                            
               }/>
             <Route path='*' element={<Home/>}/>
           </Route>    
