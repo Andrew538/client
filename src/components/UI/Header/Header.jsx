@@ -52,7 +52,7 @@ const  Header = observer(() => {
                   <NavLink className={classes.link} to='/map'>Карты обзвона клиентов</NavLink>
                   <NavLink className={classes.link} to='/guarantee'>Гарантия</NavLink>
                   <NavLink className={classes.link} to='/used-batteries'>Б/У Акб</NavLink> 
-                      <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>                                       
+                                                        
                                     
 
                   { users.role === 'ADMIN' &&
