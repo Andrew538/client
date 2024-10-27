@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
                 users.setUser(true)
                 users.setIsAuth(true)
                 users.setRole(data.role)
-                console.log(users.role)
+                users.setEmail(data.email)
             })
         }
 

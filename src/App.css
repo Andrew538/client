@@ -1,6 +1,11 @@
+html ,body {
+  position: relative;
+}
 .App {
   text-align: center;
   height: 100%;
+  position: relative;
+
 }
 .App__box {
   display: flex;

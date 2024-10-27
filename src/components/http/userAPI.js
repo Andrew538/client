@@ -23,13 +23,14 @@ export const check = async () => {
 }
 
 
-export const usersList = async () => {
-    const {data} = await  $authHost.get('api/user/users-list')
-    localStorage.setItem('token', data.token)
-    // console.log(data)
+export const allUsers = async ( email, name, role) => {
+    const {data} = await $authHost.get('api/user/', {params: 
+       { email, name, role}
+    })
 
-    return jwtDecode(data.token)
-
+    
+    return data
+    
 }
 
 

@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import UserStore from './components/store/UserStore';
 import GuaranteeStore from './components/store/GuaranteeStore';
+// import AllUserStore from './components/store/AllUserStore';
 
 
 export const Context = createContext(null)
@@ -15,6 +16,7 @@ root.render(
     <BrowserRouter>
     <Context.Provider value={{ 
       users: new UserStore(),
+      // all: new AllUserStore(),
       examination: new GuaranteeStore()
       }}>
       <App />

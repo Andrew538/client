@@ -11,7 +11,7 @@ const  Header = observer(() => {
     const [admin, setAdmin] = useState('')
     const [name, setName] = useState([])
 
-    console.log(users.name)
+  
 
     const navigate = useNavigate()
     const {singout} = useAuth()
@@ -29,23 +29,22 @@ const  Header = observer(() => {
     const checkUser= useRef('')
       checkUser.current = users.role
 
-      useEffect(() => {  
-  
-          if (localStorage.getItem('token') ) {
-        
-            check().then(data => {
-              setName(data.email)
-              setAdmin(data.role)
-            })            
-          }
-        },[])
+      // useEffect(() => {    
+      //     if (localStorage.getItem('token') ) {        
+      //       check().then(data => {
+      //         setName(data.email)
+      //         setAdmin(data.role)
+      //       })            
+      //     }
+      //   },[])
+
 
 
   return (
     <header className={classes.header}>
         <div className={classes.container}> 
             <nav className={classes.nav}>
-                <NavLink className={classes.link} to='/'>Главная</NavLink>
+                <NavLink className={classes.link} to='/'></NavLink>
               
               {  users.isAuth &&
                 <> 
@@ -66,7 +65,7 @@ const  Header = observer(() => {
                   >
                     Выйти
                   </button>
-                  <span>{name}</span>
+                  <span>{users.email}</span>
 
                 </>
                

@@ -48,13 +48,7 @@ const App = observer(() => {
                     <AdminPanel/>
                     }  
               </RequireAuth>
-            }/>
-
-        {/* <Route path='admin-panel' element={
-                       
-                            <AdminPanel/>
-                        
-                    }/> */}
+            }/> 
             <Route path='*' element={<Home/>}/>
           </Route>    
         </Routes>

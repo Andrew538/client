@@ -14,37 +14,39 @@ const  Home = observer(() => {
   const [password, setPassword] = useState('')
   const  [errors, setErrors] = useState('')
   const navigate = useNavigate()
-  const {singin} = useAuth()
-  const [name, setName] = useState([])
-    console.log(name)
+  const {singin} = useAuth()  
   const signIn = async () => {
    
     try {
   
    
       const data  = await login(email, password)
-      console.log(data.name)
       users.setUser(users)
       users.setIsAuth(true)
       users.setRole(data.role)
+      users.setEmail(data.email)
+
+      check().then(data => {
+        
+      })  
       console.log(users.role)
       setEmail('')
       setPassword('')
-      singin(users, () => navigate('/home', {replace: true}))
+      singin(users, () => navigate('/map', {replace: true}))
     
     } catch (err) {
       setErrors(err.response.data.message)       
     }
   }
 
-  useEffect(() => {       
-    if (localStorage.getItem('token') ) {
-      // usersList.then(data => {
-      //  setName(data.name) 
-      // })
+//   useEffect(() => {       
+//     if (localStorage.getItem('token') ) {
+//       // usersList.then(data => {
+//       //  setName(data.name) 
+//       // })
       
-    } 
-},[])
+//     } 
+// },[])
 
 
   return (
