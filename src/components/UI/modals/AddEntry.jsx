@@ -3,19 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import classes from './AddEntry.module.css'
 import './modal.css'
-import { observable, trace } from 'mobx';
+
 import { Context } from '../../../index';
-import { createRecorder, fetchExam } from '../../http/guaranteeAPI';
+import { createRecord, fetchExam } from '../../http/guaranteeAPI';
 import { observer } from 'mobx-react-lite';
-import { allUsers } from '../../http/userAPI';
+
 
 const AddEntry = observer(({show, onHide, props}) => {
   
 const {examination} = useContext(Context)
-const {users} = useContext(Context)
-console.log(examination)
 
-console.log(users)
 const [date, setDate] = useState('')
 const [client, setclient] = useState('')
 const [manager, setManager] = useState('')
@@ -40,7 +37,7 @@ useEffect(() => {
 const addRecrod = async () => {
   try {
 
-    const rec = await createRecorder(date, client, manager, product, releaseDate, result)
+    const rec = await createRecord(date, client, manager, product, releaseDate, result)
     setAddRec(rec)
     fetchExam(null, null).then(data => {
       examination.SetExamination(data)
@@ -68,7 +65,7 @@ const addRecrod = async () => {
             >
      <div  className={classes.modal__content}> 
           <div className={classes.modal__box}>
-          <h2>Добавить запись</h2>
+          <h2 className={classes.modal__title}>Добавить запись</h2>
        
               <input 
                 placeholder='Дата поступления' 
@@ -112,8 +109,11 @@ const addRecrod = async () => {
                 value={result}
                 onChange={e => setResult(e.target.value)}
               />
-              <Button onClick={onHide} >Close</Button>
-              <button onClick={addRecrod}>Сохранить</button>             
+              <div className={classes.modal__btn_box}>
+                  <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
+                  <button className={classes.modal__btn} onClick={addRecrod}>Сохранить</button>           
+              </div>
+               
           </div>         
       </div>                        
     </Modal>
