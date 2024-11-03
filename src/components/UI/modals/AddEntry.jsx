@@ -42,13 +42,19 @@ const addRecrod = async () => {
     fetchExam(null, null).then(data => {
       examination.SetExamination(data)
     })
-
+  
    
     if(rec) {
+      setDate('')
+      setclient('')
+      setManager('')
+      setProduct('')
+      setReleaseDate()
+      setResult()
       onHide()
     }
   } catch (error) {
-    
+   alert(error)
   }
 
 

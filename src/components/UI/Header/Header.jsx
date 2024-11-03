@@ -26,7 +26,7 @@ const  Header = observer(() => {
      
     }
 
-    const checkUser= useRef('')
+    const checkUser = useRef('')
       checkUser.current = users.role
 
       // useEffect(() => {    
@@ -44,7 +44,7 @@ const  Header = observer(() => {
     <header className={classes.header}>
         <div className={classes.container}> 
             <nav className={classes.nav}>
-                <NavLink className={classes.link} to='/'></NavLink>
+                <NavLink className={classes.link} to='/'>Главная</NavLink>
               
               {  users.isAuth &&
                 <> 
