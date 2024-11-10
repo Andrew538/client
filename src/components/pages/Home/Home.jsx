@@ -29,7 +29,6 @@ const  Home = observer(() => {
       check().then(data => {
         
       })  
-      console.log(users.role)
       setEmail('')
       setPassword('')
       singin(users, () => navigate('/map', {replace: true}))

@@ -17,8 +17,8 @@ const [date, setDate] = useState('')
 const [client, setclient] = useState('')
 const [manager, setManager] = useState('')
 const [product, setProduct] = useState('')
-const [releaseDate, setReleaseDate] = useState()
-const [result, setResult] = useState()
+const [releaseDate, setReleaseDate] = useState('')
+const [result, setResult] = useState('')
 
 const [addRec, setAddRec] = useState()
 
@@ -49,8 +49,8 @@ const addRecrod = async () => {
       setclient('')
       setManager('')
       setProduct('')
-      setReleaseDate()
-      setResult()
+      setReleaseDate('')
+      setResult('')
       onHide()
     }
   } catch (error) {
@@ -77,8 +77,9 @@ const addRecrod = async () => {
                 placeholder='Дата поступления' 
                 className={classes.modal__input} 
                 type="text" 
-                alue={date}
+                value={date}
                 onChange={e => setDate(e.target.value)}
+              
               />
               <input 
                 placeholder='Клиент' 

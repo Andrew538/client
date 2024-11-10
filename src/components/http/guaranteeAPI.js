@@ -21,12 +21,17 @@ export const delExam = async (id) => {
   
 }
 
-export const updateRecord = async (id, releaseDate) => {
+export const updateRecord = async (id, releaseDate,result) => {
     const {} = await $authHost.post('api/examination/upgrade', {
-      id, releaseDate
+      id, releaseDate, result
     })
 //   return data
 }
 
+
+export const fetchOneExam = async (id) => {
+    const {data} = await $authHost.get('api/examination/getone', { params: {id} })
+    return data
+}
 
 
