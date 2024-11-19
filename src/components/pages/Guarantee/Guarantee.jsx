@@ -102,25 +102,35 @@ const  Guarantee = observer(() => {
         onHide={() => setModalShow(false)}
       />
       <ul className={classNames(classes.list__column__names)}>
+     
         <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_one)}>Дата поступления</li>
         <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_two)}>Клиент</li>
-        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_three)}>Менеджер</li>
-        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_four)}>Название товара</li>
-        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_five)}>Дата выдачи</li>
-        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_six)}>Заключение</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_three)}>Город</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_four)}>Менеджер</li>        
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_five)}>Название АКБ</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_six)}>Дата выпуска (Маркировка)</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_seven)}>Номер документа возврата от клиента</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eight)}>№ Акта для завода</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_nine)}>№ перемещения на склад БРАК</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_ten)}>Дата отправки клиенту</li>
+        <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eleven)}>Комментарий</li>
       </ul>
         <ol>
         {examination.examination.map((item, index) =>             
           <li className={classes.list} key={item.id}>
            <div className={classes.list__box}>
-              <div className={classes.list__content} >            
+              <div className={classes.list__content} >    
                 <div className={classNames(classes.list__item, classes.list__item_one)}>{item.date}</div> 
                 <div className={classNames(classes.list__item, classes.list__item_two)}>{item.client}</div> 
-
-                <div className={classNames(classes.list__item, classes.list__item_three)}>{item.manager}</div> 
-                <div className={classNames(classes.list__item, classes.list__item_four)}>{item.product}</div> 
-                <div className={classNames(classes.list__item, classes.list__item_five)}>{item.releaseDate}</div>
-                <div className={classNames(classes.list__item, classes.list__item_six)}>{item.result}</div>   
+                <div className={classNames(classes.list__item, classes.list__item_three)}>{item.city}</div> 
+                <div className={classNames(classes.list__item, classes.list__item_four)}>{item.manager}</div> 
+                <div className={classNames(classes.list__item, classes.list__item_five)}>{item.product}</div>
+                <div className={classNames(classes.list__item, classes.list__item_six)}>{item.productionDate}</div>  
+                <div className={classNames(classes.list__item, classes.list__item_seven)}>{item.numberReturnDocument}</div>
+                <div className={classNames(classes.list__item, classes.list__item_eight)}>{item.plantDocumentNumber}</div> 
+                <div className={classNames(classes.list__item, classes.list__item_nine)}>{item.movingToDefectWarehouse}</div>  
+                <div className={classNames(classes.list__item, classes.list__item_ten)}>{item.releaseDate}</div>
+                <div className={classNames(classes.list__item, classes.list__item_eleven)}>{item.result}</div>   
               </div>
               <div className={classNames(classes.list__button__box, )}>              
                 <button

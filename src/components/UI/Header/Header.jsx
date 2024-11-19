@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { NavLink, replace, useNavigate } from 'react-router-dom'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { NavLink, replace, useBeforeUnload, useNavigate } from 'react-router-dom'
 import classes from './Header.module.css'
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
@@ -11,10 +11,31 @@ const  Header = observer(() => {
     const [admin, setAdmin] = useState('')
     const [name, setName] = useState([])
 
-  
+
 
     const navigate = useNavigate()
     const {singout} = useAuth()
+    
+      
+    // window.onbeforeunload = function() {
+    //   // const clearStorge = function() {
+     
+    //   //   users.setIsAuth(false)
+    //   //   localStorage.clear();
+    //   //   setAdmin(' ')
+    //   //   checkUser.current = ''
+    //   //   setName('') 
+    //   //   singout(() => navigate('/map', {replace: true}))
+       
+    //   // }
+    //   return localStorage.clear();
+    
+    // };
+  //  window.addEventListener('unload', function(event
+  //  ) {
+  //   event.preventDefault()
+  //   return localStorage.clear();
+  //  })
     const clearStorge = function() {
      
       users.setIsAuth(false)
@@ -29,14 +50,14 @@ const  Header = observer(() => {
     const checkUser = useRef('')
       checkUser.current = users.role
 
-      // useEffect(() => {    
-      //     if (localStorage.getItem('token') ) {        
-      //       check().then(data => {
-      //         setName(data.email)
-      //         setAdmin(data.role)
-      //       })            
-      //     }
-      //   },[])
+      useEffect(() => {    
+          if (localStorage.getItem('token') ) {        
+            check().then(data => {
+              setName(data.email)
+              setAdmin(data.role)
+            })            
+          }
+        },[])
 
 
 

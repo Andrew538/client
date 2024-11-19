@@ -15,11 +15,16 @@ const {examination} = useContext(Context)
 
 const [date, setDate] = useState('')
 const [client, setclient] = useState('')
+const [city, setCity] = useState('')
+const [productionDate, setProductionDate] = useState('')
+const [plantDocumentNumber, setplantDocumentNumber] = useState('')
+const [numberReturnDocument, setNumberReturnDocument] = useState('')
+const [movingToDefectWarehouse, setMovingToDefectWarehouse] = useState('')
+const [comment, setСomment] = useState('')
 const [manager, setManager] = useState('')
 const [product, setProduct] = useState('')
 const [releaseDate, setReleaseDate] = useState('')
 const [result, setResult] = useState('')
-
 const [addRec, setAddRec] = useState()
 
 useEffect(() => {
@@ -37,7 +42,7 @@ useEffect(() => {
 const addRecrod = async () => {
   try {
 
-    const rec = await createRecord(date, client, manager, product, releaseDate, result)
+    const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result)
     setAddRec(rec)
     fetchExam(null, null).then(data => {
       examination.SetExamination(data)
@@ -50,6 +55,12 @@ const addRecrod = async () => {
       setManager('')
       setProduct('')
       setReleaseDate('')
+      setProductionDate('')
+      setplantDocumentNumber('')
+      setNumberReturnDocument('')
+      setMovingToDefectWarehouse('')
+      setCity('')
+      setСomment('')
       setResult('')
       onHide()
     }
@@ -78,8 +89,7 @@ const addRecrod = async () => {
                 className={classes.modal__input} 
                 type="text" 
                 value={date}
-                onChange={e => setDate(e.target.value)}
-              
+                onChange={e => setDate(e.target.value)}              
               />
               <input 
                 placeholder='Клиент' 
@@ -88,6 +98,14 @@ const addRecrod = async () => {
                 value={client}
                 onChange={e => setclient(e.target.value)}
                 />
+                <input 
+                placeholder='Город' 
+                className={classes.modal__input} 
+                type="city" 
+                value={city}
+                onChange={e => setCity(e.target.value)}
+                />
+                
               <input 
                 placeholder='Менеджер' 
                 className={classes.modal__input} 
@@ -103,6 +121,34 @@ const addRecrod = async () => {
                 onChange={e => setProduct(e.target.value)}
               />
               <input 
+                placeholder='Дата выпуска (Маркировка)' 
+                className={classes.modal__input} 
+                type="text" 
+                value={productionDate}
+                onChange={e => setProductionDate(e.target.value)}
+                />
+                <input 
+                placeholder='№ акта для завода' 
+                className={classes.modal__input} 
+                type="text" 
+                value={numberReturnDocument}
+                onChange={e => setNumberReturnDocument(e.target.value)}
+                />
+                 <input 
+                placeholder='№ перемещения на склад БРАК' 
+                className={classes.modal__input} 
+                type="text" 
+                value={plantDocumentNumber}
+                onChange={e => setplantDocumentNumber(e.target.value)}
+                />
+                 <input 
+                placeholder='№ документа возврата от клиента' 
+                className={classes.modal__input} 
+                type="text" 
+                value={movingToDefectWarehouse}
+                onChange={e => setMovingToDefectWarehouse(e.target.value)}
+                />
+              <input 
                 placeholder='Дата выдачи' 
                 className={classes.modal__input} 
                 type="text" 
@@ -116,6 +162,13 @@ const addRecrod = async () => {
                 value={result}
                 onChange={e => setResult(e.target.value)}
               />
+              <input 
+                placeholder='Комментарий' 
+                className={classes.modal__input} 
+                type="text" 
+                value={comment}
+                onChange={e => setСomment(e.target.value)}
+                />
               <div className={classes.modal__btn_box}>
                   <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
                   <button className={classes.modal__btn} onClick={addRecrod}>Сохранить</button>           

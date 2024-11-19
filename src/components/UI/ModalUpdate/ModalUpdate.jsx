@@ -9,6 +9,15 @@ import {fetchExam, fetchOneExam, updateRecord } from '../../http/guaranteeAPI';
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
   const [itemProps, setItemProps] = useState()
+  const [dateOne, setDate] = useState()
+  const [client, setclient] = useState('')
+  const [manager, setManager] = useState('')
+  const [product, setProduct] = useState('')
+  const [releaseDate, setReleaseDate] = useState('')
+  const [result, setResult] = useState('')  
+  const [addRec, setAddRec] = useState({})
+  const allValue = [{dateOne,client, manager, product, releaseDate, result}]
+
 
     const {examination} = useContext(Context)
 
@@ -43,21 +52,21 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       await updateRecord( id, releaseDate, result)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
-          console.log(data.sort())
+          
         })
       } else if (releaseDate === '' && result.length) {
        const  releaseDate = addRec.releaseDate
         await updateRecord( id,releaseDate, result)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
-          console.log(data.sort())
+      
         })
       } else if(releaseDate.length && result === '') {
         const result = addRec.result
         await updateRecord( id,releaseDate, result)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
-          console.log(data.sort())
+         
         })
       }
       setResult('')
@@ -68,17 +77,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
        console.log(error)
      }
     }
-  
 
-    const [dateOne, setDate] = useState()
-    const [client, setclient] = useState('')
-    const [manager, setManager] = useState('')
-    const [product, setProduct] = useState('')
-    const [releaseDate, setReleaseDate] = useState('')
-    const [result, setResult] = useState('')  
-    const [addRec, setAddRec] = useState({})
-    // const [addRecx, setAddRecx] = useState([])
-  
+
   return (
     <Modal
       {...props}

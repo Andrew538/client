@@ -1,37 +1,63 @@
 .list__column__names {
     list-style-type: none;
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
     /* justify-content: space-between; */
-    max-width: 1130px;
+    max-width: 1539px;
     align-items: center;
 }
 .list__column__names__item {
+    display: block;
     text-align: center;
-    font-size: 17px;
+    min-height: 20px;
+    font-size: 13px;
     font-weight: 700;
 }
 .list__column__names__item_one {
-    flex-basis: 120px;
+    flex-basis: 100px;
+
 
 
 }
 .list__column__names__item_two {
-    flex-basis: 185px;
+    flex-basis: 160px;
+
 
 }
 .list__column__names__item_three {
-    flex-basis: 206px;
+    flex-basis: 200px;
 
 }
 .list__column__names__item_four {
-    flex-basis: 212px;
+    flex-basis: 200px;
 }
 .list__column__names__item_five {
-    flex-basis: 112px;
+    flex-basis: 150px;
 
 }
 .list__column__names__item_six {
     flex-basis: 300px;
+}
+.list__column__names__item_seven{
+    flex-basis: 202px;
+
+}
+.list__column__names__item_eight {
+    flex-basis: 202px;
+
+}
+.list__column__names__item_nine{
+
+    flex-basis: 202px;
+}
+.list__column__names__item_ten {
+    flex-basis: 202px;
+
+}
+.list__column__names__item_eleven{
+    flex-basis: 202px;
+
 }
 .list {
     position: relative;
@@ -47,6 +73,7 @@
     border: 1px solid rgb(41, 180, 41);
     cursor: pointer;
     font-size: 19px;
+    font-weight: 700;
     transition: .3s;
 
 }
@@ -62,6 +89,8 @@
     gap: 5px;
 }
 .list__button_size {
+    max-width: 150px;
+    padding: 5px;
     margin: 0px auto 0px auto;
 
 }
@@ -73,30 +102,33 @@
     align-items: center;
     font-size: 19px;
     font-weight: 400;
-
     
 }
 .list__content {
     display: flex;
-    flex-basis: 85%;
+    flex-basis: 89%;
 }
 .list__item {
+    box-sizing: border-box;
+
     text-align: left;
     min-height: 30px;
     min-height: 100%;
    /* display: flex; */
    text-align: center;
+   padding: 4px;
 }
 
 .list__item_one {
     border-right: 1px solid rgb(193, 223, 223);
-    border-left: 1px solid rgb(193, 223, 223);
-    flex-basis: 120px;
+    /* border-left: 1px solid rgb(193, 223, 223); */
+    flex-basis: 100px;
 
 }
 .list__item_two  {
     border-right: 1px solid rgb(193, 223, 223);
-    flex-basis: 200px;
+    /* border-left: 1px solid rgb(193, 223, 223); */
+    flex-basis: 160px;
     min-height: 30px;
 
 }
@@ -104,25 +136,51 @@
    min-height: 100%;
     border-right: 1px solid rgb(193, 223, 223);
     border-left: 1px solid rgb(193, 223, 223);
-    flex-basis: 220px;
+    flex-basis: 200px;
 
 }
 .list__item_four {
     border-right: 1px solid rgb(193, 223, 223);
     border-left: 1px solid rgb(193, 223, 223);
-    flex-basis: 220px;
+    flex-basis: 200px;
 
 }
 .list__item_five {
     border-right: 1px solid rgb(193, 223, 223);
     border-left: 1px solid rgb(193, 223, 223);
-    flex-basis: 120px;
+    flex-basis: 150px;
 
 }
 .list__item_six {
-    flex-basis: 300px;
-    padding: 5px;
-    border-left: 1px solid lightgreen;
+    flex-basis: 150px;
+    border-right: 1px solid rgb(193, 223, 223);
+ 
+    /* border-left: 1px solid lightgreen; */
+
+}
+
+.list__item_seven {
+    border-right: 1px solid rgb(193, 223, 223);
+    flex-basis: 150px;
+
+}
+.list__item_eight {
+    border-right: 1px solid rgb(193, 223, 223);
+    flex-basis: 150px;
+
+}
+.list__item_nine {
+    border-right: 1px solid rgb(193, 223, 223);
+
+    flex-basis: 150px;
+
+}
+.list__item_ten{
+    flex-basis: 150px;
+    border-right: 1px solid rgb(193, 223, 223);
+}
+.list__item_eleven{
+    flex-basis: 150px;
 
 }
 

@@ -4,6 +4,11 @@ import axios from "axios";
 //     baseURL: 'http://localhost:5000/'
 // })
 
+// const $authHost = axios.create({
+//     baseURL: 'http://localhost:5000/'
+// })
+
+
 const $host = axios.create({
  
     proxy: {
@@ -14,9 +19,6 @@ const $host = axios.create({
 
 })
 
-// const $authHost = axios.create({
-//     baseURL: 'http://localhost:5000/'
-// })
 
 const $authHost = axios.create({
     proxy: {

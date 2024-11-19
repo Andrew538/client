@@ -25,10 +25,10 @@
     right: 25px;
 }
 .modal__input {
-    min-height: 30px;
+    min-height: 20px;
     font-size: 20px;
     margin: 0px 0px 20px 0px;
-    padding: 10px ;
+    padding: 8px ;
 }
 .modal__btn_box{
         display: flex;

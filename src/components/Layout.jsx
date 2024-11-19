@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import classes from './Layout.module.css'
 import Header from './UI/Header/Header'
 import { useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { Context } from '..'
+import Home from './pages/Home/Home'
 
-function Layout() {
+const Layout = observer(() => {
+  const {users} = useContext(Context)
+
   const [year, setYear] = useState([])
   
   useEffect(() => {
@@ -16,9 +21,16 @@ function Layout() {
   return (
     <>
       <Header/>
+
+
       <main className={classes.main}>
         <div className={classes.container}>
-          <Outlet/>
+          { users.isAuth ?
+            <Outlet/>
+            :
+            <Home/>
+          }
+
         </div>
       </main>
         <footer className={classes.footer}> 
@@ -35,6 +47,6 @@ function Layout() {
     </>
    
   )
-}
+})
 
 export default Layout
