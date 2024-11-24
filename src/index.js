@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import UserStore from './components/store/UserStore';
 import GuaranteeStore from './components/store/GuaranteeStore';
+import Home from './components/pages/Home/Home';
 // import AllUserStore from './components/store/AllUserStore';
 
 
@@ -16,10 +17,12 @@ root.render(
     <BrowserRouter>
     <Context.Provider value={{ 
       users: new UserStore(),
-      // all: new AllUserStore(),
-      examination: new GuaranteeStore()
+      status: new GuaranteeStore(),
+      examination: new GuaranteeStore(),
+      examinationworks: new GuaranteeStore()
       }}>
       <App />
+
       </Context.Provider>
     </BrowserRouter>
   </React.StrictMode>

@@ -7,6 +7,9 @@ import './modal.css'
 import { Context } from '../../../index';
 import { createRecord, fetchExam } from '../../http/guaranteeAPI';
 import { observer } from 'mobx-react-lite';
+import Select from 'react-select';
+
+import MySelect from '../Select/MySelect';
 
 
 const AddEntry = observer(({show, onHide, props}) => {
@@ -25,8 +28,9 @@ const [manager, setManager] = useState('')
 const [product, setProduct] = useState('')
 const [releaseDate, setReleaseDate] = useState('')
 const [result, setResult] = useState('')
+const [statusExam, setStatus] = useState('New')
 const [addRec, setAddRec] = useState()
-
+// console.log(status)
 useEffect(() => {
 
   fetchExam(null, null).then(data => {
@@ -42,11 +46,19 @@ useEffect(() => {
 const addRecrod = async () => {
   try {
 
-    const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result)
+    const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, 
+    movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam)
     setAddRec(rec)
-    fetchExam(null, null).then(data => {
+    fetchExam(null, null, 1,2).then(data => {
       examination.SetExamination(data)
     })
+
+    
+ 
+    fetchExam(examination.SetExamination.id, examination.page).then(data => {
+      examination.SetExamination(data)
+    })
+  
   
    
     if(rec) {
@@ -169,6 +181,7 @@ const addRecrod = async () => {
                 value={comment}
                 onChange={e => setСomment(e.target.value)}
                 />
+                
               <div className={classes.modal__btn_box}>
                   <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
                   <button className={classes.modal__btn} onClick={addRecrod}>Сохранить</button>           

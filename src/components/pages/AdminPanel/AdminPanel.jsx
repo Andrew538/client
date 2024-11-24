@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Context } from '../../../index';
-import { check, registration, } from '../../http/userAPI';
+import React, { useState } from 'react'
+
+import { registration, } from '../../http/userAPI';
 import Select from 'react-select';
 import classes from './AdminPanel.module.css'
+import MySelect from '../../UI/Select/MySelect';
 function AdminPanel() {
   
   const [email, setEmail] = useState('')
@@ -12,7 +13,7 @@ function AdminPanel() {
  
 
   const rgistr = async () => {
-    let data;
+
     try {
       const data  = await registration(email, password, name, role)
     } catch (err) {
@@ -26,45 +27,15 @@ function AdminPanel() {
     }
   }
 
-  useEffect(() => {  
  
-    
-    
-
-      if (localStorage.getItem('token') ) {
-        // usersList().then(data => {
-        //   // console.log(data)
-        // })
-        // .catch((err) => {
-        //   console.log(err)
-        // })
-
-      // check()
-      // .then(data => {
-      //     setName(data)
-      //     console.log(data)
-      //   })
-      //   .catch((err) => {
-      //    if (err) {
-      //     //  navigate('/map', {replace: true})
-      //    }
-      //     // console.log(err)
-      //   })
-      //   .finally()
-      } 
-       
-      
-      
-
-},[]
-)
 
 
   const options = [
+    { value: 'USER', label: 'Пользователь'},
     { value: 'MANAGER', label: 'Менджер'},
     { value: 'ADMIN', label: 'Администратор'},
     { value: 'CLIENT', label: 'Клиент'},
-    { value: 'USER', label: 'Пользователь'},
+  
   ];
 
  
@@ -77,7 +48,7 @@ function AdminPanel() {
         <input className={classes.form__input} placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)}/> 
         <Select
           className={classes.form__select}
-          defaultValue={role}
+          defaultValue={options[0]}
           required
           onChange={(role) => setRole(role.value)}
           options={options}

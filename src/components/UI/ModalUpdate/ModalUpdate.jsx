@@ -5,6 +5,7 @@ import classes from './ModalUpdate.module.css'
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
 import {fetchExam, fetchOneExam, updateRecord } from '../../http/guaranteeAPI';
+import Select from 'react-select';
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
@@ -16,10 +17,21 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [releaseDate, setReleaseDate] = useState('')
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
+const [statusExam, setStatus] = useState('')
+// console.log(status.length)
   const allValue = [{dateOne,client, manager, product, releaseDate, result}]
 
 
     const {examination} = useContext(Context)
+
+
+    const options = [
+      { value: 'New', label: 'Выбрать статус'},
+      { value: 'Works', label: 'Проверка на заводе'},
+      { value: 'Arhive', label: 'В архив ( выдан клиенту или обмен брака'},
+    
+    ];
+
 
     useEffect(() => {
       const id = +props
@@ -38,32 +50,34 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       fetchExam(null, null).then(data => {
         setItemProps(data)
   
-        examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
+        examination.SetExamination(data)
         // console.log(data.sort())
       })
     },[examination])
+    
     
 
 
     const newRec = async (props) => {
       const id = +props
+    
      try {
-      if(releaseDate.length && result.length) {
-      await updateRecord( id, releaseDate, result)
+      if(releaseDate.length && result.length && statusExam.length ) {
+      await updateRecord( id, releaseDate, result, statusExam)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
           
         })
-      } else if (releaseDate === '' && result.length) {
+      } else if (releaseDate === '' && result.length && statusExam.length) {
        const  releaseDate = addRec.releaseDate
-        await updateRecord( id,releaseDate, result)
+        await updateRecord( id,releaseDate, result, statusExam)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
       
         })
       } else if(releaseDate.length && result === '') {
         const result = addRec.result
-        await updateRecord( id,releaseDate, result)
+        await updateRecord( id,releaseDate, result, statusExam.length)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
          
@@ -84,7 +98,6 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       {...props}
       show={show}
       onHide={onHide}
-    
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -92,7 +105,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
 <div  className={classes.modal__content}> 
           <div className={classes.modal__box}>
-          <h2 className={classes.modal__title}>Добавить запись</h2>
+          <h2 className={classes.modal__title}>Редактировать запись</h2>
             <label className={classes.modal__label} htmlFor="">Дата поступления</label>
                
                 <input 
@@ -127,7 +140,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                 onChange={e => setProduct(e.target.value)}
                 />
                 <label className={classes.modal__label} htmlFor="">Дата выдачи</label>
-                <input            
+                <textarea            
                 className={classes.modal__input} 
                 type="text" 
                 placeholder={addRec.releaseDate}
@@ -142,7 +155,11 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                 value={result}
                 onChange={e => setResult(e.target.value)}
                 />
-          
+                <Select
+                        defaultValue={options[0]}
+                        onChange={(status) => setStatus(status.value)}
+                        options={options}
+                      />
               <div className={classes.modal__btn_box}>
                   <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
                   <button className={classes.modal__btn} onClick={() => newRec(addRec.id)}>Сохранить</button>           

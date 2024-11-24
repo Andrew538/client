@@ -24,13 +24,8 @@ const Layout = observer(() => {
 
 
       <main className={classes.main}>
-        <div className={classes.container}>
-          { users.isAuth ?
+        <div className={classes.container}>         
             <Outlet/>
-            :
-            <Home/>
-          }
-
         </div>
       </main>
         <footer className={classes.footer}> 

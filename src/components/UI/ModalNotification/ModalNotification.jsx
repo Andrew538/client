@@ -21,7 +21,9 @@ const ModalNotification = observer(({show, onHide, props,}) => {
                 await delExam({id})
             onHide()
             await fetchExam(null, null).then(data => {
-                examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))      
+                examination.SetExamination(data)   
+    //   examination.setTotalCount(data.count)
+    //   .sort((a, b) => a.id > b.id ? 1 : -1)
             })
             } else {return}
             

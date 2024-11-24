@@ -16,26 +16,6 @@ const  Header = observer(() => {
     const navigate = useNavigate()
     const {singout} = useAuth()
     
-      
-    // window.onbeforeunload = function() {
-    //   // const clearStorge = function() {
-     
-    //   //   users.setIsAuth(false)
-    //   //   localStorage.clear();
-    //   //   setAdmin(' ')
-    //   //   checkUser.current = ''
-    //   //   setName('') 
-    //   //   singout(() => navigate('/map', {replace: true}))
-       
-    //   // }
-    //   return localStorage.clear();
-    
-    // };
-  //  window.addEventListener('unload', function(event
-  //  ) {
-  //   event.preventDefault()
-  //   return localStorage.clear();
-  //  })
     const clearStorge = function() {
      
       users.setIsAuth(false)
@@ -65,7 +45,7 @@ const  Header = observer(() => {
     <header className={classes.header}>
         <div className={classes.container}> 
             <nav className={classes.nav}>
-                <NavLink className={classes.link} to='/'>Главная</NavLink>
+                {/* <NavLink className={classes.link} to='/'>Главная</NavLink> */}
               
               {  users.isAuth &&
                 <> 
