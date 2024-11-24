@@ -75,9 +75,9 @@ const [statusExam, setStatus] = useState('')
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
       
         })
-      } else if(releaseDate.length && result === '') {
+      } else if(releaseDate.length && statusExam.length && result === '') {
         const result = addRec.result
-        await updateRecord( id,releaseDate, result, statusExam.length)
+        await updateRecord( id,releaseDate, result, statusExam)
         fetchExam(null, null).then(data => {
           examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
          
