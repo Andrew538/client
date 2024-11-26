@@ -4,6 +4,9 @@ export default class GuaranteeStore {
     constructor() {
        this._examination = []
        this._examinationworks = []
+        this._examinationarhive =[]
+        this._examinationready =[]
+        this._examinationcharger =[]
 
        this._status = ''
         makeAutoObservable(this)
@@ -16,6 +19,18 @@ export default class GuaranteeStore {
         this._examinationworks = examinationworks.sort((a, b) => a.id > b.id ? 1 : -1)
 
     }
+    SetExaminationArhive(examinationarhive) {
+        this._examinationarhive = examinationarhive.sort((a, b) => a.id > b.id ? 1 : -1)
+
+    }
+    SetExaminationReady(examinationready) {
+        this._examinationready = examinationready.sort((a, b) => a.id > b.id ? 1 : -1)
+
+    }
+    SetExaminationCharger(examinationcharger) {
+        this._examinationcharger = examinationcharger.sort((a, b) => a.id > b.id ? 1 : -1)
+
+    }
 
     SetStatus(status){
         this._status = status
@@ -23,6 +38,16 @@ export default class GuaranteeStore {
 
     get status() {
         return this._status
+    }
+    get examinationcharger() {
+        return this._examinationcharger
+    }
+    get examinationready() {
+        return this._examinationready
+    }
+
+    get examinationarhive() {
+        return this._examinationarhive
     }
     
     get examinationworks() {

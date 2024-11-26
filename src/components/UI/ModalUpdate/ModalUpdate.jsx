@@ -27,9 +27,11 @@ const [statusExam, setStatus] = useState('')
 
     const options = [
       { value: 'New', label: 'Выбрать статус'},
+      { value: 'Charger', label: 'На зарядку'},
       { value: 'Works', label: 'Проверка на заводе'},
-      { value: 'Arhive', label: 'В архив ( выдан клиенту или обмен брака'},
-    
+      { value: 'Ready', label: 'Готов к отправке клиенту'},
+      { value: 'Arhive', label: 'В архив (выдан клиенту или обмен брака )'},
+
     ];
 
 
@@ -76,6 +78,13 @@ const [statusExam, setStatus] = useState('')
       
         })
       } else if(releaseDate.length && statusExam.length && result === '') {
+        const result = addRec.result
+        await updateRecord( id,releaseDate, result, statusExam)
+        fetchExam(null, null).then(data => {
+          examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
+         
+        })
+      } else if(releaseDate === '' && result === '' && statusExam.length ) {
         const result = addRec.result
         await updateRecord( id,releaseDate, result, statusExam)
         fetchExam(null, null).then(data => {

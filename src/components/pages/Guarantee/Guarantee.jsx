@@ -6,6 +6,9 @@ import NewCheck from '../../WarrantyVerificationSteps/NewCheck';
 import { Context } from '../../..';
 import { fetchExam } from '../../http/guaranteeAPI';
 import FactoryСheck from '../../WarrantyVerificationSteps/FactoryСheck/FactoryСheck';
+import Arhive from '../../WarrantyVerificationSteps/Arhive/Arhive';
+import Ready from '../../WarrantyVerificationSteps/Ready/Ready';
+import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
 
 
 const  Guarantee = observer(() => {
@@ -14,9 +17,10 @@ const  Guarantee = observer(() => {
   const items = [
     
     { title: 'Поступили на проверку', content: <NewCheck/>, index: 1 },
-
-    { title: 'Отправили на завод', content: <FactoryСheck/>, index: 2},
-    { title: 'Архив', content: 'Аккумуляторы отрпавленные клиентам после проверки или замены брака' , index: 3},
+    { title: 'На зарядке', content: <Charger/>, index: 2 },
+    { title: 'Отправили на завод', content: <FactoryСheck/>, index: 3},
+    { title: 'Готовы к отправке клиенту', content: <Ready/>, index: 4 },
+    { title: 'Архив', content: <Arhive/> , index: 5},
   ]
 
 

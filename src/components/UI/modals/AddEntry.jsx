@@ -40,43 +40,51 @@ useEffect(() => {
   
 }, [ ])
 
-
+const require = [date, client, city, productionDate, manager, product]
 
 
 const addRecrod = async () => {
   try {
 
-    const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, 
-    movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam)
-    setAddRec(rec)
-    fetchExam(null, null, 1,2).then(data => {
-      examination.SetExamination(data)
-    })
 
     
+        const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, 
+          movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam)
+          setAddRec(rec)
+          fetchExam(null, null, 1,2).then(data => {
+            examination.SetExamination(data)
+          })
+    
+          
+      fetchExam(examination.SetExamination.id, examination.page).then(data => {
+        examination.SetExamination(data)
+      })
+    
+    
+     
+      if(rec) {
+        setDate('')
+        setclient('')
+        setManager('')
+        setProduct('')
+        setReleaseDate('')
+        setProductionDate('')
+        setplantDocumentNumber('')
+        setNumberReturnDocument('')
+        setMovingToDefectWarehouse('')
+        setCity('')
+        setСomment('')
+        setResult('')
+        onHide()
+      }
+      }
+    
+    
+  
  
-    fetchExam(examination.SetExamination.id, examination.page).then(data => {
-      examination.SetExamination(data)
-    })
-  
-  
-   
-    if(rec) {
-      setDate('')
-      setclient('')
-      setManager('')
-      setProduct('')
-      setReleaseDate('')
-      setProductionDate('')
-      setplantDocumentNumber('')
-      setNumberReturnDocument('')
-      setMovingToDefectWarehouse('')
-      setCity('')
-      setСomment('')
-      setResult('')
-      onHide()
-    }
-  } catch (error) {
+
+ 
+   catch (error) {
    alert(error)
   }
 
@@ -95,7 +103,6 @@ const addRecrod = async () => {
      <div  className={classes.modal__content}> 
           <div className={classes.modal__box}>
           <h2 className={classes.modal__title}>Добавить запись</h2>
-       
               <input 
                 placeholder='Дата поступления' 
                 className={classes.modal__input} 

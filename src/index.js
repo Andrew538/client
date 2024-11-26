@@ -11,6 +11,8 @@ import Home from './components/pages/Home/Home';
 
 export const Context = createContext(null)
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -19,7 +21,11 @@ root.render(
       users: new UserStore(),
       status: new GuaranteeStore(),
       examination: new GuaranteeStore(),
-      examinationworks: new GuaranteeStore()
+      examinationworks: new GuaranteeStore(),
+      examinationarhive: new GuaranteeStore(),
+      examinationready: new GuaranteeStore(),
+      examinationcharger: new GuaranteeStore(),
+
       }}>
       <App />
 

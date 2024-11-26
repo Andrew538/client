@@ -39,6 +39,7 @@ export const AuthProvider = ({children}) => {
                         users.setEmail(data.email)
                     } else if(localStorage.getItem(' ', ) && !data) {
                         localStorage.clear();
+                        navigate('/', {replace: true})
                         singout(()=> 
                             navigate('/', {replace: true})
                         
@@ -67,7 +68,8 @@ export const AuthProvider = ({children}) => {
 
 
     return <AuthContext.Provider value={value}>
-
-        { children}
+        
+     
+      { children }
     </AuthContext.Provider>
 }

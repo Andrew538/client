@@ -32,6 +32,21 @@ export const fetchExamArhive = async (date, client, city, productionDate, number
     return data
 }
 
+export const fetchExamCharger = async (date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam) => {
+    const {data} = await $authHost.get('api/examination/getallcharger', {params: {
+        date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam        
+    }})
+   
+    return data
+}
+export const fetchExamReady = async (date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam) => {
+    const {data} = await $authHost.get('api/examination/getallready', {params: {
+        date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam        
+    }})
+   
+    return data
+}
+
 
 export const delExam = async (id) => {
     const {} = await $authHost.delete('api/examination/del', {data: id})

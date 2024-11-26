@@ -99,12 +99,12 @@ const  FactoryСheck = observer (() => {
                         show={modalNotification}
                         onHide={() => setModalNotification(false)}
                         />             
-                      <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
+                      {/* <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
                         {    
                           setNotId(item.id)
                         setModalNotification(true)
                         }
-                        }>Удалить</button>
+                        }>Удалить</button> */}
                   </div>                              
                 </div>                   
                 </li> 
