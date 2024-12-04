@@ -6,16 +6,17 @@ import classes from './Charger.module.css'
 import classNames from 'classnames';
 import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
 import ModalNotification from '../../UI/ModalNotification/ModalNotification';
+import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
 
 
 const Charger = observer(() => {
-    const {examinationcharger, status}  = useContext(Context)
-
+    const {examinationcharger, examinationready, status}  = useContext(Context)
+    console.log(examinationcharger.examinationcharger)
 
     const [modalShow, setModalShow] = useState(false);
     const [modalUpdate, setModalUpdate] = useState(false);
     const [modalNotification, setModalNotification ] = useState(false)
-    // const [active, setActive] = useState(true)
+  
     let [numId, setNumId] = useState('')
     let [notId, setNotId] = useState('')
   
@@ -29,12 +30,12 @@ const Charger = observer(() => {
         fetchExamCharger(null, null).then(data => {
         setItemProps(data)
    
-        // console.log(data.map(i => i.statusExam))
+        console.log(data.map(i => i.statusExam))
         examinationcharger.SetExaminationCharger(data)
         status.SetStatus(data.map(i => i.statusExam))
-        // console.log(data.map(i => 
-        //   i.status
-        // ))
+        console.log(data.map(i => 
+          i.status
+        ))
       })
     },[examinationcharger])
   
@@ -46,19 +47,7 @@ const Charger = observer(() => {
         <AddEntry  show={modalShow}
           onHide={() => setModalShow(false)}
         /> */}
-        <ul className={classNames(classes.list__column__names)}>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_one)}>Дата поступления </li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_two)}>Клиент</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_three)}>Город</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_four)}>Менеджер</li>        
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_five)}>Название АКБ</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_six)}>Дата выпуска (Маркировка)</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_seven)}>Номер документа возврата от клиента</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eight)}>№ Акта для завода</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_nine)}>№ перемещения на склад БРАК</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_ten)}>Дата отправки клиенту</li>
-          <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eleven)}>Комментарий</li>
-        </ul>
+             <WarrantyTableHeader/>
          
           <ol>     
               { examinationcharger.examinationcharger.map((item, index) =>    

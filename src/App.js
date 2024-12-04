@@ -19,18 +19,46 @@ const App = observer(() => {
   const {users} = useContext(Context)
   const navigate = useNavigate()
 
-  if(localStorage.getItem(' ')) {
-    check().then(data => {
-        if(localStorage.getItem(' ', ) && !data) {
-            localStorage.clear();
-            navigate('/', {replace: true})
-            
+  useEffect(() => {
+     
+    // setUser(localStorage.getItem('token'))
+    try {
+
+      check()
+            .catch(function(error) {
+              console.log(error.response.status)
+              if(error.response.status === 401) {
+              navigate('/home', {replace: true})
+
+              }
+          })
+            .then(data => {
+                if(localStorage.getItem('token') && data) {
+                    users.setUser(true)
+                    users.setIsAuth(true)
+                    users.setRole(data.role)
+                    users.setEmail(data.email)
+                } else if(localStorage.getItem(' ', ) && !data) {
+                    localStorage.clear();
+                    navigate('/', {replace: true})
+                    // singout(()=> 
+                    //     navigate('/', {replace: true})
+                    // )
+                }
+            }) 
+       
+      
+    } catch (error) {
+        if(error.response.status === 401) {
+            navigate('/home', {replace: true})
+
         }
-        
-    })
+        console.log(error)
+        console.log(error)
+    }
+   
+}, [])
 
-
-} 
   return (
     <div className="App">
       <div className='App__box'>
@@ -42,7 +70,7 @@ const App = observer(() => {
             }/> */}
           <Route  path='/' element={<Layout/>}>       
           <Route index element={
-             !users.isAuth &&
+            //  !users.isAuth &&
               <Home/>
             }/>   
             <Route path='map' element={            

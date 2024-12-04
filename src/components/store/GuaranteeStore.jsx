@@ -24,10 +24,13 @@ export default class GuaranteeStore {
 
     }
     SetExaminationReady(examinationready) {
+        console.log(examinationready)
+
         this._examinationready = examinationready.sort((a, b) => a.id > b.id ? 1 : -1)
 
     }
     SetExaminationCharger(examinationcharger) {
+        console.log(examinationcharger)
         this._examinationcharger = examinationcharger.sort((a, b) => a.id > b.id ? 1 : -1)
 
     }
