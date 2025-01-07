@@ -2,13 +2,12 @@ import {makeAutoObservable} from "mobx";
 
 export default class GuaranteeStore {
     constructor() {
-       this._examination = []
-       this._examinationworks = []
+        this._examination = []
+        this._examinationworks = []
         this._examinationarhive =[]
         this._examinationready =[]
         this._examinationcharger =[]
-
-       this._status = ''
+        this._status = ''
         makeAutoObservable(this)
     }
 
@@ -17,22 +16,15 @@ export default class GuaranteeStore {
     }
     SetExaminationWorks(examinationworks) {
         this._examinationworks = examinationworks.sort((a, b) => a.id > b.id ? 1 : -1)
-
     }
     SetExaminationArhive(examinationarhive) {
         this._examinationarhive = examinationarhive.sort((a, b) => a.id > b.id ? 1 : -1)
-
     }
     SetExaminationReady(examinationready) {
-        console.log(examinationready)
-
         this._examinationready = examinationready.sort((a, b) => a.id > b.id ? 1 : -1)
-
     }
     SetExaminationCharger(examinationcharger) {
-        console.log(examinationcharger)
         this._examinationcharger = examinationcharger.sort((a, b) => a.id > b.id ? 1 : -1)
-
     }
 
     SetStatus(status){

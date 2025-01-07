@@ -40,7 +40,7 @@ const  Header = observer(() => {
               if(error.response.status === 401) {
               navigate('/home', {replace: true})
 
-              }
+            }
           })          
           }
         },[])

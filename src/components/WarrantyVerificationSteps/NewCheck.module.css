@@ -1,63 +1,5 @@
-.list__column__names {
-    list-style-type: none;
-    /* display: flex; */
-    display: grid;
-    grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
-    /* justify-content: space-between; */
-    max-width: 1539px;
-    align-items: center;
-}
-.list__column__names__item {
-    display: block;
-    text-align: center;
-    min-height: 20px;
-    font-size: 13px;
-    font-weight: 700;
-}
-.list__column__names__item_one {
-    flex-basis: 100px;
-
-
-
-}
-.list__column__names__item_two {
-    flex-basis: 160px;
-
-
-}
-.list__column__names__item_three {
-    flex-basis: 200px;
-
-}
-.list__column__names__item_four {
-    flex-basis: 200px;
-}
-.list__column__names__item_five {
-    flex-basis: 150px;
-
-}
-.list__column__names__item_six {
-    flex-basis: 300px;
-}
-.list__column__names__item_seven{
-    flex-basis: 202px;
-
-}
-.list__column__names__item_eight {
-    flex-basis: 202px;
-
-}
-.list__column__names__item_nine{
-
-    flex-basis: 202px;
-}
-.list__column__names__item_ten {
-    flex-basis: 202px;
-
-}
-.list__column__names__item_eleven{
-    flex-basis: 202px;
-
+:root {
+    --table-border-color: rgba(213, 218, 218, .5);
 }
 .list {
     position: relative;
@@ -71,10 +13,11 @@
     padding: 10px;
     background-color: transparent;
     border: 1px solid rgb(41, 180, 41);
+    border-radius: 15px;
     cursor: pointer;
     font-size: 19px;
     font-weight: 700;
-    transition: .3s;
+    transition: .2s;
 
 }
 .list__button:hover {
@@ -92,97 +35,84 @@
     max-width: 150px;
     padding: 5px;
     margin: 0px auto 0px auto;
+    border-radius: inherit;
+    border: 1px solid var(--table-border-color);
+
 
 }
-.list__box {
+.item__box{
    
     display: grid;
     grid-template-columns: 1539px 135px; 
     justify-content: space-between;
-    border: 2px solid rgb(193, 223, 223);
+    border: 2px solid var(--table-border-color);
     margin: 0px 0px 15px 0px;
     align-items: center;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 400;
     
 }
-.list__content {
+.table {
   
-
     display: grid;
     grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
 
 }
-.list__item {
-    /* box-sizing: border-box; */
-
+.table__item {
     text-align: left;
-
-   /* display: flex; */
-   text-align: center;
-   padding: 4px;
+    text-align: center;
+    padding: 4px;
 }
 
-.list__item_one {
-    border-right: 1px solid rgb(193, 223, 223);
-    /* border-left: 1px solid rgb(193, 223, 223); */
+.table__item_one {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 100px;
 
 }
-.list__item_two  {
-    border-right: 1px solid rgb(193, 223, 223);
-    /* border-left: 1px solid rgb(193, 223, 223); */
+.table__item_two  {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 160px;
     min-height: 30px;
 
 }
-.list__item_three {
-    border-right: 1px solid rgb(193, 223, 223);
-    border-left: 1px solid rgb(193, 223, 223);
+.table__item_three {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 200px;
 
 }
-.list__item_four {
-    border-right: 1px solid rgb(193, 223, 223);
-    border-left: 1px solid rgb(193, 223, 223);
+.table__item_four {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 200px;
 
 }
-.list__item_five {
-    border-right: 1px solid rgb(193, 223, 223);
-    border-left: 1px solid rgb(193, 223, 223);
+.table__item_five {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 
 }
-.list__item_six {
+.table__item_six {
     flex-basis: 150px;
-    border-right: 1px solid rgb(193, 223, 223);
- 
-    /* border-left: 1px solid lightgreen; */
-
+    border-right: 1px solid var(--table-border-color);
 }
 
-.list__item_seven {
-    border-right: 1px solid rgb(193, 223, 223);
+.table__item_seven {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 
 }
-.list__item_eight {
-    border-right: 1px solid rgb(193, 223, 223);
+.table__item_eight {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
-
 }
-.list__item_nine {
-    border-right: 1px solid rgb(193, 223, 223);
-
+.table__item_nine {
+    border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
-
 }
-.list__item_ten{
+.table__item_ten{
     flex-basis: 150px;
-    border-right: 1px solid rgb(193, 223, 223);
+    border-right: 1px solid var(--table-border-color);
 }
-.list__item_eleven{
+.table__item_eleven{
     flex-basis: 150px;
 
 }

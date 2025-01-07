@@ -12,6 +12,7 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '.';
 import { useContext, useEffect } from 'react';
 import { check } from './components/http/userAPI';
+import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
 
 
 
@@ -63,38 +64,38 @@ const App = observer(() => {
     <div className="App">
       <div className='App__box'>
       <AuthProvider>
+
         <Routes>
-          {/* <Route index element={
-             !users.isAuth &&
-              <Home/>
-            }/> */}
+      
+
           <Route  path='/' element={<Layout/>}>       
-          <Route index element={
-            //  !users.isAuth &&
-              <Home/>
-            }/>   
-            <Route path='map' element={            
-              <RequireAuth>
-                <Map/>
-              </RequireAuth>}/>
-              <Route path='guarantee' element={
-                <RequireAuth>
-                  <Guarantee/>
-              </RequireAuth>
-              }/>
-            <Route path='used-batteries' element={
-                <RequireAuth>
-                  <UsedBatteries/>
-                </RequireAuth>              
-              }/>
-            <Route path='admin-panel' element={
-                <RequireAuth>
-                  { users.role === 'ADMIN' &&
-                    <AdminPanel/>
-                    }  
-              </RequireAuth>
-            }/> 
-          </Route>    
+              <Route index element={
+                //  !users.isAuth &&
+                  <Home/>
+                }/>   
+                <Route path='map' element={            
+                  <RequireAuth>
+                    <Map/>
+                  </RequireAuth>}/>
+                  <Route path='guarantee' element={
+                    <RequireAuth>
+                      <Guarantee/>
+                  </RequireAuth>
+                  }/>
+                <Route path='used-batteries' element={
+                    <RequireAuth>
+                      <UsedBatteries/>
+                    </RequireAuth>              
+                  }/>
+                
+                <Route path='admin-panel' element={
+                    <RequireAuth>
+                      { users.role === 'ADMIN' &&
+                        <AdminPanel/>
+                        }  
+                  </RequireAuth>
+                }/> 
+          </Route>              
           <Route path='*' element={<Home/>}/>
         </Routes>
       </AuthProvider>   

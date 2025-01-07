@@ -13,11 +13,8 @@ import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
 const Ready = observer(() => {
     const {examinationready, status}  = useContext(Context)
 
-
-    const [modalShow, setModalShow] = useState(false);
     const [modalUpdate, setModalUpdate] = useState(false);
     const [modalNotification, setModalNotification ] = useState(false)
-    // const [active, setActive] = useState(true)
     let [numId, setNumId] = useState('')
     let [notId, setNotId] = useState('')
   
@@ -30,13 +27,10 @@ const Ready = observer(() => {
      
         fetchExamReady(null, null).then(data => {
         setItemProps(data)
-   
         console.log(data.map(i => i.statusExam))
         examinationready.SetExaminationReady(data)
         status.SetStatus(data.map(i => i.statusExam))
-        // console.log(data.map(i => 
-        //   i.status
-        // ))
+     
       })
     },[examinationready])
   
@@ -49,7 +43,6 @@ const Ready = observer(() => {
           onHide={() => setModalShow(false)}
         /> */}
               <WarrantyTableHeader/>
-         
           <ol>     
               { examinationready.examinationready.map((item, index) =>    
                   <li className={classes.list} key={item.id}>

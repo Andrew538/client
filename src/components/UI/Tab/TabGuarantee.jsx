@@ -4,7 +4,6 @@ import classes from './TabGuarantee.module.css'
 import classNames from 'classnames';
 function TabGuarantee({items}) {
 
-
     const [ active, setActive ] = useState(0);
 
 

@@ -164,7 +164,7 @@ const [statusExam, setStatus] = useState('')
                 value={result}
                 onChange={e => setResult(e.target.value)}
                 />
-                <Select
+                <Select className={classes.modal__select}
                         defaultValue={options[0]}
                         onChange={(status) => setStatus(status.value)}
                         options={options}

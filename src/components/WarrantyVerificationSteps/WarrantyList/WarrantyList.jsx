@@ -1,71 +1,37 @@
-import { observer } from 'mobx-react-lite'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-
-import classes from './NewCheck.module.css'
+import React, { useContext, useEffect, useState } from 'react'
+import classes from './WarrantyList.module.css'
 import classNames from 'classnames';
-import { Context } from '../..';
-import { fetchExam } from '../http/guaranteeAPI';
-import AddEntry from '../UI/modals/AddEntry';
-import ModalUpdate from '../UI/ModalUpdate/ModalUpdate';
-import ModalNotification from '../UI/ModalNotification/ModalNotification';
-import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
-
-import SelectSort from '../UI/Select/SelectSort/SelectSort';
+import { fetchExam } from '../../http/guaranteeAPI';
 
 
+import { observer } from 'mobx-react-lite';
+import { Context } from '../../..';
+import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
+import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 
-const  NewCheck = observer(() => {
+const WarrantyList = observer(() => {
+
+
+ 
   const {examination, status}  = useContext(Context)
 
-  const [modalShow, setModalShow] = useState(false);
-  const [modalUpdate, setModalUpdate] = useState(false);
-  const [modalNotification, setModalNotification ] = useState(false)
-  let [numId, setNumId] = useState('')
-  let [notId, setNotId] = useState('')
-
-
-
-  useEffect(() => {
-   
-    fetchExam(null, null).then(data => {
-      examination.SetExamination(data)
-      status.SetStatus(data)
-      
-    })
-  },[examination])
-
-
-  const [searchQuery, setSearchQuery] = useState('')
-
-  const sortedList = useMemo(() => {
-   if(searchQuery) {
-    return examination.examination.slice().filter(list => list.manager.toLowerCase().includes(searchQuery))
-
-   }
-    return examination.examination
-  }, [searchQuery, examination.examination])
-
+    let [numId, setNumId] = useState('')
+    let [notId, setNotId] = useState('')
+    const [modalUpdate, setModalUpdate] = useState(false);
+    const [modalNotification, setModalNotification ] = useState(false)
+        useEffect(() => {
+        fetchExam(null, null).then(data => {
+            examination.SetExamination(data)
+            status.SetStatus(data.map(i => i.statusExam))            
+        })
+    },[examination])
+    
+    
 
   return (
-    <div className={classes.list}>
-      <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
-      <AddEntry  show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-       <SelectSort
-        value={searchQuery}
-        onChange={setSearchQuery}
-        defaultValue="Сортировка по менеджеру"
-        options={[
-          {value: 'туркин', name: 'Туркин'},
-          {value: 'задоркин', name: 'Задоркин'},
-          {value: 'коновалова', name: 'Коновалова'}
-        ]}
-      /> 
-      <WarrantyTableHeader/>
- 
-        <ol className={classes.list}>
-            {sortedList.map((item, index) =>    
+    <div>
+         <ol className={classes.list}>
+            {examination.examination.map((item, index) =>    
                 <li className={classes.item} key={item.id}>
                 <div className={classes.item__box}>
                   <div className={classes.table}>    
@@ -102,8 +68,8 @@ const  NewCheck = observer(() => {
                         />             
                       <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
                         {    
-                          setNotId(item.id)
-                        setModalNotification(true)
+                            setNotId(item.id)
+                            setModalNotification(true)
                         }
                         }>Удалить</button>
                   </div>                              
@@ -119,4 +85,4 @@ const  NewCheck = observer(() => {
   )
 })
 
-export default NewCheck
+export default WarrantyList

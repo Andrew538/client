@@ -1,9 +1,7 @@
 .list__column__names {
     list-style-type: none;
-    /* display: flex; */
     display: grid;
     grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
-    /* justify-content: space-between; */
     max-width: 1539px;
     align-items: center;
 }
@@ -72,7 +70,7 @@
     background-color: transparent;
     border: 1px solid rgb(41, 180, 41);
     cursor: pointer;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 700;
     transition: .3s;
 

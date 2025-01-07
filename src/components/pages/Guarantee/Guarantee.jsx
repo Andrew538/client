@@ -9,6 +9,9 @@ import FactoryСheck from '../../WarrantyVerificationSteps/FactoryСheck/Factory
 import Arhive from '../../WarrantyVerificationSteps/Arhive/Arhive';
 import Ready from '../../WarrantyVerificationSteps/Ready/Ready';
 import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
+import { NavLink, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from '../../AuthProvider';
+import RequireAuth from '../../RequireAuth';
 
 
 const  Guarantee = observer(() => {
@@ -24,8 +27,12 @@ const  Guarantee = observer(() => {
   ]
 
 
+
   return (
     <div className={classes.list}>
+
+
+
         <TabGuarantee           
           items={items}
         ></TabGuarantee>

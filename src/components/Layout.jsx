@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Context } from '..'
 import Home from './pages/Home/Home'
+import Guarantee from './pages/Guarantee/Guarantee'
 
 const Layout = observer(() => {
   const {users} = useContext(Context)
