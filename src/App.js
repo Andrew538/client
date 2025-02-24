@@ -29,15 +29,15 @@ const App = observer(() => {
     try {
 
       check()
-            .catch(function(error) {
-              // console.log(error.response.status)
-              if(error.response.status === 401) {
-              navigate('/home', {replace: true})
+          //   .catch(function(error) {
+          //     // console.log(error.response.status)
+          //     if(error.response.status === 401) {
+          //     navigate('/home', {replace: true})
 
-              }
-              // console.clear()
+          //     }
+          //     // console.clear()
             
-          })
+          // })
             .then(data => {
                 if(localStorage.getItem('token') && data) {
                     users.setUser(true)

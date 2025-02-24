@@ -85,7 +85,7 @@ const  NewCheck = observer(() => {
       <WarrantyTableHeader/>
       
         <ol className={classes.list}>
-            {examination.map((item) =>    
+            {examination.examination.map((item) =>    
                 <li className={classes.item} key={item.id}>
                 <div className={classes.item__box}>
                   <div className={classes.table}>    
