@@ -62,7 +62,7 @@ const  NewCheck = observer(() => {
 
   const sortedList = useMemo(() => {
    if(sort) {
-    return examination.examination.slice().filter(list => list.manager.toLowerCase().includes(sort))
+    return examination.examination.filter(list => list.manager.toLowerCase().includes(sort))
 
    }
     return examination.examination
