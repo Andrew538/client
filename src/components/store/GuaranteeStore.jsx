@@ -12,7 +12,7 @@ export default class GuaranteeStore {
         
     }
     SetExamination(examination) {
-        this._examination = examination.sort((a, b) => a.id > b.id ? 1 : -1)
+        this._examination = examination
     }
     SetExaminationWorks(examinationworks) {
         this._examinationworks = examinationworks.sort((a, b) => a.id > b.id ? 1 : -1)
