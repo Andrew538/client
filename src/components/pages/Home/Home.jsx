@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hook/useAuth'
 import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
-import {check, login, usersList } from '../../http/userAPI'
+import {login,} from '../../http/userAPI'
 import classes from './Home.module.css'
 
 
@@ -16,7 +16,7 @@ const  Home = observer(() => {
   const navigate = useNavigate()
   const {singin} = useAuth()  
   const signIn = async () => {
-   
+  
     try {
   
    
@@ -58,8 +58,9 @@ const  Home = observer(() => {
             Пароль  <input className={classes.form__input} name='password' type='password' required autoComplete='true' placeholder='Пароль' value={password} onChange={e => setPassword(e.target.value)}/>        
           </label>
         </div>
+       
       </form>
-    <button className={classes.form__button} onKeyDown={signIn}  onClick={signIn} type='submit'>Войти</button>
+      <button className={classes.form__button} onKeyDown={signIn}  onClick={signIn} type='submit'>Войти</button>
       
     </div>
     

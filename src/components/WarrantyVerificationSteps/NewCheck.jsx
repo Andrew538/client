@@ -4,29 +4,52 @@ import React, { useContext, useEffect, useMemo, useState } from 'react'
 import classes from './NewCheck.module.css'
 import classNames from 'classnames';
 import { Context } from '../..';
-import { fetchExam } from '../http/guaranteeAPI';
+import { fetchExam, fetchOneExam } from '../http/guaranteeAPI';
 import AddEntry from '../UI/modals/AddEntry';
 import ModalUpdate from '../UI/ModalUpdate/ModalUpdate';
 import ModalNotification from '../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
+import SortedList from '../UI/Select/SelectSort/SortedList';
 
 
 
 const  NewCheck = observer(() => {
   const {examination, status}  = useContext(Context)
 
+  const list = examination.examination
   const [modalShow, setModalShow] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification ] = useState(false)
   let [numId, setNumId] = useState('')
   let [notId, setNotId] = useState('')
+  let [Id, setId] = useState('')
+  // console.log(Id)
 
 
 
-  useEffect(() => {
+    useEffect(() => {
+      
+      const id = numId
    
+        fetchOneExam(id).then(data => {
+          setId(data)
+          console.log(data)
+        })     
+ 
+     
+      
+      try {        
+         
+        }        
+       catch (error) {
+        console.log(error)
+       }
+    }, [])
+
+
+  useEffect(() => {   
     fetchExam(null, null).then(data => {
       examination.SetExamination(data)
       status.SetStatus(data)
@@ -35,15 +58,15 @@ const  NewCheck = observer(() => {
   },[examination])
 
 
-  const [searchQuery, setSearchQuery] = useState('')
+  const [sort, setSort] = useState('')
 
   const sortedList = useMemo(() => {
-   if(searchQuery) {
-    return examination.examination.slice().filter(list => list.manager.toLowerCase().includes(searchQuery))
+   if(sort) {
+    return examination.examination.slice().filter(list => list.manager.toLowerCase().includes(sort))
 
    }
     return examination.examination
-  }, [searchQuery, examination.examination])
+  }, [sort, examination.examination])
 
 
   return (
@@ -53,8 +76,8 @@ const  NewCheck = observer(() => {
         onHide={() => setModalShow(false)}
       />
        <SelectSort
-        value={searchQuery}
-        onChange={setSearchQuery}
+        value={sort}
+        onChange={setSort}
         defaultValue="Сортировка по менеджеру"
         options={[
           {value: 'туркин', name: 'Туркин'},
@@ -63,7 +86,7 @@ const  NewCheck = observer(() => {
         ]}
       /> 
       <WarrantyTableHeader/>
- 
+      
         <ol className={classes.list}>
             {sortedList.map((item, index) =>    
                 <li className={classes.item} key={item.id}>
@@ -86,35 +109,34 @@ const  NewCheck = observer(() => {
                     className={classNames(classes.list__button, classes.list__button_size )}
                       type='button' 
                           onClick={() => {
-                            setNumId(item.id)
+                            setId(item.id)
                             setModalUpdate(true)
+                            console.log('Привет')
                         }} 
-                        >Изменить</button> 
-                        <ModalUpdate
-                        props={numId}             
-                        show={modalUpdate}
-                        onHide={() => setModalUpdate(false)}
-                        />
-                        <ModalNotification
-                        props={notId}             
-                        show={modalNotification}
-                        onHide={() => setModalNotification(false)}
-                        />             
+                        >Изменить </button> 
+                              
                       <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
                         {    
                           setNotId(item.id)
-                        setModalNotification(true)
+                          setModalNotification(true)
                         }
                         }>Удалить</button>
                   </div>                              
                 </div>                   
-                </li> 
-
-                        
-              
-              )}
-          
+                </li>
+                                      
+              )}          
        </ol>
+       <ModalUpdate
+          props={Id}             
+          show={modalUpdate}
+          onHide={() => setModalUpdate(false)}
+          />
+          <ModalNotification
+          props={notId}             
+          show={modalNotification}
+          onHide={() => setModalNotification(false)}
+        />
     </div>
   )
 })

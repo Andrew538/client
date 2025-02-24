@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TabContent from './TabContent';
 import classes from './TabGuarantee.module.css'
 import classNames from 'classnames';
+import NewCheck from '../../WarrantyVerificationSteps/NewCheck';
 function TabGuarantee({items}) {
 
     const [ active, setActive ] = useState(0);
@@ -12,6 +13,7 @@ function TabGuarantee({items}) {
 
   return (
     <div>
+     
     <div className={classNames(classes.tab)}>
       {items.map((n, i) => (
     

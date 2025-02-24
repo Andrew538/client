@@ -68,6 +68,7 @@ export const fetchOneExam = async (id) => {
 }
 
 
+
 // export const getStatus = async (statusExam) => {
 //     const {data} = await $authHost.get('api/examination/getstatus', { params: {statusExam} })
 //     console.log(data)

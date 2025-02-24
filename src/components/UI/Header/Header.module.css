@@ -26,7 +26,13 @@
     max-width: 100px;
     padding: 10px 5px;
     background-color: transparent;
-    border: 2px solid rgb(41, 180, 41);
+    border: 1px solid lavender;
     cursor: pointer;
+    border-radius: 15px;
     font-size: 15px;
+    transition: .2s;
+}
+.header__button:hover {
+    background-color: lavender;
+
 }

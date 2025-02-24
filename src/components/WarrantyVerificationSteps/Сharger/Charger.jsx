@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Context } from '../../..';
 import { fetchExamCharger } from '../../http/guaranteeAPI';
 import classes from './Charger.module.css'
@@ -7,11 +7,12 @@ import classNames from 'classnames';
 import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
 import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
+import SelectSort from '../../UI/Select/SelectSort/SelectSort';
 
 
 const Charger = observer(() => {
-    const {examinationcharger, examinationready, status}  = useContext(Context)
-    console.log(examinationcharger.examinationcharger)
+    const {examinationcharger, status}  = useContext(Context)
+  
 
     const [modalShow, setModalShow] = useState(false);
     const [modalUpdate, setModalUpdate] = useState(false);
@@ -26,32 +27,40 @@ const Charger = observer(() => {
   
   
     useEffect(() => {
-     
         fetchExamCharger(null, null).then(data => {
         setItemProps(data)
-   
-        console.log(data.map(i => i.statusExam))
         examinationcharger.SetExaminationCharger(data)
-        status.SetStatus(data.map(i => i.statusExam))
-        console.log(data.map(i => 
-          i.status
-        ))
+        status.SetStatus(data.map(i => i.statusExam))       
       })
     },[examinationcharger])
+    const [sort, setSort] = useState('')
   
+    const sortedList = useMemo(() => {
+     if(sort) {
+     
+      return examinationcharger.examinationcharger.slice().filter(list => list.manager.toLowerCase().includes(sort))
+  
+     }
+      return examinationcharger.examinationcharger
+    }, [sort, examinationcharger.examinationcharger])
   
   
     return (
       <div className={classes.list}>
-        {/* <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
-        <AddEntry  show={modalShow}
-          onHide={() => setModalShow(false)}
-        /> */}
-             <WarrantyTableHeader/>
-         
-          <ol>     
-              { examinationcharger.examinationcharger.map((item, index) =>    
-                  <li className={classes.list} key={item.id}>
+        <SelectSort
+        value={sort}
+        onChange={setSort}
+        defaultValue="Сортировка по менеджеру"
+        options={[
+          {value: 'туркин', name: 'Туркин'},
+          {value: 'задоркин', name: 'Задоркин'},
+          {value: 'коновалова', name: 'Коновалова'}
+        ]}
+      /> 
+        <WarrantyTableHeader/>         
+          <ol>             
+            { sortedList.map((item, index) =>    
+                <li className={classes.list} key={item.id}>                
                   <div className={classes.list__box}>
                     <div className={classes.list__content} >    
                       <div className={classNames(classes.list__item, classes.list__item_one)}>{item.date}</div> 
@@ -67,39 +76,29 @@ const Charger = observer(() => {
                       <div className={classNames(classes.list__item, classes.list__item_eleven)}>{item.result}</div>   
                     </div>
                     <div className={classNames(classes.list__button__box, )}>              
-                      <button
-                      className={classNames(classes.list__button, classes.list__button_size )}
-                        type='button' 
-                            onClick={() => {
-                              setNumId(item.id)
-                              setModalUpdate(true)
-                          }} 
-                          >Изменить</button> 
-                          <ModalUpdate
-                          props={numId}             
-                          show={modalUpdate}
-                          onHide={() => setModalUpdate(false)}
-                          />
-                          <ModalNotification
-                          props={notId}             
-                          show={modalNotification}
-                          onHide={() => setModalNotification(false)}
-                          />             
-                        {/* <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
-                          {    
-                            setNotId(item.id)
-                          setModalNotification(true)
-                          }
-                          }>Удалить</button> */}
-                    </div>                              
+                    <button
+                    className={classNames(classes.list__button, classes.list__button_size )}
+                      type='button' 
+                          onClick={() => {
+                            setNumId(item.id)
+                            setModalUpdate(true)
+                        }} 
+                        >Изменить</button>                       
+                      </div>                              
                   </div>                   
-                  </li> 
-  
-                          
-                
-                )}
-            
+              </li>                                             
+            )}            
          </ol>
+         <ModalUpdate
+          props={numId}             
+          show={modalUpdate}
+          onHide={() => setModalUpdate(false)}
+          />
+          <ModalNotification
+          props={notId}             
+          show={modalNotification}
+          onHide={() => setModalNotification(false)}
+          />             
       </div>
     )
 })

@@ -16,7 +16,7 @@ const WarrantyTableHeader = () => {
             <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eight)}>№ Акта для завода</li>
             <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_nine)}>№ перемещения на склад БРАК</li>
             <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_ten)}>Дата отправки клиенту</li>
-            <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eleven)}>Комментарий</li>
+            <li className={classNames(classes.list__column__names__item, classes.list__column__names__item_eleven)}>Заключение</li>
         </ul>
     </div>
   )

@@ -7,30 +7,34 @@ import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 import classes from './Arhive.module.css'
 import classNames from 'classnames';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
-
+import ReactPaginate from 'react-paginate';
+import PaginatedItems from '../../pages/Pagination/Pagination';
 
 const Arhive = observer(() => {
     const {examinationarhive, status}  = useContext(Context)
 
+  console.log(examinationarhive.examinationarhive.map(item => {
+    console.log(item.createdAt)
+  }))
 
-    const [modalShow, setModalShow] = useState(false);
     const [modalUpdate, setModalUpdate] = useState(false);
     const [modalNotification, setModalNotification ] = useState(false)
-    // const [active, setActive] = useState(true)
+
     let [numId, setNumId] = useState('')
     let [notId, setNotId] = useState('')
-  
+
   
     const [itemProps, setItemProps] = useState()
   
+    // const items = [...examinationarhive.examinationarhive.keys()]
+    // console.log(items)
   
   
     useEffect(() => {
      
         fetchExamArhive(null, null).then(data => {
         setItemProps(data)
-   
-        console.log(data.map(i => i.statusExam))
+
         examinationarhive.SetExaminationArhive(data)
         status.SetStatus(data.map(i => i.statusExam))
         // console.log(data.map(i => 
@@ -40,15 +44,13 @@ const Arhive = observer(() => {
     },[examinationarhive])
   
   
+    
+    
   
     return (
       <div className={classes.list}>
-        {/* <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
-        <AddEntry  show={modalShow}
-          onHide={() => setModalShow(false)}
-        /> */}
+         <h1>Архив</h1>
              <WarrantyTableHeader/>
-         
           <ol>     
               { examinationarhive.examinationarhive.map((item, index) =>    
                   <li className={classes.list} key={item.id}>
@@ -67,39 +69,27 @@ const Arhive = observer(() => {
                       <div className={classNames(classes.list__item, classes.list__item_eleven)}>{item.result}</div>   
                     </div>
                     <div className={classNames(classes.list__button__box, )}>              
-                      {/* <button
-                      className={classNames(classes.list__button, classes.list__button_size )}
-                        type='button' 
-                            onClick={() => {
-                              setNumId(item.id)
-                              setModalUpdate(true)
-                          }} 
-                          >Изменить</button>  */}
-                          <ModalUpdate
-                          props={numId}             
-                          show={modalUpdate}
-                          onHide={() => setModalUpdate(false)}
-                          />
-                          <ModalNotification
-                          props={notId}             
-                          show={modalNotification}
-                          onHide={() => setModalNotification(false)}
-                          />             
-                        {/* <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
-                          {    
-                            setNotId(item.id)
-                          setModalNotification(true)
-                          }
-                          }>Удалить</button> */}
+                         
                     </div>                              
                   </div>                   
                   </li> 
-  
-                          
-                
+
                 )}
-            
+             <ModalUpdate
+                props={numId}             
+                show={modalUpdate}
+                onHide={() => setModalUpdate(false)}
+                />
+                <ModalNotification
+                props={notId}             
+                show={modalNotification}
+                onHide={() => setModalNotification(false)}
+              
+              />             
          </ol>
+         
+      
+
       </div>
     )
 })

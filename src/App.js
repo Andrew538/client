@@ -13,6 +13,10 @@ import { Context } from '.';
 import { useContext, useEffect } from 'react';
 import { check } from './components/http/userAPI';
 import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
+import FactoryСheck from './components/WarrantyVerificationSteps/FactoryСheck/FactoryСheck';
+import Charger from './components/WarrantyVerificationSteps/Сharger/Charger';
+import Ready from './components/WarrantyVerificationSteps/Ready/Ready';
+import Arhive from './components/WarrantyVerificationSteps/Arhive/Arhive';
 
 
 
@@ -20,18 +24,19 @@ const App = observer(() => {
   const {users} = useContext(Context)
   const navigate = useNavigate()
 
-  useEffect(() => {
-     
-    // setUser(localStorage.getItem('token'))
+  useEffect(() => {     
+    
     try {
 
       check()
             .catch(function(error) {
               console.log(error.response.status)
               if(error.response.status === 401) {
-              navigate('/home', {replace: true})
+              // navigate('/home', {replace: true})
 
               }
+              // console.clear()
+              console.log = () => {};
           })
             .then(data => {
                 if(localStorage.getItem('token') && data) {
@@ -60,17 +65,17 @@ const App = observer(() => {
    
 }, [])
 
+
+
+
+
   return (
     <div className="App">
       <div className='App__box'>
       <AuthProvider>
-
         <Routes>
-      
-
           <Route  path='/' element={<Layout/>}>       
               <Route index element={
-                //  !users.isAuth &&
                   <Home/>
                 }/>   
                 <Route path='map' element={            
@@ -81,7 +86,33 @@ const App = observer(() => {
                     <RequireAuth>
                       <Guarantee/>
                   </RequireAuth>
+                  }>
+                    <Route path='new-check' element={
+                      <RequireAuth>
+                        <NewCheck/>
+                      </RequireAuth>
+                      }/>
+                   <Route path='charger' element={
+                      <RequireAuth>
+                        <Charger/>
+                      </RequireAuth>
                   }/>
+                       <Route path='factory' element={
+                      <RequireAuth>
+                        <FactoryСheck/>
+                      </RequireAuth>
+                  }/>
+                  <Route path='ready' element={
+                      <RequireAuth>
+                        <Ready/>
+                      </RequireAuth>
+                  }/>
+                  <Route path='arhive' element={
+                      <RequireAuth>
+                        <Arhive/>
+                      </RequireAuth>
+                  }/>
+                  </Route>
                 <Route path='used-batteries' element={
                     <RequireAuth>
                       <UsedBatteries/>

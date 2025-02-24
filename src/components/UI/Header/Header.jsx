@@ -30,20 +30,20 @@ const  Header = observer(() => {
     const checkUser = useRef('')
       checkUser.current = users.role
 
-      useEffect(() => {    
-          if (localStorage.getItem('token') ) {        
-            check().then(data => {
-              setName(data.email)
-              setAdmin(data.role)
-            }) .catch(function(error) {
-              console.log(error.response.status)
-              if(error.response.status === 401) {
-              navigate('/home', {replace: true})
+      // useEffect(() => {    
+      //     if (localStorage.getItem('token') ) {        
+      //       check().then(data => {
+      //         setName(data.email)
+      //         setAdmin(data.role)
+      //       }) .catch(function(error) {
+      //         console.log(error.response.status)
+      //         if(error.response.status === 401) {
+      //         navigate('/home', {replace: true})
 
-            }
-          })          
-          }
-        },[])
+      //       }
+      //     })          
+      //     }
+      //   },[])
 
 
 
@@ -66,14 +66,14 @@ const  Header = observer(() => {
                       <NavLink className={classes.link} to='/admin-panel'>Админ-панель</NavLink>                                       
                     </>                     
                   }                                             
+                 
+                  <span>{users.email}</span>
                   <button 
                     className={classes.header__button} 
                     onClick={clearStorge}
                   >
                     Выйти
                   </button>
-                  <span>{users.email}</span>
-
                 </>
                
               } 

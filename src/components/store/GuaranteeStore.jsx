@@ -9,16 +9,16 @@ export default class GuaranteeStore {
         this._examinationcharger =[]
         this._status = ''
         makeAutoObservable(this)
+        
     }
-
     SetExamination(examination) {
-        this._examination = examination.sort((a, b) => a.id > b.id ? 1 : -1)
+        this._examination = examination.sort((a, b) => a.createdAt > b.createdAt ? 1 : -1)
     }
     SetExaminationWorks(examinationworks) {
         this._examinationworks = examinationworks.sort((a, b) => a.id > b.id ? 1 : -1)
     }
     SetExaminationArhive(examinationarhive) {
-        this._examinationarhive = examinationarhive.sort((a, b) => a.id > b.id ? 1 : -1)
+        this._examinationarhive = examinationarhive.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
     SetExaminationReady(examinationready) {
         this._examinationready = examinationready.sort((a, b) => a.id > b.id ? 1 : -1)

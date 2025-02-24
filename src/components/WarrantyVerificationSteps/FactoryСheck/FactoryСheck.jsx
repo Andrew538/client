@@ -1,58 +1,63 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Context } from '../../..';
 import { fetchExamWorks } from '../../http/guaranteeAPI';
-import AddEntry from '../../UI/modals/AddEntry';
+
 import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
 import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 import classes from './FactoryСheck.module.css'
 import classNames from 'classnames';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
+import SelectSort from '../../UI/Select/SelectSort/SelectSort';
 
 
 
 const  FactoryСheck = observer (() => {
 
   const {examinationworks, status}  = useContext(Context)
-
-
-  const [modalShow, setModalShow] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification ] = useState(false)
-  // const [active, setActive] = useState(true)
   let [numId, setNumId] = useState('')
   let [notId, setNotId] = useState('')
-
+  const [sort, setSort] = useState('')
 
   const [itemProps, setItemProps] = useState()
 
 
 
   useEffect(() => {
-   
     fetchExamWorks(null, null).then(data => {
       setItemProps(data)
- 
-      console.log(data.map(i => i.statusExam))
       examinationworks.SetExaminationWorks(data)
       status.SetStatus(data.map(i => i.statusExam))
-      // console.log(data.map(i => 
-      //   i.status
-      // ))
     })
   },[examinationworks])
 
 
+  const sortedList = useMemo(() => {
+   if(sort) {
+    return examinationworks.examinationworks.slice().filter(list => list.manager.toLowerCase().includes(sort))
+
+   }
+    return examinationworks.examinationworks
+  }, [sort, examinationworks.examinationworks])
 
   return (
     <div className={classes.list}>
-      {/* <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
-      <AddEntry  show={modalShow}
-        onHide={() => setModalShow(false)}
-      /> */}
+             <SelectSort
+                value={sort}
+                onChange={setSort}
+                defaultValue="Сортировка по менеджеру"
+                options={[
+                  {value: 'туркин', name: 'Туркин'},
+                  {value: 'задоркин', name: 'Задоркин'},
+                  {value: 'коновалова', name: 'Коновалова'}
+                ]}
+              /> 
             <WarrantyTableHeader/>
+            <h1> Аккумуляторы отправленные на завод</h1>
         <ol>     
-            { examinationworks.examinationworks.map((item, index) =>    
+            { sortedList.map((item, index) =>    
                 <li className={classes.list} key={item.id}>
                 <div className={classes.list__box}>
                   <div className={classes.list__content} >    
@@ -77,16 +82,7 @@ const  FactoryСheck = observer (() => {
                             setModalUpdate(true)
                         }} 
                         >Изменить</button> 
-                        <ModalUpdate
-                        props={numId}             
-                        show={modalUpdate}
-                        onHide={() => setModalUpdate(false)}
-                        />
-                        <ModalNotification
-                        props={notId}             
-                        show={modalNotification}
-                        onHide={() => setModalNotification(false)}
-                        />             
+                       
                       {/* <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
                         {    
                           setNotId(item.id)
@@ -102,6 +98,16 @@ const  FactoryСheck = observer (() => {
               )}
           
        </ol>
+       <ModalUpdate
+        props={numId}             
+        show={modalUpdate}
+        onHide={() => setModalUpdate(false)}
+        />
+        <ModalNotification
+        props={notId}             
+        show={modalNotification}
+        onHide={() => setModalNotification(false)}
+        />             
     </div>
   )
 })

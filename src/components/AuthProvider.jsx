@@ -2,11 +2,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { check } from "./http/userAPI";
 import { Context } from "../index";
 import { useNavigate } from "react-router-dom";
+import NewCheck from "./WarrantyVerificationSteps/NewCheck";
 
 
 export const AuthContext = createContext(null)
 
 export const AuthProvider = ({children}) => {
+  
     const {users} = useContext(Context)
     const navigate = useNavigate()
     const [user, setUser] = useState(true)
@@ -65,6 +67,9 @@ export const AuthProvider = ({children}) => {
 
 
     return <AuthContext.Provider value={value}>
-      { children }
+      { children 
+      }
+   
+
     </AuthContext.Provider>
 }

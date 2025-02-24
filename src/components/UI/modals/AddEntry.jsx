@@ -31,6 +31,8 @@ const [releaseDate, setReleaseDate] = useState('')
 const [result, setResult] = useState('')
 const [statusExam, setStatus] = useState('New')
 const [addRec, setAddRec] = useState()
+      // console.log(addRec)
+
 useEffect(() => {
 
   fetchExam(null, null).then(data => {
@@ -43,15 +45,19 @@ useEffect(() => {
 
 const addRecrod = async () => {
   try {
+
     const rec = await createRecord(date, client, city, productionDate, numberReturnDocument, plantDocumentNumber, 
       movingToDefectWarehouse, comment, manager, product, releaseDate, result, statusExam)
-      setAddRec(rec)
+      // console.log(rec.response)
+      // setAddRec(rec)
+   
       fetchExam(null, null, 1,2).then(data => {
         examination.SetExamination(data)
       })
     fetchExam(examination.SetExamination.id).then(data => {
       examination.SetExamination(data)
     })
+    
     if(rec) {
       setDate('')
       setclient('')
@@ -69,7 +75,7 @@ const addRecrod = async () => {
     }
     }
     catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
@@ -158,20 +164,20 @@ const addRecrod = async () => {
           value={releaseDate}
           onChange={e => setReleaseDate(e.target.value)}
         />
-        <input 
+        <textarea 
           placeholder='Заключение' 
           className={classes.modal__input} 
           type="text" 
           value={result}
           onChange={e => setResult(e.target.value)}
         />
-        <textarea 
+        {/* <textarea 
           placeholder='Комментарий' 
           className={classNames(classes.modal__input, classes.modal__textarea)} 
           type="text" 
           value={comment}
           onChange={e => setСomment(e.target.value)}
-          />
+          /> */}
       </div>
     </div>  
       <div className={classes.modal__btn_box}>
