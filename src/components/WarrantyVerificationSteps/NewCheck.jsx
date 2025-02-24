@@ -18,7 +18,7 @@ import SelectSort from '../UI/Select/SelectSort/SelectSort';
 const  NewCheck = observer(() => {
   const {examination, status}  = useContext(Context)
 
-  const list = examination.examination
+
   const [modalShow, setModalShow] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification ] = useState(false)
@@ -28,11 +28,8 @@ const  NewCheck = observer(() => {
   // console.log(Id)
 
 
-
     useEffect(() => {
-      
       const id = numId
-   
         fetchOneExam(id).then(data => {
           setId(data)
           console.log(data)
