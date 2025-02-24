@@ -32,11 +32,11 @@ const App = observer(() => {
             .catch(function(error) {
               console.log(error.response.status)
               if(error.response.status === 401) {
-              // navigate('/home', {replace: true})
+              navigate('/home', {replace: true})
 
               }
               // console.clear()
-              console.log = () => {};
+            
           })
             .then(data => {
                 if(localStorage.getItem('token') && data) {

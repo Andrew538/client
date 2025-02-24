@@ -11,7 +11,7 @@ import ModalNotification from '../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
-import SortedList from '../UI/Select/SelectSort/SortedList';
+
 
 
 
