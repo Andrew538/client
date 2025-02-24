@@ -7,8 +7,7 @@ import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 import classes from './Arhive.module.css'
 import classNames from 'classnames';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
-import ReactPaginate from 'react-paginate';
-import PaginatedItems from '../../pages/Pagination/Pagination';
+
 
 const Arhive = observer(() => {
     const {examinationarhive, status}  = useContext(Context)
