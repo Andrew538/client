@@ -98,9 +98,9 @@ const App = observer(() => {
                       </RequireAuth>
                   }/>
                        <Route path='factory' element={
-                      <RequireAuth>
+               
                         <FactoryСheck/>
-                      </RequireAuth>
+                
                   }/>
                   <Route path='ready' element={
                       <RequireAuth>
