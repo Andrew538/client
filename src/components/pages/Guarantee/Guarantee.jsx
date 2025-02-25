@@ -9,6 +9,7 @@ import FactoryСheck from '../../WarrantyVerificationSteps/FactoryСheck/Factory
 import Arhive from '../../WarrantyVerificationSteps/Arhive/Arhive';
 import { Context } from '../../..';
 import { check } from '../../http/userAPI';
+import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
 
 
 
@@ -83,7 +84,8 @@ const  Guarantee = observer(() => {
         <NavLink className={classNames(classes.nav__link)}  to='ready'>Готов к отправке клиенту</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='arhive'>Архив</NavLink>
       </div> 
-      <Outlet/>
+      <NewCheck></NewCheck>
+      <Charger/>
           {/* <TabGuarantee
                
           items={items}
