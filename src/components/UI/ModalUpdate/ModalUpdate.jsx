@@ -70,23 +70,23 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       })
     },[examination])
     
-    function Update () {
-      fetchExam(null, null).then(data => {
-        examination.SetExamination(data)        
-      })
+    // function Update () {
+    //   fetchExam(null, null).then(data => {
+    //     examination.SetExamination(data)        
+    //   })
 
-      fetchExamCharger(null, null).then(data => {
-        examinationcharger.SetExaminationCharger(data)
-      })
+    //   fetchExamCharger(null, null).then(data => {
+    //     examinationcharger.SetExaminationCharger(data)
+    //   })
 
-      fetchExamWorks(null, null).then(data => {
-        examinationworks.SetExaminationWorks(data)
-      })
+    //   fetchExamWorks(null, null).then(data => {
+    //     examinationworks.SetExaminationWorks(data)
+    //   })
 
-      fetchExamReady(null, null).then(data => {             
-        examinationready.SetExaminationReady(data)                        
-      })
-    }
+    //   fetchExamReady(null, null).then(data => {             
+    //     examinationready.SetExaminationReady(data)                        
+    //   })
+    // }
 
 
     const newRec = async (props) => {
