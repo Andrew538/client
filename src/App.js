@@ -86,14 +86,14 @@ const App = observer(() => {
                   </RequireAuth>
                   }>
                     <Route path='new-check' element={
-                      <RequireAuth>
+                
                         <NewCheck/>
-                      </RequireAuth>
+                
                       }/>
                    <Route path='charger' element={
-                      <RequireAuth>
+             
                         <Charger/>
-                      </RequireAuth>
+                   
                   }/>
                        <Route path='factory' element={
                
