@@ -61,14 +61,14 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       }}   
     }, [show])
 
-    useEffect(() => {
+    // useEffect(() => {
    
-      fetchExam(null, null).then(data => {
-        setItemProps(data)
-        examination.SetExamination(data)
+    //   fetchExam(null, null).then(data => {
+    //     setItemProps(data)
+    //     examination.SetExamination(data)
 
-      })
-    },[examination])
+    //   })
+    // },[examination])
     
     // function Update () {
     //   fetchExam(null, null).then(data => {
