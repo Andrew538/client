@@ -3,23 +3,41 @@ import React from 'react'
 import classes from './Guarantee.module.css'
 import { NavLink, Outlet } from 'react-router-dom';
 import classNames from 'classnames';
+import TabGuarantee from '../../UI/Tab/TabGuarantee';
+import NewCheck from '../../WarrantyVerificationSteps/NewCheck';
+import FactoryСheck from '../../WarrantyVerificationSteps/FactoryСheck/FactoryСheck';
+import Arhive from '../../WarrantyVerificationSteps/Arhive/Arhive';
 
 
 
 const  Guarantee = observer(() => {
 
+  const items = [
 
+    //  } catch (error) {
+    //    console.log(error)
+    //  }
+    // }
+      { title: 'Поступили на проверку', content: <NewCheck/>, index: 1 },
+  
+      { title: 'Отправили на завод', content: <FactoryСheck/>, index: 2},
+      { title: 'Архив', content: <Arhive/> , index: 3},
+    ]
  
   return (
     <div className={classes.list}>
-      <div className={classNames(classes.nav)}>
+      {/* <div className={classNames(classes.nav)}>
         <NavLink className={classNames(classes.nav__link)} to='new-check'>Поступил на проверку</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='charger'>На зарядке</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='factory'>Отправили на завод</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='ready'>Готов к отправке клиенту</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='arhive'>Архив</NavLink>
       </div>
-          {/* <Outlet/> */}
+          <Outlet/> */}
+          <TabGuarantee
+               
+          items={items}
+        ></TabGuarantee>
     </div>
   )
 })
