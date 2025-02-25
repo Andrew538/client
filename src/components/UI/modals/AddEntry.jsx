@@ -33,14 +33,14 @@ const [statusExam, setStatus] = useState('New')
 const [addRec, setAddRec] = useState()
       // console.log(addRec)
 
-useEffect(() => {
+// useEffect(() => {
 
-  fetchExam(null, null).then(data => {
-    examination.SetExamination(data)
-  })
+//   fetchExam(null, null).then(data => {
+//     examination.SetExamination(data)
+//   })
 
   
-}, [])
+// }, [])
 
 
 const addRecrod = async () => {
