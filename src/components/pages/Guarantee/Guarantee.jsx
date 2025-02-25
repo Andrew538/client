@@ -84,8 +84,9 @@ const  Guarantee = observer(() => {
         <NavLink className={classNames(classes.nav__link)}  to='ready'>Готов к отправке клиенту</NavLink>
         <NavLink className={classNames(classes.nav__link)}  to='arhive'>Архив</NavLink>
       </div> 
-      <NewCheck></NewCheck>
-      <Charger/>
+      {/* <NewCheck></NewCheck>
+      <Charger/> */}
+      <Outlet/>
           {/* <TabGuarantee
                
           items={items}
