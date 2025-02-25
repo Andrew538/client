@@ -48,7 +48,7 @@ const  NewCheck = observer(() => {
 
   useEffect(() => {   
     fetchExam(null, null).then(data => {
-      examination.SetExamination(data)
+      examination.SetExamination(data).sort((a, b) => a.id > b.id ? 1 : -1)
       status.SetStatus(data)
       
     })
