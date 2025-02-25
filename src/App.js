@@ -80,7 +80,22 @@ const App = observer(() => {
                   <RequireAuth>
                     <Map/>
                   </RequireAuth>}/>
-                  <Route path='guarantee' element={
+                
+                <Route path='used-batteries' element={
+                    <RequireAuth>
+                      <UsedBatteries/>
+                    </RequireAuth>              
+                  }/>
+                
+                <Route path='admin-panel' element={
+                    <RequireAuth>
+                      { users.role === 'ADMIN' &&
+                        <AdminPanel/>
+                        }  
+                  </RequireAuth>
+                }/> 
+          </Route>
+          <Route path='guarantee' element={
                     <RequireAuth>
                       <Guarantee/>
                   </RequireAuth>
@@ -110,21 +125,7 @@ const App = observer(() => {
                         <Arhive/>
                       </RequireAuth>
                   }/>
-                  </Route>
-                <Route path='used-batteries' element={
-                    <RequireAuth>
-                      <UsedBatteries/>
-                    </RequireAuth>              
-                  }/>
-                
-                <Route path='admin-panel' element={
-                    <RequireAuth>
-                      { users.role === 'ADMIN' &&
-                        <AdminPanel/>
-                        }  
-                  </RequireAuth>
-                }/> 
-          </Route>              
+                  </Route>              
           <Route path='*' element={<Home/>}/>
         </Routes>
       </AuthProvider>   
