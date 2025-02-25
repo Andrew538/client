@@ -96,23 +96,23 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       try {
         if(releaseDate.length && result.length && statusExam.length ) {
           await updateRecord( id, releaseDate, result, statusExam)
-          Update()
+          // Update()
     
         } else if (releaseDate === '' && result.length && statusExam.length) {
          const  releaseDate = addRec.releaseDate
           await utdateRec(releaseDate)
-          Update()
+          // Update()
 
         } else if(releaseDate.length && statusExam.length && result === '') {
           const result = addRec.result
           await utdateRec
-          Update()
+          // Update()
 
         } else if(releaseDate === '' && result === '' && statusExam.length ) {
          const  releaseDate = addRec.releaseDate
           const result = addRec.result
           await updateRecord( id,releaseDate, result, statusExam)
-          Update()
+          // Update()
 
         }
       
