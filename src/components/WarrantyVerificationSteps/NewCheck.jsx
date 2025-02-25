@@ -29,16 +29,14 @@ const  NewCheck = observer(() => {
 
 
     useEffect(() => {
-      const id = numId
+
+      
+      try {        
+        const id = numId
         fetchOneExam(id).then(data => {
           setId(data)
           console.log(data)
         })     
- 
-     
-      
-      try {        
-         
         }        
        catch (error) {
         console.log(error)
