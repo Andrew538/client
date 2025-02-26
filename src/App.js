@@ -17,6 +17,7 @@ import FactoryСheck from './components/WarrantyVerificationSteps/FactoryСheck/
 import Charger from './components/WarrantyVerificationSteps/Сharger/Charger';
 import Ready from './components/WarrantyVerificationSteps/Ready/Ready';
 import Arhive from './components/WarrantyVerificationSteps/Arhive/Arhive';
+import NewGuarantee from './components/NewGuarantee';
 
 
 
@@ -82,22 +83,28 @@ const App = observer(() => {
                   </RequireAuth>}/>
                   <Route path='guarantee' element={
                     <RequireAuth>
-                      <Guarantee/>
+                      <NewGuarantee/>
                   </RequireAuth>
                   }>
                     <Route index path='new-check' element={
+                    <RequireAuth>
                 
                         <NewCheck/>
+                        </RequireAuth>
                 
                       }/>
                    <Route path='charger' element={
-             
+                                 <RequireAuth>
+
                         <Charger/>
+                        </RequireAuth>
                    
                   }/>
                        <Route path='factory' element={
+                    <RequireAuth>
                
                         <FactoryСheck/>
+                        </RequireAuth>
                 
                   }/>
                   <Route path='ready' element={

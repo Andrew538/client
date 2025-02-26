@@ -8,6 +8,7 @@ import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
 import ModalNotification from '../../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
 import SelectSort from '../../UI/Select/SelectSort/SelectSort';
+import { Outlet } from 'react-router-dom';
 
 
 const Charger = observer(() => {
@@ -98,7 +99,8 @@ const Charger = observer(() => {
           props={notId}             
           show={modalNotification}
           onHide={() => setModalNotification(false)}
-          />             
+          />      
+          {/* <Outlet/>        */}
       </div>
     )
 })

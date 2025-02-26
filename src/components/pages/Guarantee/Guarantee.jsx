@@ -86,7 +86,7 @@ const  Guarantee = observer(() => {
       </div> 
       {/* <NewCheck></NewCheck>
       <Charger/> */}
-      <Outlet context={{Context}}/>
+      {/* <Outlet context={{}}/> */}
       {/* <Outlet/> */}
           {/* <TabGuarantee
                
