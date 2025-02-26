@@ -112,7 +112,7 @@ const App = observer(() => {
                       </RequireAuth>
                   }/>
                   </Route>
-                  <Route  path='guarantee/new-check' element={
+                  <Route  path='new-check' element={
                     <RequireAuth>
                 
                         <NewCheck/>
