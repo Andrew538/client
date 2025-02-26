@@ -75,17 +75,17 @@ const App = observer(() => {
       <AuthProvider>
         <Routes>
           <Route  path='/' element={<Layout/>}>       
-              <Route index element={<Home/>}/>   
+              {/* <Route index element={<Home/>}/>    */}
                 <Route path='map' element={            
                   <RequireAuth>
                     <Map/>
                   </RequireAuth>}/>
-                  <Route path='/guarantee' element={
+                  <Route path='guarantee' element={
                     <RequireAuth>
                       <Guarantee/>
                   </RequireAuth>
                   }>
-                    <Route  path='new-check' element={
+                    <Route index path='new-check' element={
                 
                         <NewCheck/>
                 
