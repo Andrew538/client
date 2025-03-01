@@ -12,19 +12,19 @@ export default class GuaranteeStore {
         
     }
     SetExamination(examination) {
-        this._examination = examination
+        this._examination = examination.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
     SetExaminationWorks(examinationworks) {
-        this._examinationworks = examinationworks
+        this._examinationworks = examinationworks.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
     SetExaminationArhive(examinationarhive) {
-        this._examinationarhive = examinationarhive
+        this._examinationarhive = examinationarhive.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
     SetExaminationReady(examinationready) {
-        this._examinationready = examinationready
+        this._examinationready = examinationready.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
     SetExaminationCharger(examinationcharger) {
-        this._examinationcharger = examinationcharger
+        this._examinationcharger = examinationcharger.sort((a, b) => a.updatedAt > b.updatedAt ? 1 : -1)
     }
 
     SetStatus(status){

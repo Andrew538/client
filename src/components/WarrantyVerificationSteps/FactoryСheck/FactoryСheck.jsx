@@ -55,7 +55,6 @@ const  FactoryСheck = observer (() => {
                 ]}
               /> 
             <WarrantyTableHeader/>
-            <h1> Аккумуляторы отправленные на завод</h1>
         <ol>     
             { sortedList.map((item, index) =>    
                 <li className={classes.list} key={item.id}>
