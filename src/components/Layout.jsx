@@ -23,7 +23,7 @@ const Layout = observer(() => {
   return (
     <>
       <Header/>
-
+      
       <main className={classes.main}>
         <div className={classes.container}>         
             <Outlet/>
