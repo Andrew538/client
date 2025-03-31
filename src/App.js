@@ -93,10 +93,9 @@ const App = observer(() => {
                         </RequireAuth>                
                       }/>
                    <Route path='charger' element={
-                                 <RequireAuth>
-
+                        <RequireAuth>
                         <Charger/>
-                        </RequireAuth>
+                     </RequireAuth>
                    
                   }/>
                        <Route path='factory' element={
