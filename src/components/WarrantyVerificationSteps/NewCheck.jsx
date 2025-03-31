@@ -2,6 +2,8 @@ import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 
 import classes from './NewCheck.module.css'
+
+
 import classNames from 'classnames';
 import { Context } from '../..';
 import { fetchExam, fetchOneExam } from '../http/guaranteeAPI';
@@ -11,6 +13,7 @@ import ModalNotification from '../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
+
 
 
 
@@ -29,8 +32,6 @@ const  NewCheck = observer(() => {
 
 
     useEffect(() => {
-
-      
       try {        
         const id = numId
         fetchOneExam(id).then(data => {
@@ -58,12 +59,11 @@ const  NewCheck = observer(() => {
   const sortedList = useMemo(() => {
    if(sort) {
     return examination.examination.filter(list => list.manager.toLowerCase().includes(sort))
-
    }
     return examination.examination
   }, [sort, examination.examination])
 
-
+  console.log(typeof(sortedList))
   return (
     <div className={classes.list}>
       <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
@@ -81,8 +81,9 @@ const  NewCheck = observer(() => {
         ]}
       /> 
       <WarrantyTableHeader/>
-      
+     
         <ol className={classes.list}>
+ 
             {sortedList.map((item) =>    
                 <li className={classes.item} key={item.id}>
                 <div className={classes.item__box}>

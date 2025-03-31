@@ -11,6 +11,7 @@ import { Context } from '../../..';
 import { check } from '../../http/userAPI';
 import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
 import Ready from '../../WarrantyVerificationSteps/Ready/Ready';
+import NewGuarantee from '../../NewGuarantee';
 
 
 
@@ -55,8 +56,7 @@ const  Guarantee = observer(() => {
               navigate('/home', {replace: true})
   
           }
-          console.log(error)
-          console.log(error)
+  
       }
      
   }, [])
@@ -64,7 +64,7 @@ const  Guarantee = observer(() => {
   
   
 
-  const items = [
+  const items =  [
     
     { title: 'Поступили на проверку', content: <NewCheck/>, index: 1 },
     { title: 'На зарядке', content: <Charger/>, index: 2 },
@@ -72,14 +72,16 @@ const  Guarantee = observer(() => {
     { title: 'Готовы к отправке клиенту', content: <Ready/>, index: 4 },
     { title: 'Архив', content: <Arhive/> , index: 5},
   ]
- 
+
+
   return (
     <div className={classes.list}>
-
-          <TabGuarantee
+          <NewGuarantee/>
+          <Outlet/>
+          {/* <TabGuarantee
                
           items={items}
-        ></TabGuarantee>
+        ></TabGuarantee> */}
     </div>
   )
 })

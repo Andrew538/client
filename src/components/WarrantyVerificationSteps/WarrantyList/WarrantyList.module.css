@@ -48,6 +48,16 @@
     font-weight: 400;
     
 }
+.item:nth-child(2n) {
+    background-color: rgba(103, 99, 107, 0.1);
+  }
+  .item {
+    cursor: pointer;
+  }
+  .item:hover {
+    background-color: rgba(102, 51, 153, .1);
+  
+  }
 .table {
   
     display: grid;

@@ -1,11 +1,11 @@
 :root {
     --table-border-color: rgba(213, 218, 218, .5);
 }
-.list {
+.table {
     position: relative;
     z-index: 1;
 }
-.list__button {
+.table__button {
     display: block;
     width: 100%;
     max-width: 250px;    
@@ -19,24 +19,24 @@
     transition: .3s;
 
 }
-.list__button:hover {
+.table__button:hover {
     background: teal;
     color: rgb(253, 253, 253);
 
 }
-.list__button__box {
+.table__button__box {
     display: flex;
     justify-content: end;
     align-items: center;
     gap: 5px;
 }
-.list__button_size {
+.table__button_size {
     max-width: 150px;
     padding: 5px;
     margin: 0px auto 0px auto;
 
 }
-.list__box {
+.item__box {
    
     display: grid;
     grid-template-columns: 1539px 135px; 
@@ -48,65 +48,75 @@
     font-weight: 400;
     
 }
-.list__content {
+.table__content {
     display: grid;
     grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
 }
-.list__item {
+.item:nth-child(2n) {
+    background-color: rgba(103, 99, 107, 0.1);
+  }
+  .item {
+    cursor: pointer;
+  }
+  .item:hover {
+    background-color: rgba(102, 51, 153, .1);
+  
+  }
+.table__item {
     text-align: left;
     text-align: center;
     padding: 4px;
 }
 
-.list__item_one {
+.table__item_one {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 100px;
 
 }
-.list__item_two  {
+.table__item_two  {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 160px;
     min-height: 30px;
 
 }
-.list__item_three {
+.table__item_three {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 200px;
 
 }
-.list__item_four {
+.table__item_four {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 200px;
 
 }
-.list__item_five {
+.table__item_five {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 
 }
-.list__item_six {
+.table__item_six {
     flex-basis: 150px;
     border-right: 1px solid var(--table-border-color);
 }
 
-.list__item_seven {
+.table__item_seven {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 
 }
-.list__item_eight {
+.table__item_eight {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 }
-.list__item_nine {
+.table__item_nine {
     border-right: 1px solid var(--table-border-color);
     flex-basis: 150px;
 }
-.list__item_ten{
+.table__item_ten{
     flex-basis: 150px;
     border-right: 1px solid var(--table-border-color);
 }
-.list__item_eleven{
+.table__item_eleven{
     flex-basis: 150px;
 }
 

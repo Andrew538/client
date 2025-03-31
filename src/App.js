@@ -82,11 +82,16 @@ const App = observer(() => {
                     <Map/>
                   </RequireAuth>}/>
                   <Route path='guarantee/*' element={
+                    
                     <RequireAuth>
                       <Guarantee/>
                   </RequireAuth>
                   }>
-                    
+                     <Route  path='newcheck' element={
+                    <RequireAuth>                
+                        <NewCheck/>
+                        </RequireAuth>                
+                      }/>
                    <Route path='charger' element={
                                  <RequireAuth>
 
@@ -112,11 +117,7 @@ const App = observer(() => {
                       </RequireAuth>
                   }/>
                   </Route>
-                  <Route  path='new-check' element={
-                    <RequireAuth>                
-                        <NewCheck/>
-                        </RequireAuth>                
-                      }/>
+                 
                 <Route path='used-batteries' element={
                     <RequireAuth>
                       <UsedBatteries/>

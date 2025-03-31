@@ -11,6 +11,8 @@ function TabGuarantee({items}) {
 
     const openTab = e => setActive(+e.target.dataset.index);
 
+  
+
   return (
     <div>
      
