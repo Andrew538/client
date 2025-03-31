@@ -76,12 +76,11 @@ const  Guarantee = observer(() => {
 
   return (
     <div className={classes.list}>
-          <NewGuarantee/>
-          {/* <Outlet/> */}
-          {/* <TabGuarantee
+       
+          <TabGuarantee
                
           items={items}
-        ></TabGuarantee> */}
+        ></TabGuarantee>
     </div>
   )
 })
