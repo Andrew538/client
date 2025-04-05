@@ -82,41 +82,31 @@ const App = observer(() => {
                   <RequireAuth>
                     <Map/>
                   </RequireAuth>}/>
-                  <Route path='guarantee/*' element={
+                  <Route path='guarantee' element={
                     
                     <RequireAuth>
                       <Guarantee/>
                   </RequireAuth>
-                  }>
-                     <Route  path='new-check' element={
-                    
-                        <NewCheck/>
-                                
-                      }/>
-                   <Route path='charger' element={
-                  
-                        <Charger/>
-                
-                   
+                  }>       
+                   <Route  path='new-check' element={                  
+                        <NewCheck/>                                
+                      }/> 
+                  <Route path='charger' element={                  
+                      <Charger/>                                   
+                    }/>
+                    <Route path='factory' element={                                   
+                        <FactoryСheck/>                                  
                   }/>
-                       <Route path='factory' element={
-                    
+                  <Route path='ready' element={                  
+                        <Ready/>                   
+                  }/>
+                  <Route path='arhive' element={               
+                        <Arhive/>                
+                  }/>                 
+                  </Route>
+                 
                
-                        <FactoryСheck/>
-                    
-                
-                  }/>
-                  <Route path='ready' element={
-                  
-                        <Ready/>
-                   
-                  }/>
-                  <Route path='arhive' element={
-               
-                        <Arhive/>
-                
-                  }/>
-                  </Route>                 
+                       
                 <Route path='used-batteries' element={
                     <RequireAuth>
                       <UsedBatteries/>

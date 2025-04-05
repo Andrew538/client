@@ -12,54 +12,55 @@ import { check } from '../../http/userAPI';
 import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
 import Ready from '../../WarrantyVerificationSteps/Ready/Ready';
 import NewGuarantee from '../../NewGuarantee';
+import Layout from '../../Layout';
 
 
 
-const  Guarantee = observer(() => {
+const  Guarantee = () => {
 
 
-   const {users} = useContext(Context)
-    const navigate = useNavigate()
+  //  const {users} = useContext(Context)
+  //   const navigate = useNavigate()
   
-    useEffect(() => {     
+  //   useEffect(() => {     
       
-      try {
+  //     try {
   
-        check()
-              .catch(function(error) {
-                // console.log(error.response.status)
-                if(error.response.status === 401) {
-                navigate('/home', {replace: true})
+  //       check()
+  //             .catch(function(error) {
+  //               // console.log(error.response.status)
+  //               if(error.response.status === 401) {
+  //               navigate('/home', {replace: true})
   
-                }
-                // console.clear()
+  //               }
+  //               // console.clear()
               
-            })
-              .then(data => {
-                  if(localStorage.getItem('token') && data) {
-                      users.setUser(true)
-                      users.setIsAuth(true)
-                      users.setRole(data.role)
-                      users.setEmail(data.email)
-                  } else if(localStorage.getItem(' ', ) && !data) {
-                      localStorage.clear();
-                      navigate('/', {replace: true})
-                      // singout(()=> 
-                      //     navigate('/', {replace: true})
-                      // )
-                  }
-              }) 
+  //           })
+  //             .then(data => {
+  //                 if(localStorage.getItem('token') && data) {
+  //                     users.setUser(true)
+  //                     users.setIsAuth(true)
+  //                     users.setRole(data.role)
+  //                     users.setEmail(data.email)
+  //                 } else if(localStorage.getItem(' ', ) && !data) {
+  //                     localStorage.clear();
+  //                     navigate('/', {replace: true})
+  //                     // singout(()=> 
+  //                     //     navigate('/', {replace: true})
+  //                     // )
+  //                 }
+  //             }) 
          
         
-      } catch (error) {
-          if(error.response.status === 401) {
-              navigate('/home', {replace: true})
+  //     } catch (error) {
+  //         if(error.response.status === 401) {
+  //             navigate('/home', {replace: true})
   
-          }
+  //         }
   
-      }
+  //     }
      
-  }, [])
+  // }, [])
   
   
   
@@ -76,14 +77,23 @@ const  Guarantee = observer(() => {
 
   return (
     <div className={classes.list}>
-       <NewGuarantee/>
-       <Outlet/>
+
+         <div className={classNames(classes.nav)}>
+                   <NavLink className={classNames(classes.nav__link)} to='new-check'>Поступил на проверку</NavLink>
+                   <NavLink className={classNames(classes.nav__link)}  to='charger'>На зарядке</NavLink>
+                   <NavLink className={classNames(classes.nav__link)}  to='factory'>Отправили на завод</NavLink>
+                   <NavLink className={classNames(classes.nav__link)}  to='ready'>Готов к отправке клиенту</NavLink>
+                   <NavLink className={classNames(classes.nav__link)}  to='arhive'>Архив</NavLink>
+                 </div> 
+       {/* <NewGuarantee/> */}
+       {/* <Layout/> */}
+ <Outlet/>
           {/* <TabGuarantee
                
           items={items}
         ></TabGuarantee> */}
     </div>
   )
-})
+}
 
 export default Guarantee
