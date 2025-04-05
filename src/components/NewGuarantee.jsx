@@ -41,8 +41,7 @@ const NewGuarantee = observer(() => {
               
             } catch (error) {
                 if(error.response.status === 401) {
-                    navigate('/home', {replace: true})
-        
+                  navigate('/home', {replace: true})        
                 }
         
             }
