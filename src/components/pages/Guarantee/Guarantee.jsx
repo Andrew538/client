@@ -19,48 +19,48 @@ import Layout from '../../Layout';
 const  Guarantee = () => {
 
 
-  //  const {users} = useContext(Context)
-  //   const navigate = useNavigate()
+   const {users} = useContext(Context)
+    const navigate = useNavigate()
   
-  //   useEffect(() => {     
+    useEffect(() => {     
       
-  //     try {
+      try {
   
-  //       check()
-  //             .catch(function(error) {
-  //               // console.log(error.response.status)
-  //               if(error.response.status === 401) {
-  //               navigate('/home', {replace: true})
+        check()
+              .catch(function(error) {
+                // console.log(error.response.status)
+                if(error.response.status === 401) {
+                navigate('/home', {replace: true})
   
-  //               }
-  //               // console.clear()
+                }
+                // console.clear()
               
-  //           })
-  //             .then(data => {
-  //                 if(localStorage.getItem('token') && data) {
-  //                     users.setUser(true)
-  //                     users.setIsAuth(true)
-  //                     users.setRole(data.role)
-  //                     users.setEmail(data.email)
-  //                 } else if(localStorage.getItem(' ', ) && !data) {
-  //                     localStorage.clear();
-  //                     navigate('/', {replace: true})
-  //                     // singout(()=> 
-  //                     //     navigate('/', {replace: true})
-  //                     // )
-  //                 }
-  //             }) 
+            })
+              .then(data => {
+                  if(localStorage.getItem('token') && data) {
+                      users.setUser(true)
+                      users.setIsAuth(true)
+                      users.setRole(data.role)
+                      users.setEmail(data.email)
+                  } else if(localStorage.getItem(' ', ) && !data) {
+                      localStorage.clear();
+                      navigate('/', {replace: true})
+                      // singout(()=> 
+                      //     navigate('/', {replace: true})
+                      // )
+                  }
+              }) 
          
         
-  //     } catch (error) {
-  //         if(error.response.status === 401) {
-  //             navigate('/home', {replace: true})
+      } catch (error) {
+          if(error.response.status === 401) {
+              navigate('/home', {replace: true})
   
-  //         }
+          }
   
-  //     }
+      }
      
-  // }, [])
+  }, [])
   
   
   
