@@ -27,7 +27,7 @@ const  NewCheck = observer(() => {
   let [notId, setNotId] = useState('')
   let [Id, setId] = useState('')
   useEffect(() => {   
-    fetchExam(null, null).then(data => {
+    fetchExam().then(data => {
       examination.SetExamination(data)
       status.SetStatus(data)
       

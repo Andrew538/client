@@ -17,19 +17,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Context.Provider value={{ 
-      users: new UserStore(),
-      status: new GuaranteeStore(),
-      examination: new GuaranteeStore(),
-      examinationworks: new GuaranteeStore(),
-      examinationarhive: new GuaranteeStore(),
-      examinationready: new GuaranteeStore(),
-      examinationcharger: new GuaranteeStore(),
+      <Context.Provider value={{ 
+        users: new UserStore(),
+        status: new GuaranteeStore(),
+        examination: new GuaranteeStore(),
+        examinationworks: new GuaranteeStore(),
+        examinationarhive: new GuaranteeStore(),
+        examinationready: new GuaranteeStore(),
+        examinationcharger: new GuaranteeStore(),
 
-      }}>
-      <App />
+        }}>
+          <App />
 
-      </Context.Provider>
+        </Context.Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
