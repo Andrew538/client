@@ -82,7 +82,7 @@ const App = observer(() => {
                   <RequireAuth>
                     <Map/>
                   </RequireAuth>}/>
-                  <Route path='/guarantee/*' element={
+                  <Route path='guarantee' element={
                     
                     <RequireAuth>
                       <Guarantee/>
