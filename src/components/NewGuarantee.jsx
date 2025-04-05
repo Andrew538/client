@@ -59,7 +59,7 @@ const NewGuarantee = observer(() => {
            <NavLink className={classNames(classes.nav__link)}  to='arhive'>Архив</NavLink>
          </div> 
       
-          {/* <Outlet/> */}
+          <Outlet/>
         
              
        </div>
