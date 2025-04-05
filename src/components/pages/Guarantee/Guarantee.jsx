@@ -87,7 +87,7 @@ const  Guarantee = () => {
                  </div> 
        {/* <NewGuarantee/> */}
        {/* <Layout/> */}
- <Outlet/>
+ {/* <Outlet/> */}
           {/* <TabGuarantee
                
           items={items}
