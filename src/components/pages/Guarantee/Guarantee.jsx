@@ -42,13 +42,15 @@ const  Guarantee = () => {
                       users.setIsAuth(true)
                       users.setRole(data.role)
                       users.setEmail(data.email)
-                  } else if(localStorage.getItem(' ', ) && !data) {
-                      localStorage.clear();
-                      navigate('/', {replace: true})
-                      // singout(()=> 
-                      //     navigate('/', {replace: true})
-                      // )
-                  }
+                  } 
+                  
+                  // else if(localStorage.getItem(' ', ) && !data) {
+                  //     localStorage.clear();
+                  //     navigate('/', {replace: true})
+                  //     // singout(()=> 
+                  //     //     navigate('/', {replace: true})
+                  //     // )
+                  // }
               }) 
          
         
