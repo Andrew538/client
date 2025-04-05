@@ -56,10 +56,10 @@ const  NewCheck = observer(() => {
 
   const sortedtable = useMemo(() => {
    if(sort) {
-    return examination.examination.filter(list => list.manager.toLowerCase().includes(sort))
+    return examination.examination.clice().filter(list => list.manager.toLowerCase().includes(sort))
    }
-    return examination.examination
-  }, [sort, examination.examination])
+    return examination
+  }, [sort, examination])
 
  
   return (
