@@ -43,13 +43,13 @@ export const AuthProvider = ({children}) => {
                         )
                     }
                 }) 
-                .catch(function(error) {
-                    console.log(error.response.status)
-                    if(error.response.status === 401) {
-                    navigate('/home', {replace: true})
+                // .catch(function(error) {
+                //     console.log(error.response.status)
+                //     if(error.response.status === 401) {
+                //     navigate('/home', {replace: true})
 
-                    }
-                })
+                //     }
+                // })
             } 
           
         } catch (error) {
