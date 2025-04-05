@@ -12,12 +12,13 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '.';
 import { useContext, useEffect } from 'react';
 import { check } from './components/http/userAPI';
-import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
+// import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
 import FactoryСheck from './components/WarrantyVerificationSteps/FactoryСheck/FactoryСheck';
 import Charger from './components/WarrantyVerificationSteps/Сharger/Charger';
 import Ready from './components/WarrantyVerificationSteps/Ready/Ready';
 import Arhive from './components/WarrantyVerificationSteps/Arhive/Arhive';
-import NewGuarantee from './components/NewGuarantee';
+import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
+
 
 
 
@@ -87,42 +88,40 @@ const App = observer(() => {
                       <Guarantee/>
                   </RequireAuth>
                   }>
-                     <Route  path='newcheck' element={
-                    <RequireAuth>                
+                     <Route  path='new-check' element={
+                    
                         <NewCheck/>
-                        </RequireAuth>                
+                                
                       }/>
                    <Route path='charger' element={
-                        <RequireAuth>
+                  
                         <Charger/>
-                     </RequireAuth>
+                
                    
                   }/>
                        <Route path='factory' element={
-                    <RequireAuth>
+                    
                
                         <FactoryСheck/>
-                        </RequireAuth>
+                    
                 
                   }/>
                   <Route path='ready' element={
-                      <RequireAuth>
+                  
                         <Ready/>
-                      </RequireAuth>
+                   
                   }/>
                   <Route path='arhive' element={
-                      <RequireAuth>
+               
                         <Arhive/>
-                      </RequireAuth>
+                
                   }/>
-                  </Route>
-                 
+                  </Route>                 
                 <Route path='used-batteries' element={
                     <RequireAuth>
                       <UsedBatteries/>
                     </RequireAuth>              
-                  }/>
-                
+                  }/>                
                 <Route path='admin-panel' element={
                     <RequireAuth>
                       { users.role === 'ADMIN' &&

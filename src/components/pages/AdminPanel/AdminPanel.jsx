@@ -9,21 +9,24 @@ function AdminPanel() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+
+  const [error, setEror] = useState('')
   const [role, setRole] = useState('')
  
 
   const rgistr = async () => {
 
     try {
-      const data  = await registration(email, password, name, role)
+      const data  = await registration(email, password, name, role, surname)
     } catch (err) {
 
-      setRole(err.response.data.message)
+      setEror(err.response.data.message)
       setEmail('')
       setName('')
       setEmail('')
       setPassword('')
-      
+      setSurname('')
     }
   }
 
@@ -41,9 +44,10 @@ function AdminPanel() {
  
   return (
    <div>
-      <div>{role}</div>
+      <div>{error}</div>
       <div className={classes.form}>
         <input className={classes.form__input} placeholder='Имя' value={name} onChange={e => setName(e.target.value)}/> 
+        <input className={classes.form__input} placeholder='Фамилия' value={surname} onChange={e => setSurname(e.target.value)}/> 
         <input className={classes.form__input} placeholder='email' value={email} onChange={e => setEmail(e.target.value)}/>
         <input className={classes.form__input} placeholder='пароль' value={password} onChange={e => setPassword(e.target.value)}/> 
         <Select

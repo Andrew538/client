@@ -20,15 +20,19 @@ import SelectSort from '../UI/Select/SelectSort/SelectSort';
 
 const  NewCheck = observer(() => {
   const {examination, status}  = useContext(Context)
-
-
   const [modalShow, setModalShow] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification ] = useState(false)
   let [numId, setNumId] = useState('')
   let [notId, setNotId] = useState('')
   let [Id, setId] = useState('')
-  // console.log(Id)
+  useEffect(() => {   
+    fetchExam(null, null).then(data => {
+      examination.SetExamination(data)
+      status.SetStatus(data)
+      
+    })
+  },[examination])
 
 
     useEffect(() => {
@@ -45,25 +49,19 @@ const  NewCheck = observer(() => {
     }, [])
 
 
-  useEffect(() => {   
-    fetchExam(null, null).then(data => {
-      examination.SetExamination(data)
-      status.SetStatus(data)
-      
-    })
-  },[examination])
+
 
 
   const [sort, setSort] = useState('')
 
-  const sortedList = useMemo(() => {
+  const sortedtable = useMemo(() => {
    if(sort) {
     return examination.examination.filter(list => list.manager.toLowerCase().includes(sort))
    }
     return examination.examination
   }, [sort, examination.examination])
 
-  console.log(typeof(sortedList))
+ 
   return (
     <div className={classes.list}>
       <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
@@ -84,7 +82,7 @@ const  NewCheck = observer(() => {
      
         <ol className={classes.list}>
  
-            {sortedList.map((item) =>    
+            {sortedtable.map((item) =>    
                 <li className={classes.item} key={item.id}>
                 <div className={classes.item__box}>
                   <div className={classes.table}>    

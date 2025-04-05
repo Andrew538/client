@@ -55,9 +55,9 @@ const Charger = observer(() => {
         onChange={setSort}
         defaultValue="Сортировка по менеджеру"
         options={[
-          {value: 'туркин', name: 'Туркин'},
-          {value: 'задоркин', name: 'Задоркин'},
-          {value: 'коновалова', name: 'Коновалова'}
+          {value: 'туркин', name: 'Туркин Андрей'},
+          {value: 'задоркин', name: 'Задоркин Александр'},
+          {value: 'коновалова', name: 'Коновалова Елена'}
         ]}
       /> 
         <WarrantyTableHeader/>         
