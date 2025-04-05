@@ -13,7 +13,7 @@ import axios from "axios";
 const $host = axios.create({
  
     proxy: {
-        host: '45.146.165.155:5000',
+        host: '45.146.165.155:5000/',
         port: 80,
         protocol: 'http',
     }
@@ -23,7 +23,7 @@ const $host = axios.create({
 
 const $authHost = axios.create({
     proxy: {
-        host: '45.146.165.155:5000',
+        host: '45.146.165.155:5000/',
         port: 80,
         protocol: 'http',
     }
