@@ -31,12 +31,12 @@ const App = observer(() => {
     try {
 
       check().then(data => {
-        if(localStorage.getItem('token') && data) {
+        // if(localStorage.getItem('token') && data) {
             users.setUser(true)
             users.setIsAuth(true)
             users.setRole(data.role)
             users.setEmail(data.email)
-        } 
+        // } 
         
         // else if(localStorage.getItem(' ', ) && !data) {
         //     localStorage.clear();
