@@ -54,14 +54,16 @@ const  NewCheck = observer(() => {
 
   const [sort, setSort] = useState('')
 
-  const sortedtable = useMemo(() => {
+  let sortedtable = [] = useMemo(() => {
    if(sort) {
     return examination.examination.clice().filter(list => list.manager.toLowerCase().includes(sort))
+   } else {
+    return examination.examination
+
    }
-    return examination
   }, [sort, examination])
 
- 
+ console.log(Array.isArray(sortedtable))
   return (
     <div className={classes.list}>
       <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
