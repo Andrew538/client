@@ -30,54 +30,6 @@ const  NewCheck = observer(() => {
   let [notId, setNotId] = useState('')
   let [Id, setId] = useState('')
 
-    const navigate = useNavigate()
-    const singout = useAuth()
-
- useEffect(() => {
-     
-        // setUser(localStorage.getItem('token'))
-        try {
-            if(localStorage.getItem('token')) {
-                check()
-                .then(data => {
-                   
-                    if(localStorage.getItem('token') && data) {
-                        users.setUser(true)
-                        users.setIsAuth(true)
-                        users.setRole(data.role)
-                        users.setEmail(data.email)
-                    } else if(localStorage.getItem(' ', ) && !data) {
-                        localStorage.clear();
-                        navigate('/', {replace: true})
-                        singout(()=> 
-                            navigate('/', {replace: true})
-                        )
-                    }
-                }) 
-                // .catch(function(error) {
-                //     console.log(error.response.status)
-                //     if(error.response.status === 401) {
-                //     navigate('/home', {replace: true})
-
-                //     }
-                // })
-            } 
-          
-        } catch (error) {
-            if(error.error) {
-              navigate('/home', {replace: true})
-
-            }
-            console.log(error)
-            console.log(error)
-        }
-       
-    }, [])
-
-
-
-
-
 
   useEffect(() => {   
     fetchExam().then(data => {
@@ -88,18 +40,18 @@ const  NewCheck = observer(() => {
   },[examination])
 
 
-    useEffect(() => {
-      try {        
-        const id = numId
-        fetchOneExam(id).then(data => {
-          setId(data)
-          console.log(data)
-        })     
-        }        
-       catch (error) {
-        console.log(error)
-       }
-    }, [])
+    // useEffect(() => {
+    //   try {        
+    //     const id = numId
+    //     fetchOneExam(id).then(data => {
+    //       setId(data)
+    //       console.log(data)
+    //     })     
+    //     }        
+    //    catch (error) {
+    //     console.log(error)
+    //    }
+    // }, [examination])
 
 
 
@@ -114,7 +66,7 @@ const  NewCheck = observer(() => {
     return examination.examination
 
    }
-  }, [sort, examination])
+  }, [sort, examination.examination])
 
  console.log(Array.isArray(sortedtable))
   return (

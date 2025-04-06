@@ -28,61 +28,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [releaseDate, setReleaseDate] = useState('')
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
-  const [statusExam, setStatus] = useState('')
-
-
-   const navigate = useNavigate()
-      const singout = useAuth()
-  
-   useEffect(() => {
-       
-          // setUser(localStorage.getItem('token'))
-          try {
-              if(localStorage.getItem('token')) {
-                  check()
-                  .then(data => {
-                     
-                      if(localStorage.getItem('token') && data) {
-                          users.setUser(true)
-                          users.setIsAuth(true)
-                          users.setRole(data.role)
-                          users.setEmail(data.email)
-                      } else if(localStorage.getItem(' ', ) && !data) {
-                          localStorage.clear();
-                          navigate('/', {replace: true})
-                          singout(()=> 
-                              navigate('/', {replace: true})
-                          )
-                      }
-                  }) 
-                  // .catch(function(error) {
-                  //     console.log(error.response.status)
-                  //     if(error.response.status === 401) {
-                  //     navigate('/home', {replace: true})
-  
-                  //     }
-                  // })
-              } 
-            
-          } catch (error) {
-              if(error.error) {
-                navigate('/home', {replace: true})
-  
-              }
-              console.log(error)
-              console.log(error)
-          }
-         
-      }, [])
-  
-  
-
-
-
-
-
-
-
+  const [statusExam, setStatus] = useState(addRec.statusExam)
+  console.log(addRec.statusExam)
 
 
   const allValue = [ releaseDate, result, statusExam]
@@ -107,6 +54,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
     ];
 
 
+
     // console.log(addRec)
 
     useEffect(() => {
@@ -121,14 +69,15 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       }}   
     }, [show])
 
-    useEffect(() => {
+    // useEffect(() => {
    
-      fetchExam(null, null).then(data => {
-        setItemProps(data)
-        examination.SetExamination(data)
+    //   fetchExam(null, null).then(data => {
+    //     setItemProps(data)
 
-      })
-    },[examination])
+    //     examination.SetExamination(data)
+
+    //   })
+    // },[examination])
     
     function Update () {
       fetchExam(null, null).then(data => {
@@ -165,25 +114,30 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
         } else if(releaseDate.length && statusExam.length && result === '') {
           const result = addRec.result
-          await utdateRec
+        const statusExam = addRec.statusExam
+
+          await utdateRec(result, statusExam)
           Update()
 
-        } else if(releaseDate === '' && result === '' && statusExam.length ) {
+        } else if(releaseDate === '' && result === '' && statusExam.length  ) {
          const  releaseDate = addRec.releaseDate
           const result = addRec.result
+        const statusExam = addRec.statusExam
+
           await utdateRec( id,releaseDate, result, statusExam)
           Update()
 
         }
       
-      // else if(releaseDate === '' && result.length && statusExam == '') {
-      //   const  releaseDate = addRec.releaseDate
-      //    await updateRecord( id, releaseDate, result, statusExam)
-      //    fetchExam(null, null).then(data => {
-      //      examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
+      else if(releaseDate === '' && result.length && statusExam != 'New') {
+        const  releaseDate = addRec.releaseDate
+        const statusExam = addRec.statusExam
+         await updateRecord( id, releaseDate, result, statusExam)
+        //  fetchExam(null, null).then(data => {
+        //    examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
           
-      //    })
-      //  }
+        //  })
+       }
       setDate('')
       setclient('')
       setManager('')
