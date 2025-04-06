@@ -6,9 +6,15 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
 import {fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks, fetchOneExam, updateRecord } from '../../http/guaranteeAPI';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hook/useAuth';
+import { check } from '../../http/userAPI';
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
+
+  const {users}  = useContext(Context)
+
   const [itemProps, setItemProps] = useState()
   const [dateOne, setDate] = useState('')
   const [client, setclient] = useState('')
@@ -23,6 +29,60 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
   const [statusExam, setStatus] = useState('')
+
+
+   const navigate = useNavigate()
+      const singout = useAuth()
+  
+   useEffect(() => {
+       
+          // setUser(localStorage.getItem('token'))
+          try {
+              if(localStorage.getItem('token')) {
+                  check()
+                  .then(data => {
+                     
+                      if(localStorage.getItem('token') && data) {
+                          users.setUser(true)
+                          users.setIsAuth(true)
+                          users.setRole(data.role)
+                          users.setEmail(data.email)
+                      } else if(localStorage.getItem(' ', ) && !data) {
+                          localStorage.clear();
+                          navigate('/', {replace: true})
+                          singout(()=> 
+                              navigate('/', {replace: true})
+                          )
+                      }
+                  }) 
+                  // .catch(function(error) {
+                  //     console.log(error.response.status)
+                  //     if(error.response.status === 401) {
+                  //     navigate('/home', {replace: true})
+  
+                  //     }
+                  // })
+              } 
+            
+          } catch (error) {
+              if(error.error) {
+                navigate('/home', {replace: true})
+  
+              }
+              console.log(error)
+              console.log(error)
+          }
+         
+      }, [])
+  
+  
+
+
+
+
+
+
+
 
 
   const allValue = [ releaseDate, result, statusExam]
