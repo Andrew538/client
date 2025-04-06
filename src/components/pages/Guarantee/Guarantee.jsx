@@ -23,7 +23,7 @@ const  Guarantee = observer(() => {
     const singout = useAuth()
 
     function activeTab () {
-      localStorage.setItem('numberTab', 0)
+      // localStorage.setItem('numberTab', 0)
 
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TabContent from './TabContent';
 import classes from './TabGuarantee.module.css'
 import classNames from 'classnames';
@@ -7,7 +7,12 @@ import { Link, NavLink } from 'react-router-dom';
 function TabGuarantee({items}) {
 
     // let num = localStorage.setItem('active', 0)
+    useEffect(() => {
+
+    }, [])
     let number = localStorage.getItem('numberTab')
+
+    
     let activeClass = localStorage.getItem('activeCl' , items.i)
     const [ active, setActive ] = useState(number);
 
