@@ -13,19 +13,72 @@ import ModalNotification from '../UI/ModalNotification/ModalNotification';
 import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
+import { check } from '../http/userAPI';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hook/useAuth';
 
 
 
 
 
 const  NewCheck = observer(() => {
-  const {examination, status}  = useContext(Context)
+  const {examination, status, users}  = useContext(Context)
   const [modalShow, setModalShow] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification ] = useState(false)
   let [numId, setNumId] = useState('')
   let [notId, setNotId] = useState('')
   let [Id, setId] = useState('')
+
+    const navigate = useNavigate()
+    const singout = useAuth()
+
+ useEffect(() => {
+     
+        // setUser(localStorage.getItem('token'))
+        try {
+            if(localStorage.getItem('token')) {
+                check()
+                .then(data => {
+                   
+                    if(localStorage.getItem('token') && data) {
+                        users.setUser(true)
+                        users.setIsAuth(true)
+                        users.setRole(data.role)
+                        users.setEmail(data.email)
+                    } else if(localStorage.getItem(' ', ) && !data) {
+                        localStorage.clear();
+                        navigate('/', {replace: true})
+                        singout(()=> 
+                            navigate('/', {replace: true})
+                        )
+                    }
+                }) 
+                // .catch(function(error) {
+                //     console.log(error.response.status)
+                //     if(error.response.status === 401) {
+                //     navigate('/home', {replace: true})
+
+                //     }
+                // })
+            } 
+          
+        } catch (error) {
+            if(error.error) {
+              navigate('/home', {replace: true})
+
+            }
+            console.log(error)
+            console.log(error)
+        }
+       
+    }, [])
+
+
+
+
+
+
   useEffect(() => {   
     fetchExam().then(data => {
       examination.SetExamination(data)

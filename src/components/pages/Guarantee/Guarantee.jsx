@@ -13,19 +13,16 @@ import Charger from '../../WarrantyVerificationSteps/Сharger/Charger';
 import Ready from '../../WarrantyVerificationSteps/Ready/Ready';
 import NewGuarantee from '../../NewGuarantee';
 import Layout from '../../Layout';
+import { useAuth } from '../../hook/useAuth';
 
 
 
-const  Guarantee = () => {
-
-
+const  Guarantee = observer(() => {
    const {users} = useContext(Context)
     const navigate = useNavigate()
-  
-    useEffect(() => {     
-      
-      try {
-  
+    const singout = useAuth()
+    useEffect(() => {           
+      try {  
         check()
               // .catch(function(error) {
               //   // console.log(error.response.status)
@@ -44,13 +41,13 @@ const  Guarantee = () => {
                       users.setEmail(data.email)
                   } 
                   
-                  // else if(localStorage.getItem(' ', ) && !data) {
-                  //     localStorage.clear();
-                  //     navigate('/', {replace: true})
-                  //     // singout(()=> 
-                  //     //     navigate('/', {replace: true})
-                  //     // )
-                  // }
+                  else if(localStorage.getItem(' ', ) && !data) {
+                      localStorage.clear();
+                      navigate('/', {replace: true})
+                      singout(()=> 
+                          navigate('/', {replace: true})
+                      )
+                  }
               }) 
          
         
@@ -89,13 +86,13 @@ const  Guarantee = () => {
                  </div> 
        {/* <NewGuarantee/> */}
        {/* <Layout/> */}
- {/* <Outlet/> */}
+ <Outlet/>
           {/* <TabGuarantee
                
           items={items}
         ></TabGuarantee> */}
     </div>
   )
-}
+})
 
 export default Guarantee

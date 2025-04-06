@@ -17,9 +17,7 @@ const  Home = observer(() => {
   const {singin} = useAuth()  
   const signIn = async () => {
   
-    try {
-  
-   
+    try {   
       const data  = await login(email, password)
       users.setUser(users)
       users.setIsAuth(true)
