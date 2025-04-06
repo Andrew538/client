@@ -22,14 +22,14 @@ const  Guarantee = observer(() => {
     const navigate = useNavigate()
     const singout = useAuth()
 
-    function activeTab () {
-      // localStorage.setItem('numberTab', 0)
+    // function activeTab () {
+    //   // localStorage.setItem('numberTab', 0)
 
-    }
+    // }
 
 
     useEffect(() => {   
-    activeTab()        
+    // activeTab()        
 
       try {  
         check()
