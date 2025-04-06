@@ -26,10 +26,11 @@ const  Guarantee = observer(() => {
       localStorage.setItem('numberTab', 0)
 
     }
-    activeTab()        
 
 
     useEffect(() => {   
+    activeTab()        
+
       try {  
         check()
             //   .catch(function(error) {
