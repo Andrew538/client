@@ -29,18 +29,12 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
   const [statusExam, setStatus] = useState(addRec.statusExam)
-  console.log(addRec.statusExam)
+
 
 
   const allValue = [ releaseDate, result, statusExam]
 
-  // allValue.map(item => {
-  //   if(item.length) {
-  //     console.log('Привет')
-  //   }
-  // })
 
-  // console.log(addRec)
     const {examination, examinationcharger, examinationworks, examinationready} = useContext(Context)
 
 
@@ -55,7 +49,6 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
 
 
-    // console.log(addRec)
 
     useEffect(() => {
       const id = +props

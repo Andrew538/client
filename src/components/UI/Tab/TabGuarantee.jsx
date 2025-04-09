@@ -6,26 +6,29 @@ import NewCheck from '../../WarrantyVerificationSteps/NewCheck';
 import { Link, NavLink } from 'react-router-dom';
 function TabGuarantee({items}) {
 
-    const number = localStorage.getItem('numberTab' )
-
+    let number = localStorage.getItem('numberTab' )
     const [ active, setActive ] = useState(number);
- 
-    const openTab = e => setActive(+e.target.dataset.index);
+
+    const openTab = e => setActive(+e.target.dataset.index[0]);
 
     const numberAc = localStorage.setItem('numberTab', active )
-    console.log(number)
+    const className = localStorage.setItem('cl', 'active')
+
+
 
   return (
     <div>
      
     <div className={classNames(classes.tab)}>
       {items.map((n, i) => (
-          
-
+      
+        
         <button key={n.index}
-          className={`tablinks ${i === active ? 'active' : ''}`}
+
+          className={`tablinks ${i == active ? 'active' : ''}`}
           onClick={openTab}
           data-index={i}
+         
         >{n.title}</button>
       ))}
     </div>

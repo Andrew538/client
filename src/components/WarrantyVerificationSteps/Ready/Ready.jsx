@@ -22,24 +22,24 @@ const Ready = observer(() => {
   
     const [itemProps, setItemProps] = useState()
   
-      useEffect(() => {
+      // useEffect(() => {
         
-        const id = numId
+      //   const id = numId
      
-          fetchOneExam(id).then(data => {
-            setNumId(data)
-            console.log(data)
-          })     
+      //     fetchOneExam(id).then(data => {
+      //       setNumId(data)
+      //       console.log(data)
+      //     })     
    
        
         
-        try {        
+      //   try {        
            
-          }        
-         catch (error) {
-          console.log(error)
-         }
-      }, [])
+      //     }        
+      //    catch (error) {
+      //     console.log(error)
+      //    }
+      // }, [])
   
   
     useEffect(() => {

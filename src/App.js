@@ -23,53 +23,50 @@ import NewCheck from './components/WarrantyVerificationSteps/NewCheck';
 
 
 const App = observer(() => {
-  const {users} = useContext(Context)
-  const navigate = useNavigate()
+  const { users } = useContext(Context);
+  const navigate = useNavigate();
 
-  useEffect(() => {     
-    
+  useEffect(() => {
     try {
+      check()
+        .catch(function (error) {
+          if (error.response.status === 401) {
+            navigate("/home", { replace: true });
+          }
+          console.clear();
+        })
 
-      check().then(data => {
-        // if(localStorage.getItem('token') && data) {
-            users.setUser(true)
-            users.setIsAuth(true)
-            users.setRole(data.role)
-            users.setEmail(data.email)
-        // } 
-        
-        // else if(localStorage.getItem(' ', ) && !data) {
-        //     localStorage.clear();
-        //     navigate('/', {replace: true})
-        //     // singout(()=> 
-        //     //     navigate('/', {replace: true})
-        //     // )
-        // }
-    }) 
-          //   .catch(function(error) {
-          //     // console.log(error.response.status)
-          //     if(error.response.status === 401) {
-          //     navigate('/home', {replace: true})
+        .then((data) => {
+          if (localStorage.getItem("token") && data) {
+            users.setUser(true);
+            users.setIsAuth(true);
+            users.setRole(data.role);
+            users.setEmail(data.email);
+          } else if (localStorage.getItem(" ") && !data) {
+            localStorage.clear();
+            navigate("/", { replace: true });
+            // singout(()=>
+            //     navigate('/', {replace: true})
+            // )
+          }
+        });
+      // .catch(function(error) {
+      //   // console.log(error.response.status)
+      //   if(error.response.status === 401) {
+      //   navigate('/home', {replace: true})
 
-          //     }
-          //     // console.clear()
-            
-          // })
-            
-       
-      
-    } 
-    
-    catch (error) {
-        // if(error.response.status === 401) {
-        //     navigate('/home', {replace: true})
+      //   }
+      // console.clear()
 
-        // }
-        console.log(error)
-        console.log(error)
+      // })
+    } catch (error) {
+      // if(error.response.status === 401) {
+      //     navigate('/home', {replace: true})
+      // }
+      // console.log(error)
+      // console.log(error)
     }
-   
-}, [])
+  }, []);
 
 
 
