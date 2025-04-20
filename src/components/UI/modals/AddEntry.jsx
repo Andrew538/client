@@ -7,11 +7,7 @@ import './modal.css'
 import { Context } from '../../../index';
 import { createRecord, fetchExam } from '../../http/guaranteeAPI';
 import { observer } from 'mobx-react-lite';
-import Select from 'react-select';
 
-import MySelect from '../Select/MySelect';
-import classNames from 'classnames';
-import Tooltip from '../Tooltip/Tooltip';
 
 
 const AddEntry = observer(({show, onHide, props}) => {
@@ -112,7 +108,7 @@ const addRecrod = async (e) => {
        <div className={classes.modal__form__box}>
        <div className={classes.modal__left}>
       <div className={classes.modal__inputBox}>
-      {/* <div className={classes.modal__inputValidate}>{error}</div> */}
+
       <input 
             placeholder='Дата поступления' 
             className={classes.modal__input} 
