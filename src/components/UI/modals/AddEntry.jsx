@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import 'react-tooltip/dist/react-tooltip.css'
+
 import classes from './AddEntry.module.css'
 import './modal.css'
 import { Context } from '../../../index';
