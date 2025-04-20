@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-
 import { registration, } from '../../http/userAPI';
 import Select from 'react-select';
 import classes from './AdminPanel.module.css'
-import MySelect from '../../UI/Select/MySelect';
 function AdminPanel() {
   
   const [email, setEmail] = useState('')
@@ -20,7 +18,6 @@ function AdminPanel() {
     try {
       const data  = await registration(email, password, name, role, surname)
     } catch (err) {
-
       setEror(err.response.data.message)
       setEmail('')
       setName('')

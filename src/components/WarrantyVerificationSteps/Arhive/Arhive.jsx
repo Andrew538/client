@@ -1,56 +1,59 @@
-import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useState } from 'react'
-import { Context } from '../../../index';
-import { fetchExamArhive } from '../../http/guaranteeAPI';
-import ModalUpdate from '../../UI/ModalUpdate/ModalUpdate';
-import ModalNotification from '../../UI/ModalNotification/ModalNotification';
-import classes from './Arhive.module.css'
-import classNames from 'classnames';
-import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
-
+import { observer } from "mobx-react-lite";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { Context } from "../../../index";
+import { fetchExamArhive } from "../../http/guaranteeAPI";
+import ModalUpdate from "../../UI/ModalUpdate/ModalUpdate";
+import ModalNotification from "../../UI/ModalNotification/ModalNotification";
+import classes from "./Arhive.module.css";
+import classNames from "classnames";
+import WarrantyTableHeader from "../WarrantyTableHeader/WarrantyTableHeader";
+import TabelList from "../../UI/TabelList/TabelList";
+import SelectSort from "../../UI/Select/SelectSort/SelectSort";
 
 const Arhive = observer(() => {
-    const {examinationarhive, status}  = useContext(Context)
+  const { examinationarhive, status } = useContext(Context);
+  const [sort, setSort] = useState("");
 
-  console.log(examinationarhive.examinationarhive.map(item => {
-    console.log(item.createdAt)
-  }))
 
-    const [modalUpdate, setModalUpdate] = useState(false);
-    const [modalNotification, setModalNotification ] = useState(false)
 
-    let [numId, setNumId] = useState('')
-    let [notId, setNotId] = useState('')
 
-  
-    const [itemProps, setItemProps] = useState()
-  
-    // const items = [...examinationarhive.examinationarhive.keys()]
-    // console.log(items)
-  
-  
-    useEffect(() => {
+  const [itemProps, setItemProps] = useState();
+
+
+  useEffect(() => {
+    fetchExamArhive().then((data) => {
+      setItemProps(data);
+
+      examinationarhive.SetExaminationArhive(data);
+      status.SetStatus(data.map((i) => i.statusExam));
      
-        fetchExamArhive(null, null).then(data => {
-        setItemProps(data)
+    });
+  }, [examinationarhive]);
 
-        examinationarhive.SetExaminationArhive(data)
-        status.SetStatus(data.map(i => i.statusExam))
-        // console.log(data.map(i => 
-        //   i.status
-        // ))
-      })
-    },[examinationarhive])
-  
-  
-    
-    
-  
-    return (
-      <div className={classes.list}>
-         <h1>Архив</h1>
-             <WarrantyTableHeader/>
-          <ol>     
+  const sortedtable = useMemo(() => {
+    if (sort) {
+      return examinationarhive.examinationarhive
+        .slice()
+        .filter((table) => table.manager.toLowerCase().includes(sort));
+    }
+    return examinationarhive.examinationarhive;
+  }, [sort, examinationarhive.examinationarhive]);
+
+  return (
+    <div className={classes.list}>
+      <SelectSort
+        value={sort}
+        onChange={setSort}
+        defaultValue="Сортировка по менеджеру"
+        options={[
+          { value: "туркин", name: "Туркин" },
+          { value: "задоркин", name: "Задоркин" },
+          { value: "коновалова", name: "Коновалова" },
+        ]}
+      />
+      <WarrantyTableHeader />
+      <TabelList list={sortedtable} />
+      {/* <ol>     
               { examinationarhive.examinationarhive.map((item, index) =>    
                   <li className={classes.list} key={item.id}>
                   <div className={classes.list__box}>
@@ -85,12 +88,9 @@ const Arhive = observer(() => {
                 onHide={() => setModalNotification(false)}
               
               />             
-         </ol>
-         
-      
+         </ol> */}
+    </div>
+  );
+});
 
-      </div>
-    )
-})
-
-export default Arhive
+export default Arhive;

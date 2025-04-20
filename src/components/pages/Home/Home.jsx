@@ -5,6 +5,8 @@ import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
 import {login,} from '../../http/userAPI'
 import classes from './Home.module.css'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 
 
 

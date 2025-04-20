@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --table-border-color: rgba(213, 218, 218, .5);
 }
 .list {
@@ -128,4 +128,3 @@
     display: flex;
     top: -20px;
     /* display: none; */
-}

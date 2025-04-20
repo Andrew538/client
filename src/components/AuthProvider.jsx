@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { check } from "./http/userAPI";
 import { Context } from "../index";
 import { useNavigate } from "react-router-dom";
-import NewCheck from "./WarrantyVerificationSteps/NewCheck";
+
 
 
 export const AuthContext = createContext(null)
@@ -19,6 +19,7 @@ export const AuthProvider = ({children}) => {
         callback()
     }
     const singout = (callback) => {
+      
         setUser(null)
         callback()
     }

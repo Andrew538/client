@@ -16,6 +16,9 @@ import SelectSort from '../UI/Select/SelectSort/SelectSort';
 import { check } from '../http/userAPI';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hook/useAuth';
+import ButtonDelete from '../UI/ButtonDelete/ButtonDelete';
+import ButtonUpdate from '../UI/ButtonUpdate/ButtonUpdate';
+import TabelList from '../UI/TabelList/TabelList';
 
 
 
@@ -59,87 +62,149 @@ const  NewCheck = observer(() => {
 
   const [sort, setSort] = useState('')
 
-  let sortedtable = [] = useMemo(() => {
+  let sortedtable = useMemo(() => {
    if(sort) {
-    return examination.examination.clice().filter(list => list.manager.toLowerCase().includes(sort))
+    return examination.examination.filter(list => list.manager.toLowerCase().includes(sort))
    } else {
     return examination.examination
 
    }
   }, [sort, examination.examination])
 
- console.log(Array.isArray(sortedtable))
+//  console.log(Array.isArray(sortedtable))
   return (
     <div className={classes.list}>
-      <button className={classes.list__button} onClick={() => setModalShow(true)} >Добавить запись</button>
-      <AddEntry  show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-       <SelectSort
+      <button
+        className={classes.list__button}
+        onClick={() => setModalShow(true)}
+      >
+        Добавить запись
+      </button>
+      <AddEntry show={modalShow} onHide={() => setModalShow(false)} />
+      <SelectSort
         value={sort}
         onChange={setSort}
         defaultValue="Сортировка по менеджеру"
         options={[
-          {value: 'туркин', name: 'Туркин'},
-          {value: 'задоркин', name: 'Задоркин'},
-          {value: 'коновалова', name: 'Коновалова'}
+          { value: "туркин", name: "Туркин" },
+          { value: "задоркин", name: "Задоркин" },
+          { value: "коновалова", name: "Коновалова" },
         ]}
-      /> 
-      <WarrantyTableHeader/>
-     
-        <ol className={classes.list}>
- 
-            {sortedtable.map((item) =>    
-                <li className={classes.item} key={item.id}>
-                <div className={classes.item__box}>
-                  <div className={classes.table}>    
-                    <div className={classNames(classes.table__item, classes.table__item_one)}>{item.date}</div> 
-                    <div className={classNames(classes.table__item, classes.table__item_two)}>{item.client}</div> 
-                    <div className={classNames(classes.table__item, classes.table__item_three)}>{item.city}</div> 
-                    <div className={classNames(classes.table__item, classes.table__item_four)}>{item.manager}</div> 
-                    <div className={classNames(classes.table__item, classes.table__item_five)}>{item.product}</div>
-                    <div className={classNames(classes.table__item, classes.table__item_six)}>{item.productionDate}</div>  
-                    <div className={classNames(classes.table__item, classes.table__item_seven)}>{item.numberReturnDocument}</div>
-                    <div className={classNames(classes.table__item, classes.table__item_eight)}>{item.plantDocumentNumber}</div> 
-                    <div className={classNames(classes.table__item, classes.table__item_nine)}>{item.movingToDefectWarehouse}</div>  
-                    <div className={classNames(classes.table__item, classes.table__item_ten)}>{item.releaseDate}</div>
-                    <div className={classNames(classes.table__item, classes.table__item_eleven)}>{item.result}</div>   
-                  </div>
-                  <div className={classNames(classes.list__button__box, )}>              
-                    <button
-                    className={classNames(classes.list__button, classes.list__button_size )}
-                      type='button' 
-                          onClick={() => {
-                            setId(item.id)
-                            setModalUpdate(true)
-                            console.log('Привет')
-                        }} 
-                        >Изменить </button> 
-                              
-                      <button className={classNames(classes.list__button, classes.list__button_size)} onClick={() =>
-                        {    
-                          setNotId(item.id)
-                          setModalNotification(true)
-                        }
-                        }>Удалить</button>
-                  </div>                              
-                </div>                   
-                </li>
-                                      
-              )}          
-       </ol>
-       <ModalUpdate
-          props={Id}             
-          show={modalUpdate}
-          onHide={() => setModalUpdate(false)}
-          />
-          <ModalNotification
-          props={notId}             
-          show={modalNotification}
-          onHide={() => setModalNotification(false)}
+      />
+      <WarrantyTableHeader />
+        <TabelList
+          list={sortedtable}
         />
+      {/* <ol className={classes.list}>
+        {sortedtable.map((item) => (
+          <li className={classes.item} key={item.id}>
+            <div className={classes.item__box}>
+              <div className={classes.table}>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_one
+                  )}
+                >
+                  {item.date}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_two
+                  )}
+                >
+                  {item.client}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_three
+                  )}
+                >
+                  {item.city}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_four
+                  )}
+                >
+                  {item.manager}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_five
+                  )}
+                >
+                  {item.product}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_six
+                  )}
+                >
+                  {item.productionDate}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_seven
+                  )}
+                >
+                  {item.numberReturnDocument}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_eight
+                  )}
+                >
+                  {item.plantDocumentNumber}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_nine
+                  )}
+                >
+                  {item.movingToDefectWarehouse}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_ten
+                  )}
+                >
+                  {item.releaseDate}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_eleven
+                  )}
+                >
+                  {item.result}
+                </div>
+              </div>
+              <div className={classNames(classes.list__button__box)}>
+                <ButtonUpdate numberId={item.id} />
+
+                <ButtonDelete setid={item.id} />
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol> */}
+      <ModalUpdate
+        props={Id}
+        show={modalUpdate}
+        onHide={() => setModalUpdate(false)}
+      />
     </div>
-  )
+  );
 })
 
 export default NewCheck

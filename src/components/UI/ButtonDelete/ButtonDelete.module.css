@@ -1,0 +1,17 @@
+.delete__btn {
+    width: 26px;
+    height: 32px;
+
+    background: url(../icon/delete.svg) no-repeat;
+    background-size: 22px;
+    background-position: center;
+    background-color: transparent;
+    border: 1px solid rgb(176, 176, 236);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 16px ;
+    transition: all ease-in .1s;
+}
+.delete__btn:hover {
+    transform: scale(1.2);
+}

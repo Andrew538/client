@@ -2,20 +2,22 @@ import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Context } from "../../..";
 import { fetchExamCharger } from "../../http/guaranteeAPI";
-// import classes from './Charger.module.css'
+
 import classes from "../GeneralStyles/GeneralStyles.module.css";
-import classNames from "classnames";
+
 import ModalUpdate from "../../UI/ModalUpdate/ModalUpdate";
 import ModalNotification from "../../UI/ModalNotification/ModalNotification";
 import WarrantyTableHeader from "../WarrantyTableHeader/WarrantyTableHeader";
 import SelectSort from "../../UI/Select/SelectSort/SelectSort";
+import TabelList from "../../UI/TabelList/TabelList";
 
 const Charger = observer(() => {
   const { examinationcharger, status } = useContext(Context);
 
-  const [modalShow, setModalShow] = useState(false);
+
   const [modalUpdate, setModalUpdate] = useState(false);
   const [modalNotification, setModalNotification] = useState(false);
+  const [sort, setSort] = useState("");
 
   let [numId, setNumId] = useState("");
   let [notId, setNotId] = useState("");
@@ -29,7 +31,7 @@ const Charger = observer(() => {
       status.SetStatus(data.map((i) => i.statusExam));
     });
   }, [examinationcharger]);
-  const [sort, setSort] = useState("");
+
 
   const sortedtable = useMemo(() => {
     if (sort) {
@@ -53,7 +55,10 @@ const Charger = observer(() => {
         ]}
       />
       <WarrantyTableHeader />
-      <ol>
+      <TabelList
+        list={sortedtable}
+      />
+      {/* <ol>
         {sortedtable.map((item, index) => (
           <li className={classes.item} key={item.id}>
             <div className={classes.item__box}>
@@ -165,7 +170,7 @@ const Charger = observer(() => {
             </div>
           </li>
         ))}
-      </ol>
+      </ol> */}
       <ModalUpdate
         props={numId}
         show={modalUpdate}
@@ -176,7 +181,7 @@ const Charger = observer(() => {
         show={modalNotification}
         onHide={() => setModalNotification(false)}
       />
-      {/* <Outlet/>        */}
+      
     </div>
   );
 });

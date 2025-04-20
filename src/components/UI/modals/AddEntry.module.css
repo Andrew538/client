@@ -17,7 +17,13 @@
 .modal__title {
     font-size: 40px;
 }
-.modal__box__input {
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+.modal__form__box {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -39,10 +45,22 @@
     right: 25px;
 }
 .modal__input {
+    position: relative;
+    width: 94%;
     min-height: 20px;
     font-size: 16px;
     margin: 0px 0px 20px 0px;
     padding: 8px ;
+}
+.modal__inputBox {
+    position: relative;
+}
+.modal__inputValidate {
+    position: absolute;
+    color: red;
+    left: 10px;
+    top: -23px;
+    font-weight: bold;
 }
 .modal__textarea {
     resize: vertical;

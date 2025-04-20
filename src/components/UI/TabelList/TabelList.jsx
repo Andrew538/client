@@ -1,27 +1,118 @@
 import { observer } from 'mobx-react-lite'
 import React from 'react'
+import classes from './TabelList.module.css'
+import classNames from 'classnames';
+import ButtonUpdate from '../ButtonUpdate/ButtonUpdate';
+import ButtonDelete from '../ButtonDelete/ButtonDelete';
 
-const TabelList = observer(({ list, date}) => {
-   console.log(date)
+const TabelList = observer(({list}) => {
+   
   return (
     <ol>
-        <li>
-            <div className="">
-                <div className="">
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
-                    <div>{}</div>
+      {
+        list.map((item) => (
+            <li key={item.id}>
+                 <div className={classes.item__box}>
+              <div className={classes.table}>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_one
+                  )}
+                >
+                  {item.date}
                 </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_two
+                  )}
+                >
+                  {item.client}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_three
+                  )}
+                >
+                  {item.city}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_four
+                  )}
+                >
+                  {item.manager}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_five
+                  )}
+                >
+                  {item.product}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_six
+                  )}
+                >
+                  {item.productionDate}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_seven
+                  )}
+                >
+                  {item.numberReturnDocument}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_eight
+                  )}
+                >
+                  {item.plantDocumentNumber}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_nine
+                  )}
+                >
+                  {item.movingToDefectWarehouse}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_ten
+                  )}
+                >
+                  {item.releaseDate}
+                </div>
+                <div
+                  className={classNames(
+                    classes.table__item,
+                    classes.table__item_eleven
+                  )}
+                >
+                  {item.result}
+                </div>
+              </div>
+              <div className={classNames(classes.list__button__box)}>
+                <ButtonUpdate numberId={item.id} />
+
+                <ButtonDelete setid={item.id} />
+              </div>
             </div>
-        </li>
+            </li>
+        ))
+      }
+        
     </ol>
   )
 })

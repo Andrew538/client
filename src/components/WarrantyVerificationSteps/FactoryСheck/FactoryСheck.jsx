@@ -10,6 +10,7 @@ import classes from '../GeneralStyles/GeneralStyles.module.css'
 import classNames from 'classnames';
 import WarrantyTableHeader from '../WarrantyTableHeader/WarrantyTableHeader';
 import SelectSort from '../../UI/Select/SelectSort/SelectSort';
+import TabelList from '../../UI/TabelList/TabelList';
 
 
 
@@ -56,7 +57,10 @@ const  FactoryСheck = observer (() => {
                 ]}
               /> 
             <WarrantyTableHeader/>
-        <ol className={classes.list}>     
+            <TabelList
+              list={sortedtable}
+            />
+        {/* <ol className={classes.list}>     
             { sortedtable.map((item, index) =>    
                 <li className={classes.item} key={item.id}>
                 <div className={classes.item__box}>
@@ -83,12 +87,7 @@ const  FactoryСheck = observer (() => {
                         }} 
                         >Изменить</button> 
                        
-                      {/* <button className={classNames(classes.table__button, classes.table__button_size)} onClick={() =>
-                        {    
-                          setNotId(item.id)
-                        setModalNotification(true)
-                        }
-                        }>Удалить</button> */}
+                    
                   </div>                              
                 </div>                   
                 </li> 
@@ -97,7 +96,7 @@ const  FactoryСheck = observer (() => {
               
               )}
           
-       </ol>
+       </ol> */}
        <ModalUpdate
         props={numId}             
         show={modalUpdate}
