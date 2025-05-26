@@ -21,7 +21,7 @@ import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
 
 
 const  NewCheck = observer(() => {
-  const {examination, status, allUser}  = useContext(Context)
+  const {examination, status}  = useContext(Context)
   const [modalShow, setModalShow] = useState(false);
   
 
@@ -43,7 +43,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
     //   // console.log(data)
     // })
    
-  },[examination, allUser])
+  },[examination, ])
 
 
 
