@@ -15,11 +15,6 @@ const Arhive = observer(() => {
   const { examinationarhive, status } = useContext(Context);
   const [itemProps, setItemProps] = useState();
 
-const [items, setItems] = useState([]);
-
-const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
-
-
   useEffect(() => {
     fetchExamArhive().then((data) => {
       setItemProps(data);
@@ -53,6 +48,9 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
    }, [sort, sortCity, examinationarhive.examinationarhive]);
 
     
+const [items, setItems] = useState([]);
+
+const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
 
    let optionsCity = useMemo(() => {
 
