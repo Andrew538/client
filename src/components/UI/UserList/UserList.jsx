@@ -1,18 +1,18 @@
-import React from 'react'
+// import React from 'react'
 
-function UserList() {
+// function UserList() {
 
-    useEffect(() => {
-        allUsers().then(data => {
+//     useEffect(() => {
+//         allUsers().then(data => {
       
-          users.SetAllUser(data)
-          console.log(data)
+//           users.SetAllUser(data)
+//           console.log(data)
           
-        })
-      }, [])
-  return (
-    <div>UserList</div>
-  )
-}
+//         })
+//       }, [])
+//   return (
+//     <div>UserList</div>
+//   )
+// }
 
-export default UserList
+// export default UserList
