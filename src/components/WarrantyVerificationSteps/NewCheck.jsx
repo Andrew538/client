@@ -14,7 +14,7 @@ import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
 import TabelList from '../UI/TabelList/TabelList';
 import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
-import { allUsers } from '../http/userAPI';
+// import { allUsers } from '../http/userAPI';
 
 
 
