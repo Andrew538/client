@@ -52,7 +52,7 @@ const FactoryСheck = observer(() => {
         list.manager.toLowerCase().includes(sort)
       );
     }
-    if (sortCity) {
+    else if (sortCity) {
       return examinationworks.examinationworks.filter((list) =>
         list.city.toLowerCase().includes(sortCity)
       );
