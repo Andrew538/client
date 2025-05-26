@@ -38,10 +38,10 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
       setItems(newun)  
       
     })
-    allUsers().then(data => {
-      allUser.setAllUser(data)
-      // console.log(data)
-    })
+    // allUsers().then(data => {
+    //   allUser.setAllUser(data)
+    //   // console.log(data)
+    // })
    
   },[examination, allUser])
 
