@@ -71,14 +71,14 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
  
   return (
     <div className={classes.list}>
-      {/* <ListSelectSort
+      <ListSelectSort
         sort={sort}
         setSort={setSort}
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
-     /> */}
-     <SelectSort
+     />
+     {/* <SelectSort
         value={sort}
         onChange={setSort}
         // options={optionsManager}  
@@ -90,7 +90,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
         onChange={setSortCity}
         defaultValue="Сортировка по городу"
         options={optionsCity}
-      />
+      /> */}
       <WarrantyTableHeader />
       <TabelList list={sorted} />
     </div>
