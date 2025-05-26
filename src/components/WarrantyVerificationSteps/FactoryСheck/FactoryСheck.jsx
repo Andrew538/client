@@ -34,11 +34,11 @@ const FactoryСheck = observer(() => {
       status.SetStatus(data.map((i) => i.statusExam));
 
        const newun = examinationworks.examinationworks.map((item) => {return item.city})
-      setItems(newun)  
+        setItems(newun)  
 
      
       
- const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
+        const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
       setManager(newManager)  
     });
   }, [examinationworks]);

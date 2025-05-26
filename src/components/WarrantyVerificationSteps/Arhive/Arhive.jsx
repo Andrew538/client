@@ -9,6 +9,7 @@ import WarrantyTableHeader from "../WarrantyTableHeader/WarrantyTableHeader";
 import TabelList from "../../UI/TabelList/TabelList";
 
 import ListSelectSort from "../../UI/ListSelectSort/ListSelectSort";
+import SelectSort from "../../UI/Select/SelectSort/SelectSort";
 
 const Arhive = observer(() => {
   const { examinationarhive, status } = useContext(Context);
@@ -66,13 +67,26 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
  
   return (
     <div className={classes.list}>
-      <ListSelectSort
+      {/* <ListSelectSort
         sort={sort}
         setSort={setSort}
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
-     />
+     /> */}
+     <SelectSort
+        value={sort}
+        onChange={setSort}
+        // options={optionsManager}  
+        defaultValue="Сортировка по менеджеру"
+                
+       />
+      <SelectSort
+        value={sortCity}
+        onChange={setSortCity}
+        defaultValue="Сортировка по городу"
+        options={optionsCity}
+      />
       <WarrantyTableHeader />
       <TabelList list={sorted} />
     </div>
