@@ -15,6 +15,8 @@ const Arhive = observer(() => {
   const { examinationarhive, status } = useContext(Context);
   const [itemProps, setItemProps] = useState();
 
+
+
   useEffect(() => {
     fetchExamArhive().then((data) => {
       setItemProps(data);
@@ -22,8 +24,8 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
 
-      const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
-      setItems(newun)  
+      // const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
+      // setItems(newun)  
     });
   }, [examinationarhive]);
 
@@ -32,11 +34,11 @@ const Arhive = observer(() => {
 
 
    let sorted = useMemo(() => {
-     if (sort) {
-       return examinationarhive.examinationarhive.filter((list) =>
-         list.manager.toLowerCase().includes(sort)
-       );
-     }
+    //  if (sort) {
+    //    return examinationarhive.examinationarhive.filter((list) =>
+    //      list.manager.toLowerCase().includes(sort)
+    //    );
+    //  }
     
      if (sortCity) {
  
@@ -45,15 +47,19 @@ const Arhive = observer(() => {
      } else {
        return examinationarhive.examinationarhive;
      }
-   }, [sort, sortCity, examinationarhive.examinationarhive]);
+   }, [ sortCity, examinationarhive.examinationarhive]);
 
     
 const [items, setItems] = useState([]);
+  
+
 
 const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
 
    let optionsCity = useMemo(() => {
 
+      const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
+      setItems(newun)  
      return newI.map((item) =>                  
       (<option key={item} value={item.toLowerCase()}>
          {item}
