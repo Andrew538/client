@@ -31,16 +31,16 @@ export const check = async () => {
 }
 
 
-export const allUsers = async (id, email, name, role, surname) => {
-    const {data} = await $authHost.get('api/user/user', {params: 
-       {id, email, name, role, surname}
-    })
+// export const allUsers = async (id, email, name, role, surname) => {
+//     const {data} = await $authHost.get('api/user/user', {params: 
+//        {id, email, name, role, surname}
+//     })
 
-    // console.log(data)
+//     // console.log(data)
     
-    return data
+//     return data
     
-}
+// }
 
 
 
