@@ -6,7 +6,7 @@ import { Context } from '../../..';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { keys, values } from 'mobx';
-import { allUsers } from '../../http/userAPI';
+// import { allUsers } from '../../http/userAPI';
 
 
 
@@ -17,23 +17,23 @@ const ListSelectSort = observer(({sort, setSortCity, setSort, sortCity, optionsC
     const { allUser, examination } = useContext(Context);
     // console.log(examination.examination.map(item => console.log(item.city)))
 
-    useEffect(() => {
-      allUsers().then((data) => {
-        allUser.setAllUser(data);
-      });
+    // useEffect(() => {
+    //   allUsers().then((data) => {
+    //     allUser.setAllUser(data);
+    //   });
 
    
-    }, []);
+    // }, []);
 
-     let options = useMemo(() => {
-       if (allUser) {
-         return allUser.allUser.map((item) => (
-           <option key={item.id} value={item.surname.toLowerCase()}>
-             {item.surname} {item.name}
-           </option>
-         ));
-       }
-     });
+    //  let options = useMemo(() => {
+    //    if (allUser) {
+    //      return allUser.allUser.map((item) => (
+    //        <option key={item.id} value={item.surname.toLowerCase()}>
+    //          {item.surname} {item.name}
+    //        </option>
+    //      ));
+    //    }
+    //  });
 
      
   return (
