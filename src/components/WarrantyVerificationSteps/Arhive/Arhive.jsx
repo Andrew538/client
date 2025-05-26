@@ -30,7 +30,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
       const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
       setItems(newun)  
     });
-  }, [examinationarhive]);
+  }, [examinationarhive, sortCity]);
 
    const [sort, setSort] = useState("");
    const [sortCity, setSortCity] = useState("");
