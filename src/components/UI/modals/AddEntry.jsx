@@ -27,7 +27,7 @@ const [product, setProduct] = useState("");
 const [releaseDate, setReleaseDate] = useState("");
 const [result, setResult] = useState("");
 const [statusExam, setStatus] = useState("New");
-const [addRec, setAddRec] = useState();
+const [addRec, setAddRec] = useState(); 
 
 const [error, setError] = useState(" ");
 

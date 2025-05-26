@@ -1,6 +1,7 @@
 :root {
     --table-border-color: rgba(213, 218, 218, .5);
 }
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 .list {
     position: relative;
     z-index: 1;
@@ -12,20 +13,23 @@
     margin: 0px auto 15px auto;
     padding: 10px;
     background-color: transparent;
-    border: 1px solid rgb(41, 180, 41);
+    
+    border: 2px solid rgba(19, 19, 233, 1);
+    box-sizing: content-box;
     border-radius: 15px;
     cursor: pointer;
     font-size: 19px;
     font-weight: 700;
-    transition: .2s;
+    transition: .3s;
 
 }
 .list__button:hover {
-    background: teal;
+    background: rgba(19, 19, 233, .5);
+    border:  2px solid transparent;
     color: rgb(253, 253, 253);
 
 }
-.list__button__box {
+/* .list__button__box {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -39,8 +43,8 @@
     border: 1px solid var(--table-border-color);
 
 
-}
-.item:nth-child(2n) {
+} */
+/* .item:nth-child(2n) {
     background-color: rgba(103, 99, 107, 0.1);
 }
 .item {
@@ -132,4 +136,3 @@
     display: flex;
     top: -20px;
     /* display: none; */
-}

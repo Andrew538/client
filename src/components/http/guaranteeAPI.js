@@ -54,13 +54,44 @@ export const delExam = async (id) => {
   
 }
 
-export const updateRecord = async (id, releaseDate,result, statusExam) => {
-    const {} = await $authHost.post('api/examination/upgrade', {
-      id, releaseDate, result, statusExam
+export const updateRecord = async (id, result,    statusExam) => {
+    const {data} = await $authHost.post('api/examination/upgrade', {
+     id, result,    statusExam
     })
-//   return data
+  console.log(data)
+  return data
 }
 
+export const updateNumberReturnDocument = async (id, numberReturnDocument, statusExam) => {
+    const {data} = await $authHost.post('api/examination/upgradeNumberReturnDocument', {
+     id, numberReturnDocument, statusExam
+    })
+  console.log(data)
+  return data
+}
+export const updatePlantDocumentNumber = async (id, plantDocumentNumber, statusExam) => {
+    const {data} = await $authHost.post('api/examination/upgradePlantDocumentNumber', {
+     id, plantDocumentNumber, statusExam
+    })
+  console.log(data)
+  return data
+}
+
+export const updateMovingToDefectWarehouse = async (id, movingToDefectWarehouse, statusExam) => {
+    const {data} = await $authHost.post('api/examination/upgradeMovingToDefectWarehouse', {
+     id, movingToDefectWarehouse, statusExam
+    })
+  console.log(data)
+  return data
+}
+
+export const updateReleaseDate = async (id, releaseDate, statusExam) => {
+    const {data} = await $authHost.post('api/examination/upgradeUpdateReleaseDate', {
+     id, releaseDate, statusExam
+    })
+  console.log(data)
+  return data
+}
 
 export const fetchOneExam = async (id) => {
     const {data} = await $authHost.get('api/examination/getone', { params: {id} })

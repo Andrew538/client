@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import classes from './SelectSort.module.css'
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../../../..';
 
-const SelectSort = ({options, defaultValue, value, onChange}) => {
+const SelectSort = observer (({options, defaultValue, value, onChange}) => {
+// console.log(options)
   return (
     <div className={classNames(classes.box)}>
         <select className={classNames(classes.sort)}
@@ -10,22 +13,17 @@ const SelectSort = ({options, defaultValue, value, onChange}) => {
                 onChange={event => onChange(event.target.value)}
             >
             <option disabled value="">{defaultValue}</option>
-            {
-                options.map(option =>
-                    <option key={option.value} value={option.value}>
-                        {option.name}
-                    </option>
-                )
-            }
+            {options}
         </select>
       <button 
         className={classNames(classes.button)}
         onClick={() => onChange('')}
-      >Сброс сортировки</button>
+      ></button>
+
 
     </div>
    
   )
-}
+})
 
 export default SelectSort

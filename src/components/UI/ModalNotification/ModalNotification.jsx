@@ -4,22 +4,44 @@ import Modal from 'react-bootstrap/Modal';
 import classes from './ModalNotification.module.css'
 
 import { observer } from 'mobx-react-lite';
-import { delExam, fetchExam } from '../../http/guaranteeAPI';
+import { delExam, fetchExam, fetchExamArhive, fetchExamCharger, fetchExamReady, fetchExamWorks } from '../../http/guaranteeAPI';
 import { Context } from '../../../index';
 
 
 const ModalNotification = observer(({show, onHide, props,}) => {
-    const {examination}  = useContext(Context)
+    const {examination, examinationcharger, examinationworks, examinationready, examinationarhive}  = useContext(Context)
     const ok = () => {
         return true
     }
-    
+        function Update () {
+      fetchExam(null, null).then(data => {
+        examination.SetExamination(data)        
+      })
+
+      fetchExamCharger(null, null).then(data => {
+        examinationcharger.SetExaminationCharger(data)
+      })
+
+      fetchExamWorks(null, null).then(data => {
+        examinationworks.SetExaminationWorks(data)
+      })
+
+      fetchExamReady(null, null).then(data => {             
+        examinationready.SetExaminationReady(data)                        
+      })
+      fetchExamArhive().then((data) => {           
+            examinationarhive.SetExaminationArhive(data);        
+          });
+    }
+
+ 
   const delRec = async (props) => {
         const id = +props
         try {
             if(ok === ok && props && delRec) {
                 await delExam({id})
             onHide()
+            Update()
             await fetchExam(null, null).then(data => {
                 examination.SetExamination(data)   
     //   examination.setTotalCount(data.count)

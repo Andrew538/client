@@ -4,16 +4,18 @@ import Modal from 'react-bootstrap/Modal';
 import classes from './ModalUpdate.module.css'
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
-import {fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks, fetchOneExam, updateRecord } from '../../http/guaranteeAPI';
+import {fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks, fetchOneExam, updateMovingToDefectWarehouse, updateNumberReturnDocument, updatePlantDocumentNumber, updateRecord, updateReleaseDate } from '../../http/guaranteeAPI';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hook/useAuth';
 import { check } from '../../http/userAPI';
+import { keys } from 'mobx';
+import { useMemo } from 'react';
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
 
-  const {users}  = useContext(Context)
+const {users}  = useContext(Context)
 
   const [itemProps, setItemProps] = useState()
   const [dateOne, setDate] = useState('')
@@ -28,15 +30,66 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [releaseDate, setReleaseDate] = useState('')
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
-  const [statusExam, setStatus] = useState(addRec.statusExam)
+  const [statusExam, setStatus] = useState(addRec.setStatus)
+
+    const id = +props
 
 
 
-  const allValue = [ releaseDate, result, statusExam]
+    
+    
+
+       
+          async function resultUpdate() {
+            if (result === "") {
+              const result = addRec.result;
+              await updateRecord(id, result, statusExam);
+            } else if (result.length) {
+              await updateRecord(id, result, statusExam);
+            }
+          }
+          async function numberReturnDocumentUdate() {
+            if (numberReturnDocument === "") {
+              const numberReturnDocument = addRec.numberReturnDocument;
+              await updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+            } else {
+              await updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+            }
+          }
+          async function plantDocumentNumberUpdate() {
+            if (plantDocumentNumber === "") {
+              const plantDocumentNumber = addRec.plantDocumentNumbert;
+              await updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+            } else {
+              await updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+            }
+          }
+
+          async function movingToDefectWarehouseUpdate() {
+            if (movingToDefectWarehouse === "") {
+              const movingToDefectWarehouse = addRec.movingToDefectWarehouse;
+              await updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
+            } else {
+              await updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
+            }
+          }
+          async function ReleaseDateUpdate() {
+            if (releaseDate === "") {
+              const releaseDate = addRec.releaseDate;
+              await updateReleaseDate(id, releaseDate, statusExam);
+            } else {
+              await updateReleaseDate(id, releaseDate, statusExam);
+            }
+          }
+
+
+
+
+    
+
 
 
     const {examination, examinationcharger, examinationworks, examinationready} = useContext(Context)
-
 
     const options = [
       { value: 'New', label: 'Выбрать статус'},
@@ -48,109 +101,63 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
     ];
 
 
-
-
     useEffect(() => {
       const id = +props
       if(show === show && props && addRec) {
       try {        
           fetchOneExam(id).
-          then(data => setAddRec(data))        
+          then(data => setAddRec(data)) 
         }        
        catch (error) {
         console.log(error)
-      }}   
+      }} 
     }, [show])
 
-    // useEffect(() => {
-   
+    // function Update () {
     //   fetchExam(null, null).then(data => {
-    //     setItemProps(data)
-
-    //     examination.SetExamination(data)
-
+    //     examination.SetExamination(data)        
     //   })
-    // },[examination])
-    
-    function Update () {
-      fetchExam(null, null).then(data => {
-        examination.SetExamination(data)        
-      })
 
-      fetchExamCharger(null, null).then(data => {
-        examinationcharger.SetExaminationCharger(data)
-      })
+    //   fetchExamCharger(null, null).then(data => {
+    //     examinationcharger.SetExaminationCharger(data)
+    //   })
 
-      fetchExamWorks(null, null).then(data => {
-        examinationworks.SetExaminationWorks(data)
-      })
+    //   fetchExamWorks(null, null).then(data => {
+    //     examinationworks.SetExaminationWorks(data)
+    //   })
 
-      fetchExamReady(null, null).then(data => {             
-        examinationready.SetExaminationReady(data)                        
-      })
-    }
+    //   fetchExamReady(null, null).then(data => {             
+    //     examinationready.SetExaminationReady(data)                        
+    //   })
+    // }
 
+ 
+     const newRec = () => {
+       try {
+        ReleaseDateUpdate();
+        resultUpdate();
+        numberReturnDocumentUdate();
+        plantDocumentNumberUpdate();
+        movingToDefectWarehouseUpdate();
 
-    const newRec = async (props) => {
-      console.log(props)
-      const id = +props
-      const utdateRec = updateRecord( id,releaseDate, result, statusExam)
-      try {
-        if(releaseDate.length && result.length && statusExam.length ) {
-          await utdateRec( id, releaseDate, result, statusExam)
-          Update()
-    
-        } else if (releaseDate === '' && result.length && statusExam.length) {
-         const  releaseDate = addRec.releaseDate
-          await utdateRec(releaseDate)
-          Update()
-
-        } else if(releaseDate.length && statusExam.length && result === '') {
-          const result = addRec.result
-        const statusExam = addRec.statusExam
-
-          await utdateRec(result, statusExam)
-          Update()
-
-        } else if(releaseDate === '' && result === '' && statusExam.length  ) {
-         const  releaseDate = addRec.releaseDate
-          const result = addRec.result
-        const statusExam = addRec.statusExam
-
-          await utdateRec( id,releaseDate, result, statusExam)
-          Update()
-
-        }
-      
-      else if(releaseDate === '' && result.length && statusExam != 'New') {
-        const  releaseDate = addRec.releaseDate
-        const statusExam = addRec.statusExam
-         await updateRecord( id, releaseDate, result, statusExam)
-        //  fetchExam(null, null).then(data => {
-        //    examination.SetExamination(data.sort((a, b) => a.id > b.id ? 1 : -1))
-          
-        //  })
+        setDate("");
+        setclient("");
+        setManager("");
+        setProduct("");
+        setReleaseDate("");
+        setProductionDate("");
+        setplantDocumentNumber("");
+        setNumberReturnDocument("");
+        setMovingToDefectWarehouse("");
+        setCity("");
+        setResult("");
+        setReleaseDate("");
+        onHide();
+       } catch (error) {
+         console.log(error);
        }
-      setDate('')
-      setclient('')
-      setManager('')
-      setProduct('')
-      setReleaseDate('')
-      setProductionDate('')
-      setplantDocumentNumber('')
-      setNumberReturnDocument('')
-      setMovingToDefectWarehouse('')
-      setCity('')
-    
-      setResult('')
-      setResult('')
-      setReleaseDate('')
-      onHide()
-      
-     } catch (error) {
-       console.log(error)
-     }
-    }
+     };
+
 
 
   return (
@@ -163,7 +170,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       centered
     >
 
-<div  className={classes.modal__wrapper}> 
+      <div  className={classes.modal__wrapper}> 
   
           <form className={classes.modal__box}>
           <h2 className={classes.modal__title}>Редактировать запись</h2>
@@ -172,8 +179,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
           <label className={classes.modal__label} htmlFor="">
                   Дата поступления
                 </label>               
-                <input 
-                
+                <input                 
                 className={classes.modal__input} 
                 type="text" 
                 placeholder={addRec.date}
@@ -226,7 +232,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
           </div>
                 
           <div className={classes.modal__right}>
-          <label className={classes.modal__label} htmlFor="">№ акта для завода</label>
+
+             <label className={classes.modal__label} htmlFor="">№ документа возврата от клиента</label>
                 <input 
                 className={classes.modal__input} 
                 type="text" 
@@ -234,7 +241,9 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                 value={numberReturnDocument}
                 onChange={e => setNumberReturnDocument(e.target.value)}
                 />
-                   <label className={classes.modal__label} htmlFor="">№ перемещения на склад БРАК</label>
+
+
+          <label className={classes.modal__label} htmlFor="">№ акта для завода</label>
                 <input 
                 className={classes.modal__input} 
                 type="text" 
@@ -242,7 +251,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                 value={plantDocumentNumber}
                 onChange={e => setplantDocumentNumber(e.target.value)}
                 />
-                     <label className={classes.modal__label} htmlFor="">№ документа возврата от клиента</label>
+
+                   <label className={classes.modal__label} htmlFor="">№ перемещения на склад БРАК</label>
                 <input 
                 className={classes.modal__input} 
                 type="text" 
@@ -251,6 +261,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                 onChange={e => setMovingToDefectWarehouse(e.target.value)}
                 />
 
+               
                 <label className={classes.modal__label} htmlFor="">Дата выдачи</label>
                 <input            
                 className={classes.modal__input} 
@@ -278,8 +289,11 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
      
                 
               <div className={classes.modal__btn_box}>
+                  {/* <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button> */}
                   <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
+
                   <button className={classes.modal__btn} onClick={() => newRec(addRec.id)}>Сохранить</button>           
+                  {/* <button className={classes.modal__btn} type='submit'>Сохранить</button>            */}
               </div>
                
           </form>         

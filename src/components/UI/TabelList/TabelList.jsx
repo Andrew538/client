@@ -11,7 +11,7 @@ const TabelList = observer(({list}) => {
     <ol>
       {
         list.map((item) => (
-            <li key={item.id}>
+            <li className={classes.item} key={item.id}>
                  <div className={classes.item__box}>
               <div className={classes.table}>
                 <div
@@ -105,7 +105,6 @@ const TabelList = observer(({list}) => {
               </div>
               <div className={classNames(classes.list__button__box)}>
                 <ButtonUpdate numberId={item.id} />
-
                 <ButtonDelete setid={item.id} />
               </div>
             </div>

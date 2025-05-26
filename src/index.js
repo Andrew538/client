@@ -71,6 +71,7 @@ root.render(
     <BrowserRouter>
       <Context.Provider value={{ 
         users: new UserStore(),
+        allUser: new UserStore(),
         status: new GuaranteeStore(),
         examination: new GuaranteeStore(),
         examinationworks: new GuaranteeStore(),
