@@ -44,7 +44,7 @@ const Arhive = observer(() => {
      } else {
        return examinationarhive.examinationarhive;
      }
-   }, [sort, sortCity, examinationarhive]);
+   }, [sort, sortCity, examinationarhive.examinationarhive]);
 
     
 const [items, setItems] = useState([]);
@@ -55,7 +55,7 @@ const newI = items.filter(
   (item, index) => (items.indexOf(item) == index) & (item != "")
 );
 
-let optionsCity = useMemo(() => {
+const optionsCity = useMemo(() => {
   const newun = examinationarhive.examinationarhive.map((item) => {
     return item.city;
   });
