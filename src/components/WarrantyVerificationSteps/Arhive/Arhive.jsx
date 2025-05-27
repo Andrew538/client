@@ -65,7 +65,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
          {item}
        </option>)      
      );
-   }, [sortCity ,examinationarhive.examinationarhive]);
+   }, [sortCity ,examinationarhive]);
 
     const [manager, setManager] = useState([])
       
@@ -80,7 +80,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
           {item}
         </option>)      
       );
-    }, [ sort, examinationarhive.examinationarhive]);
+    }, [ sort, examinationarhive]);
 
 
  

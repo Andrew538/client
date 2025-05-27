@@ -62,7 +62,7 @@ const [items, setItems] = useState([]);
            {item}
          </option>)      
        );
-     }, [ sort,examinationworks.examinationworks]);
+     }, [ sort,examinationworks]);
 
 const [manager, setManager] = useState([])
       
