@@ -35,7 +35,9 @@ const ListSelectSort = observer(({sort, setSortCity, setSort, sortCity, optionsC
     //    }
     //  });
 
-    
+    const managerMemo = useMemo(() => {
+      return  optionsManager
+    },[optionsManager])
 
      
   return (
@@ -43,7 +45,7 @@ const ListSelectSort = observer(({sort, setSortCity, setSort, sortCity, optionsC
       <SelectSort
         value={sort}
         onChange={setSort}
-        options={optionsManager}  
+        options={managerMemo}  
         defaultValue="Сортировка по менеджеру"
                 
        />
