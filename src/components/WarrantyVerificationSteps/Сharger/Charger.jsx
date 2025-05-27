@@ -26,11 +26,9 @@ const Charger = observer(() => {
 
 const [items, setItems] = useState([]);
 
-const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
  
 const [manager, setManager] = useState([])
 
-const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
 
   const [itemProps, setItemProps] = useState();
 
@@ -40,10 +38,8 @@ const listManager = manager.filter((item, index) => manager.indexOf(item) == ind
       examinationcharger.SetExaminationCharger(data);
       status.SetStatus(data.map((i) => i.statusExam));
 
-       const newun = examinationcharger.examinationcharger.map((item) => {return item.city})
-      setItems(newun)  
-       const newManager = examinationcharger.examinationcharger.map((item) => {return item.manager})
-      setManager(newManager)  
+    
+       
     });
   }, [examinationcharger]);
 
@@ -54,35 +50,52 @@ const listManager = manager.filter((item, index) => manager.indexOf(item) == ind
     const [sortCity, setSortCity] = useState('')
   
     let sorted = useMemo(() => {
-     if(sort) {
-      return examinationcharger.examinationcharger.filter(list => list.manager.toLowerCase().includes(sort))
-     }  if (sortCity) {
-       return examinationcharger.examinationcharger.filter(list => list.city.toLowerCase().includes(sortCity))
-  
-     }
-     
-     else {
-      return examinationcharger.examinationcharger
-  
-     }
-    }, [sort, sortCity, examinationcharger.examinationcharger])
+      if (sort) {
+        return examinationcharger.examinationcharger.filter((list) =>
+          list.manager.toLowerCase().includes(sort)
+        );
+      }
+      if (sortCity) {
+        return examinationcharger.examinationcharger.filter((list) =>
+          list.city.toLowerCase().includes(sortCity)
+        );
+      } else {
+        return examinationcharger.examinationcharger;
+      }
+    }, [sort, sortCity, examinationcharger.examinationcharger]);
 
        let optionsCity = useMemo(() => {
-    
-         return newI.map((item) =>                  
-          (<option key={item} value={item.toLowerCase()}>
-             {item}
-           </option>)      
+         const newI = items.filter(
+           (item, index) => (items.indexOf(item) == index) & (item != "")
          );
+
+         const newun = examinationcharger.examinationcharger.map((item) => {
+           return item.city;
+         });
+         setItems(newun);
+         return newI.map((item) => (
+           <option key={item} value={item.toLowerCase()}>
+             {item}
+           </option>
+         ));
        }, [examinationcharger.examinationcharger]);
 
-         let optionsManager = useMemo(() => {
-    
-         return listManager.map((item) =>                  
-          (<option key={item} value={item.toLowerCase()}>
-             {item}
-           </option>)      
+       let optionsManager = useMemo(() => {
+         const listManager = manager.filter(
+           (item, index) => (manager.indexOf(item) == index) & (item != "")
          );
+
+         const newManager = examinationcharger.examinationcharger.map(
+           (item) => {
+             return item.manager;
+           }
+         );
+         setManager(newManager);
+         return listManager.map((item) => (
+           <option key={item} value={item.toLowerCase()}>
+             {item}
+           </option>
+         ));
        }, [examinationcharger.examinationcharger]);
     
 

@@ -14,7 +14,7 @@ import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
 import SelectSort from '../UI/Select/SelectSort/SelectSort';
 import TabelList from '../UI/TabelList/TabelList';
 import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
-// import { allUsers } from '../http/userAPI';
+
 
 
 
@@ -23,6 +23,7 @@ import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
 const  NewCheck = observer(() => {
   const {examination, status}  = useContext(Context)
   const [modalShow, setModalShow] = useState(false);
+    const [manager, setManager] = useState([]);
   
 
   const [items, setItems] = useState([]);
@@ -38,10 +39,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
       setItems(newun)  
       
     })
-    // allUsers().then(data => {
-    //   allUser.setAllUser(data)
-    //   // console.log(data)
-    // })
+
    
   },[examination, ])
 
@@ -78,7 +76,21 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
           
         }, [examination.examination]);
 
+  let optionsManager = useMemo(() => {
+    const listManager = manager.filter(
+      (item, index) => (manager.indexOf(item) == index) & (item != "")
+    );
+    const newManager = examination.examination.map((item) => {
+      return item.manager;
+    });
+    setManager(newManager);
 
+    return listManager.map((item) => (
+      <option key={item} value={item.toLowerCase()}>
+        {item}
+      </option>
+    ));
+  }, [sort, examination.examination]);
 
 
   return (
@@ -93,6 +105,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
      <ListSelectSort
         sort={sort}
         setSort={setSort}
+        optionsManager={optionsManager}
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
