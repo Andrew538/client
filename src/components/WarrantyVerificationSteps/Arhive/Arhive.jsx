@@ -84,7 +84,7 @@ let optionsManager = useMemo(() => {
       {item}
     </option>
   ));
-}, [sort, examinationarhive.examinationarhive]);
+}, []);
 
 
  
