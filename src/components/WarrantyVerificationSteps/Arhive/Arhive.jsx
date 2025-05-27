@@ -34,11 +34,11 @@ const Arhive = observer(() => {
 
 
    let sorted = useMemo(() => {
-    //  if (sort) {
-    //    return examinationarhive.examinationarhive.filter((list) =>
-    //      list.manager.toLowerCase().includes(sort)
-    //    );
-    //  }
+      if (sort) {
+        return examinationarhive.examinationarhive.filter((list) =>
+          list.manager.toLowerCase().includes(sort)
+        );
+      }
     
      if (sortCity) {
  
@@ -47,7 +47,7 @@ const Arhive = observer(() => {
      } else {
        return examinationarhive.examinationarhive;
      }
-   }, [ sortCity, examinationarhive.examinationarhive]);
+   }, [sort, sortCity, examinationarhive.examinationarhive]);
 
     
 const [items, setItems] = useState([]);
@@ -67,6 +67,21 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
      );
    }, [sortCity ,examinationarhive.examinationarhive]);
 
+    const [manager, setManager] = useState([])
+      
+  const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
+
+     let optionsManager = useMemo(() => {
+      const newManager = examinationarhive.examinationarhive.map((item) => {return item.manager})
+      setManager(newManager)  
+  
+      return listManager.map((item) =>                  
+        (<option key={item} value={item.toLowerCase()}>
+          {item}
+        </option>)      
+      );
+    }, [ sort, examinationarhive.examinationarhive]);
+
 
  
   return (
@@ -81,7 +96,7 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
       <SelectSort
         value={sort}
         onChange={setSort}
-        // options={optionsManager}  
+         options={optionsManager}  
         defaultValue="Сортировка по менеджеру"
                 
        />
