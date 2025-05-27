@@ -40,45 +40,45 @@ const {users}  = useContext(Context)
     
 
        
-          async function resultUpdate() {
+           function resultUpdate() {
             if (result === "") {
               const result = addRec.result;
-              await updateRecord(id, result, statusExam);
+               updateRecord(id, result, statusExam);
             } else if (result.length) {
-              await updateRecord(id, result, statusExam);
+               updateRecord(id, result, statusExam);
             }
           }
-          async function numberReturnDocumentUdate() {
+           function numberReturnDocumentUdate() {
             if (numberReturnDocument === "") {
               const numberReturnDocument = addRec.numberReturnDocument;
-              await updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+               updateNumberReturnDocument(id, numberReturnDocument, statusExam);
             } else {
-              await updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+               updateNumberReturnDocument(id, numberReturnDocument, statusExam);
             }
           }
-          async function plantDocumentNumberUpdate() {
+         function plantDocumentNumberUpdate() {
             if (plantDocumentNumber === "") {
               const plantDocumentNumber = addRec.plantDocumentNumbert;
-              await updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+               updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
             } else {
-              await updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+               updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
             }
           }
 
-          async function movingToDefectWarehouseUpdate() {
+         function movingToDefectWarehouseUpdate() {
             if (movingToDefectWarehouse === "") {
               const movingToDefectWarehouse = addRec.movingToDefectWarehouse;
-              await updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
+               updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
             } else {
-              await updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
+               updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
             }
           }
-          async function ReleaseDateUpdate() {
+           function ReleaseDateUpdate() {
             if (releaseDate === "") {
               const releaseDate = addRec.releaseDate;
-              await updateReleaseDate(id, releaseDate, statusExam);
+               updateReleaseDate(id, releaseDate, statusExam);
             } else {
-              await updateReleaseDate(id, releaseDate, statusExam);
+               updateReleaseDate(id, releaseDate, statusExam);
             }
           }
 
@@ -113,23 +113,23 @@ const {users}  = useContext(Context)
       }} 
     }, [show])
 
-    // function Update () {
-    //   fetchExam(null, null).then(data => {
-    //     examination.SetExamination(data)        
-    //   })
+    function Update () {
+      fetchExam(null, null).then(data => {
+        examination.SetExamination(data)        
+      })
 
-    //   fetchExamCharger(null, null).then(data => {
-    //     examinationcharger.SetExaminationCharger(data)
-    //   })
+      fetchExamCharger(null, null).then(data => {
+        examinationcharger.SetExaminationCharger(data)
+      })
 
-    //   fetchExamWorks(null, null).then(data => {
-    //     examinationworks.SetExaminationWorks(data)
-    //   })
+      fetchExamWorks(null, null).then(data => {
+        examinationworks.SetExaminationWorks(data)
+      })
 
-    //   fetchExamReady(null, null).then(data => {             
-    //     examinationready.SetExaminationReady(data)                        
-    //   })
-    // }
+      fetchExamReady(null, null).then(data => {             
+        examinationready.SetExaminationReady(data)                        
+      })
+    }
 
  
      const newRec = () => {
@@ -139,7 +139,8 @@ const {users}  = useContext(Context)
         numberReturnDocumentUdate();
         plantDocumentNumberUpdate();
         movingToDefectWarehouseUpdate();
-
+        Update()
+        
         setDate("");
         setclient("");
         setManager("");

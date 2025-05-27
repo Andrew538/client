@@ -13,7 +13,7 @@ import { keys, values } from 'mobx';
 const ListSelectSort = observer(({sort, setSortCity, setSort, sortCity, optionsCity, optionsManager}) => {
  
 
-
+    
     const { allUser, examination } = useContext(Context);
     // console.log(examination.examination.map(item => console.log(item.city)))
 
