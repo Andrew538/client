@@ -3,14 +3,14 @@ import classes from './SelectSort.module.css'
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../../..';
-import { fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks } from '../../../http/guaranteeAPI';
+import { fetchExam, fetchExamArhive, fetchExamCharger, fetchExamReady, fetchExamWorks } from '../../../http/guaranteeAPI';
 
 const SelectSort = observer (({options, defaultValue, value, onChange}) => {
 
 
   
 
-const {examination, examinationcharger, examinationworks, examinationready}  = useContext(Context)
+const {examination, examinationcharger, examinationworks, examinationready, examinationarhive}  = useContext(Context)
 
 
   function Update () {
@@ -30,6 +30,9 @@ const {examination, examinationcharger, examinationworks, examinationready}  = u
           fetchExamReady(null, null).then(data => {             
             examinationready.SetExaminationReady(data)                        
           })
+          fetchExamArhive().then((data) => {
+            examinationarhive.SetExaminationArhive(data);
+          });
         }
 
 // console.log(options)

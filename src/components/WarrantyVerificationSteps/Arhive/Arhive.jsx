@@ -31,15 +31,7 @@ const Arhive = observer(() => {
   }, [sort, sortCity, examinationarhive]);
 
 
-function Update () {
-  
-        fetchExamArhive().then((data) => {
 
-
-      examinationarhive.SetExaminationArhive(data);
-
-    });
-      }
 
 
 const newI = items.filter(
@@ -108,7 +100,7 @@ const optionsCity = useMemo(() => {
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
-        
+
       />
     
       <WarrantyTableHeader>
