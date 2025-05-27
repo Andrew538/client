@@ -20,6 +20,7 @@ const Arhive = observer(() => {
   const [manager, setManager] = useState([]);
 
 
+
   useEffect(() => {
     fetchExamArhive().then((data) => {
       setItemProps(data);
@@ -27,7 +28,7 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [ sort, sortCity, examinationarhive]);
+  }, [sort, sortCity, examinationarhive]);
 
 
 
@@ -50,36 +51,37 @@ const optionsCity = useMemo(() => {
 }, [sortCity, examinationarhive.examinationarhive]);
 
 
-const listManager = manager.filter(
-  (item, index) => (manager.indexOf(item) == index) & (item != "")
-);
 
- const newManager = examinationarhive.examinationarhive.map((item) => {
-    return item.manager;
-  });
-  
-let optionsManager = useMemo(() => {
- 
-  setManager(newManager);
 
-  return listManager.map((item) => (
-    <option key={item} value={item.toLowerCase()}>
-      {item}
-    </option>
-  ));
-}, [sort, examinationarhive.examinationarhive]);
+  let optionsManager = useMemo(() => {
+    const listManager = manager.filter(
+      (item, index) => (manager.indexOf(item) == index) & (item != "")
+    );
+    const newManager = examinationarhive.examinationarhive.map((item) => {
+      return item.manager;
+    });
+    setManager(newManager);
+
+    return listManager.map((item) => (
+      <option key={item} value={item.toLowerCase()}>
+        {item}
+      </option>
+    ));
+  }, [sort, examinationarhive.examinationarhive, examinationarhive]);
 
 
 
 
    let sorted = useMemo(() => {
      if (sort) {
+
        return examinationarhive.examinationarhive.filter((list) =>
          list.manager.toLowerCase().includes(sort)
        );
      }
 
      if (sortCity) {
+      
        return examinationarhive.examinationarhive.filter((list) =>
          list.city.toLowerCase().includes(sortCity)
        );
