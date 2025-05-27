@@ -14,7 +14,10 @@ import SelectSort from "../../UI/Select/SelectSort/SelectSort";
 const Arhive = observer(() => {
   const { examinationarhive, status } = useContext(Context);
   const [itemProps, setItemProps] = useState();
-
+  const [items, setItems] = useState([]);
+  const [sort, setSort] = useState("");
+  const [sortCity, setSortCity] = useState("");
+  const [manager, setManager] = useState([]);
 
 
   useEffect(() => {
@@ -24,31 +27,10 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [ examinationarhive]);
-
-   const [sort, setSort] = useState("");
-   const [sortCity, setSortCity] = useState("");
+  }, [items,manager, examinationarhive]);
 
 
-   let sorted = useMemo(() => {
-     if (sort) {
-       return examinationarhive.examinationarhive.filter((list) =>
-         list.manager.toLowerCase().includes(sort)
-       );
-     }
 
-     if (sortCity) {
-       return examinationarhive.examinationarhive.filter((list) =>
-         list.city.toLowerCase().includes(sortCity)
-       );
-     } else {
-       return examinationarhive.examinationarhive;
-     }
-   }, [sort, sortCity, examinationarhive.examinationarhive]);
-
-    
-const [items, setItems] = useState([]);
-  
 
 
 const newI = items.filter(
@@ -67,7 +49,6 @@ const optionsCity = useMemo(() => {
   ));
 }, [sortCity, examinationarhive.examinationarhive]);
 
-const [manager, setManager] = useState([]);
 
 const listManager = manager.filter(
   (item, index) => (manager.indexOf(item) == index) & (item != "")
@@ -91,6 +72,21 @@ let optionsManager = useMemo(() => {
 
 
 
+   let sorted = useMemo(() => {
+     if (sort) {
+       return examinationarhive.examinationarhive.filter((list) =>
+         list.manager.toLowerCase().includes(sort)
+       );
+     }
+
+     if (sortCity) {
+       return examinationarhive.examinationarhive.filter((list) =>
+         list.city.toLowerCase().includes(sortCity)
+       );
+     } else {
+       return examinationarhive.examinationarhive;
+     }
+   }, [sort, sortCity, examinationarhive.examinationarhive]);
  
   return (
     <div className={classes.list}>
