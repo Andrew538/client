@@ -18,28 +18,16 @@ const FactoryСheck = observer(() => {
 
   const [itemProps, setItemProps] = useState();
   
-  const [items, setItems] = useState([]);
   
-  const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
 
 
- const [manager, setManager] = useState([])
-      
-  const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
+ 
 
   useEffect(() => {
     fetchExamWorks(null, null).then((data) => {
       setItemProps(data);
       examinationworks.SetExaminationWorks(data);
       status.SetStatus(data.map((i) => i.statusExam));
-
-       const newun = examinationworks.examinationworks.map((item) => {return item.city})
-        setItems(newun)  
-
-     
-      
-        const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
-      setManager(newManager)  
     });
   }, [examinationworks]);
 
@@ -61,24 +49,34 @@ const FactoryСheck = observer(() => {
     }
   }, [sort, sortCity, examinationworks.examinationworks]);
 
-  let optionsCity = useMemo(() => {
+const [items, setItems] = useState([]);
   
+  const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
+
+  let optionsCity = useMemo(() => {
+         const newun = examinationworks.examinationworks.map((item) => {return item.city})
+        setItems(newun)  
+
        return newI.map((item) =>                  
         (<option key={item} value={item.toLowerCase()}>
            {item}
          </option>)      
        );
-     }, [examinationworks.examinationworks]);
+     }, [ sort,examinationworks.examinationworks]);
 
+const [manager, setManager] = useState([])
+      
+  const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
 
       let optionsManager = useMemo(() => {
-  
+         const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
+      setManager(newManager)  
       return listManager.map((item) =>                  
         (<option key={item} value={item.toLowerCase()}>
           {item}
         </option>)      
       );
-    }, [examinationworks.examinationworks]);
+    }, [ sortCity ,examinationworks]);
 
 
   return (
