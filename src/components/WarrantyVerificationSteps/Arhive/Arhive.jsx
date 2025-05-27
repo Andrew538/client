@@ -27,7 +27,7 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [items,manager, examinationarhive]);
+  }, [manager, examinationarhive]);
 
 
 
