@@ -65,7 +65,7 @@ const optionsCity = useMemo(() => {
       {item}
     </option>
   ));
-}, [sorted ,sortCity, examinationarhive.examinationarhive]);
+}, [sortCity, examinationarhive.examinationarhive]);
 
 const [manager, setManager] = useState([]);
 
@@ -84,7 +84,7 @@ let optionsManager = useMemo(() => {
       {item}
     </option>
   ));
-}, []);
+}, [sortCity, examinationarhive.examinationarhive]);
 
 
  
