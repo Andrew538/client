@@ -65,7 +65,7 @@ const listManager = manager.filter((item, index) => manager.indexOf(item) == ind
       return examinationcharger.examinationcharger
   
      }
-    }, [sorted ,sort, sortCity, examinationcharger.examinationcharger])
+    }, [sort, sortCity, examinationcharger.examinationcharger])
 
        let optionsCity = useMemo(() => {
     
