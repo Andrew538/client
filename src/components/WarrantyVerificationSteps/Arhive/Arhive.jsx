@@ -24,7 +24,7 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [examinationarhive]);
+  }, [ examinationarhive]);
 
    const [sort, setSort] = useState("");
    const [sortCity, setSortCity] = useState("");
@@ -65,7 +65,7 @@ const optionsCity = useMemo(() => {
       {item}
     </option>
   ));
-}, [sortCity, examinationarhive.examinationarhive]);
+}, [sorted ,sortCity, examinationarhive.examinationarhive]);
 
 const [manager, setManager] = useState([]);
 
