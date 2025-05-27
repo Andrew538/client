@@ -62,7 +62,7 @@ const [items, setItems] = useState([]);
            {item}
          </option>)      
        );
-     }, [ sort,examinationworks]);
+     }, [ sort,examinationworks.examinationworks]);
 
 const [manager, setManager] = useState([])
       
@@ -76,7 +76,7 @@ const [manager, setManager] = useState([])
           {item}
         </option>)      
       );
-    }, [ sortCity ,examinationworks]);
+    }, [ sortCity ,examinationworks.examinationworks]);
 
 
   return (
