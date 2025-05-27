@@ -4,6 +4,7 @@ import classes from './TabGuarantee.module.css'
 import classNames from 'classnames';
 import NewCheck from '../../WarrantyVerificationSteps/NewCheck';
 import { Link, NavLink } from 'react-router-dom';
+
 function TabGuarantee({items}) {
 
     let number = localStorage.getItem('numberTab' )

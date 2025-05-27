@@ -35,6 +35,8 @@ const ListSelectSort = observer(({sort, setSortCity, setSort, sortCity, optionsC
     //    }
     //  });
 
+    
+
      
   return (
     <div className={classes.box}>

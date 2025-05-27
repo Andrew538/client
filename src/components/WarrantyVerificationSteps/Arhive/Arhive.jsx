@@ -73,10 +73,12 @@ const listManager = manager.filter(
   (item, index) => (manager.indexOf(item) == index) & (item != "")
 );
 
-let optionsManager = useMemo(() => {
-  const newManager = examinationarhive.examinationarhive.map((item) => {
+ const newManager = examinationarhive.examinationarhive.map((item) => {
     return item.manager;
   });
+  
+let optionsManager = useMemo(() => {
+ 
   setManager(newManager);
 
   return listManager.map((item) => (
@@ -84,20 +86,29 @@ let optionsManager = useMemo(() => {
       {item}
     </option>
   ));
-}, [sortCity, examinationarhive.examinationarhive]);
+}, [sort, examinationarhive.examinationarhive]);
+
+
 
 
  
   return (
     <div className={classes.list}>
-      {/*<ListSelectSort
+ 
+     <ListSelectSort
         sort={sort}
         setSort={setSort}
+        optionsManager={optionsManager}
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
-     />*/}
-      <SelectSort
+      />
+    
+      <WarrantyTableHeader>
+
+     
+      </WarrantyTableHeader>
+        {/* <SelectSort
         value={sort}
         onChange={setSort}
          options={optionsManager}  
@@ -109,9 +120,8 @@ let optionsManager = useMemo(() => {
         onChange={setSortCity}
         defaultValue="Сортировка по городу"
         options={optionsCity}
-      /> 
-      <WarrantyTableHeader />
-      <TabelList list={sorted} />
+      />  */}
+       <TabelList list={sorted} />
     </div>
   );
 });
