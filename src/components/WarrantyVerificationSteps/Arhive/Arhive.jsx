@@ -67,7 +67,7 @@ const optionsCity = useMemo(() => {
         {item}
       </option>
     ));
-  }, [sort, examinationarhive.examinationarhive, examinationarhive]);
+  }, [sort, examinationarhive.examinationarhive]);
 
 
 
