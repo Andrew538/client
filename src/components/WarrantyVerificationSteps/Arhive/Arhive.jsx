@@ -23,9 +23,6 @@ const Arhive = observer(() => {
 
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
-
-      // const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
-      // setItems(newun)  
     });
   }, [examinationarhive]);
 
@@ -34,53 +31,60 @@ const Arhive = observer(() => {
 
 
    let sorted = useMemo(() => {
-      if (sort) {
-        return examinationarhive.examinationarhive.filter((list) =>
-          list.manager.toLowerCase().includes(sort)
-        );
-      }
-    
+     if (sort) {
+       return examinationarhive.examinationarhive.filter((list) =>
+         list.manager.toLowerCase().includes(sort)
+       );
+     }
+
      if (sortCity) {
- 
-       return examinationarhive.examinationarhive.filter((list) => list.city.toLowerCase().includes(sortCity)
+       return examinationarhive.examinationarhive.filter((list) =>
+         list.city.toLowerCase().includes(sortCity)
        );
      } else {
        return examinationarhive.examinationarhive;
      }
-   }, [sort, sortCity, examinationarhive.examinationarhive]);
+   }, [sort, sortCity, examinationarhive]);
 
     
 const [items, setItems] = useState([]);
   
 
 
-const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
+const newI = items.filter(
+  (item, index) => (items.indexOf(item) == index) & (item != "")
+);
 
-   let optionsCity = useMemo(() => {
+let optionsCity = useMemo(() => {
+  const newun = examinationarhive.examinationarhive.map((item) => {
+    return item.city;
+  });
+  setItems(newun);
+  return newI.map((item) => (
+    <option key={item} value={item.toLowerCase()}>
+      {item}
+    </option>
+  ));
+}, [sortCity, examinationarhive.examinationarhive]);
 
-      const newun = examinationarhive.examinationarhive.map((item) => {return item.city})
-      setItems(newun)  
-     return newI.map((item) =>                  
-      (<option key={item} value={item.toLowerCase()}>
-         {item}
-       </option>)      
-     );
-   }, [sortCity ,examinationarhive.examinationarhive]);
+const [manager, setManager] = useState([]);
 
-    const [manager, setManager] = useState([])
-      
-  const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
+const listManager = manager.filter(
+  (item, index) => (manager.indexOf(item) == index) & (item != "")
+);
 
-     let optionsManager = useMemo(() => {
-      const newManager = examinationarhive.examinationarhive.map((item) => {return item.manager})
-      setManager(newManager)  
-  
-      return listManager.map((item) =>                  
-        (<option key={item} value={item.toLowerCase()}>
-          {item}
-        </option>)      
-      );
-    }, [ sort, examinationarhive.examinationarhive]);
+let optionsManager = useMemo(() => {
+  const newManager = examinationarhive.examinationarhive.map((item) => {
+    return item.manager;
+  });
+  setManager(newManager);
+
+  return listManager.map((item) => (
+    <option key={item} value={item.toLowerCase()}>
+      {item}
+    </option>
+  ));
+}, [sort, examinationarhive.examinationarhive]);
 
 
  
