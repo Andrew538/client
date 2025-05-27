@@ -22,13 +22,13 @@ const $host = axios.create({
 })
 
 
-// const $authHost = axios.create({
-//    proxy: {
-//        host: '45.146.165.155:5000/',
-//        port: 80,
-//        protocol: 'http',
-//    }
-//  })
+const $authHost = axios.create({
+   proxy: {
+       host: '45.146.165.155:5000/',
+       port: 80,
+       protocol: 'http',
+   }
+ })
 
 const authInterceptor = config => {
    
