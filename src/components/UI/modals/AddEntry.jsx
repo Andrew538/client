@@ -5,14 +5,15 @@ import Modal from 'react-bootstrap/Modal';
 import classes from './AddEntry.module.css'
 import './modal.css'
 import { Context } from '../../../index';
-import { createRecord, fetchExam } from '../../http/guaranteeAPI';
+import { createRecord, fetchExam, fetchExamArhive, fetchExamCharger, fetchExamReady, fetchExamWorks } from '../../http/guaranteeAPI';
 import { observer } from 'mobx-react-lite';
 
 
 
 const AddEntry = observer(({show, onHide, props}) => {
   
-const { examination } = useContext(Context);
+const {examination, examinationcharger, examinationworks, examinationready, examinationarhive}  = useContext(Context)
+
 
 const [date, setDate] = useState("");
 const [client, setclient] = useState("");
@@ -30,6 +31,28 @@ const [statusExam, setStatus] = useState("New");
 const [addRec, setAddRec] = useState(); 
 
 const [error, setError] = useState(" ");
+
+  function Update () {
+    
+          fetchExam(null, null).then(data => {
+            examination.SetExamination(data)        
+          })
+    
+          fetchExamCharger(null, null).then(data => {
+            examinationcharger.SetExaminationCharger(data)
+          })
+    
+          fetchExamWorks(null, null).then(data => {
+            examinationworks.SetExaminationWorks(data)
+          })
+    
+          fetchExamReady(null, null).then(data => {             
+            examinationready.SetExaminationReady(data)                        
+          })
+          fetchExamArhive().then((data) => {
+            examinationarhive.SetExaminationArhive(data);
+          });
+        }
 
 const handleClick = () => {
   onHide();
@@ -74,6 +97,7 @@ const addRecrod = async (e) => {
       examination.SetExamination(data);
     });
     if (rec) {
+      Update()
       setDate("");
       setclient("");
       setManager("");
