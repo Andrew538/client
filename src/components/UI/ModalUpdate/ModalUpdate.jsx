@@ -127,9 +127,9 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
  
      const newRec = () => {
        try {
-          setTimeout(() => {
-            fullUdate()
-          }, 300);
+         
+        fullUdate()
+       
         // ReleaseDateUpdate();
         //resultUpdate();
         // numberReturnDocumentUdate();
