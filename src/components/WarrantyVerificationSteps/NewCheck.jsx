@@ -28,15 +28,14 @@ const  NewCheck = observer(() => {
 
   const [items, setItems] = useState([]);
 
-const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
+
 
   useEffect(() => {   
     fetchExam().then(data => {
       examination.SetExamination(data)
       status.SetStatus(data)
 
-           const newun = examination.examination.map((item) => {return item.city})
-      setItems(newun)  
+            
       
     })
 
@@ -67,7 +66,9 @@ const newI = items.filter((item, index) => items.indexOf(item) == index & item !
   }, [sort, sortCity, examination.examination]);
 
     let optionsCity = useMemo(() => {
-       
+      const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
+       const newun = examination.examination.map((item) => {return item.city})
+      setItems(newun) 
             return newI.map((item) => (
               <option key={item} value={item.toLowerCase()}>
                 {item}
