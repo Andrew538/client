@@ -165,7 +165,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
       <div  className={classes.modal__wrapper}> 
   
-          <form className={classes.modal__box} onSubmit={newRec} >
+          <form className={classes.modal__box} onSubmit={()=>newRec(addRec.id)} >
           <h2 className={classes.modal__title}>Редактировать запись</h2>
             <div className={classes.madal__content}>
             <div className={classes.modal__left}>
