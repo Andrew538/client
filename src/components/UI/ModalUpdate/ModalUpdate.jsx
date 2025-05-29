@@ -104,25 +104,25 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
        catch (error) {
         console.log(error)
       }} 
-    }, [show])
+    }, [props ,show])
    
-    // function Update () {
-    //   fetchExam(null, null).then(data => {
-    //     examination.SetExamination(data)        
-    //   })
+    function Update () {
+      fetchExam(null, null).then(data => {
+        examination.SetExamination(data)        
+      })
 
-    //   fetchExamCharger(null, null).then(data => {
-    //     examinationcharger.SetExaminationCharger(data)
-    //   })
+      fetchExamCharger(null, null).then(data => {
+        examinationcharger.SetExaminationCharger(data)
+      })
 
-    //   fetchExamWorks(null, null).then(data => {
-    //     examinationworks.SetExaminationWorks(data)
-    //   })
+      fetchExamWorks(null, null).then(data => {
+        examinationworks.SetExaminationWorks(data)
+      })
 
-    //   fetchExamReady(null, null).then(data => {             
-    //     examinationready.SetExaminationReady(data)                        
-    //   })
-    // }
+      fetchExamReady(null, null).then(data => {             
+        examinationready.SetExaminationReady(data)                        
+      })
+    }
 
 
  
@@ -136,7 +136,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
         // numberReturnDocumentUdate();
        // plantDocumentNumberUpdate();
        // movingToDefectWarehouseUpdate();
-        // Update()
+        Update()
         
         setDate("");
         setclient("");
