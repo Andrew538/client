@@ -15,7 +15,7 @@ import { useMemo } from 'react';
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
 
-const {users}  = useContext(Context)
+ const {examination, examinationcharger, examinationworks, examinationready} = useContext(Context)
 
   const [itemProps, setItemProps] = useState()
   const [dateOne, setDate] = useState('')
@@ -33,14 +33,9 @@ const {users}  = useContext(Context)
   const [statusExam, setStatus] = useState(addRec.setStatus)
 
     const id = +props
-
-
-
-    
-    
-
        
-           function resultUpdate() {
+    function fullUdate() {
+        function resultUpdate() {
             if (result === "") {
               const result = addRec.result;
                updateRecord(id, result, statusExam);
@@ -48,6 +43,7 @@ const {users}  = useContext(Context)
                updateRecord(id, result, statusExam);
             }
           }
+          resultUpdate()
            function numberReturnDocumentUdate() {
             if (numberReturnDocument === "") {
               const numberReturnDocument = addRec.numberReturnDocument;
@@ -56,6 +52,7 @@ const {users}  = useContext(Context)
                updateNumberReturnDocument(id, numberReturnDocument, statusExam);
             }
           }
+          numberReturnDocumentUdate()
          function plantDocumentNumberUpdate() {
             if (plantDocumentNumber === "") {
               const plantDocumentNumber = addRec.plantDocumentNumbert;
@@ -64,6 +61,7 @@ const {users}  = useContext(Context)
                updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
             }
           }
+          plantDocumentNumberUpdate()
 
          function movingToDefectWarehouseUpdate() {
             if (movingToDefectWarehouse === "") {
@@ -73,6 +71,7 @@ const {users}  = useContext(Context)
                updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
             }
           }
+          movingToDefectWarehouseUpdate()
            function ReleaseDateUpdate() {
             if (releaseDate === "") {
               const releaseDate = addRec.releaseDate;
@@ -81,15 +80,9 @@ const {users}  = useContext(Context)
                updateReleaseDate(id, releaseDate, statusExam);
             }
           }
-
-
-
-
-    
-
-
-
-    const {examination, examinationcharger, examinationworks, examinationready} = useContext(Context)
+          ReleaseDateUpdate()
+    }
+           
 
     const options = [
       { value: 'New', label: 'Выбрать статус'},
@@ -134,11 +127,14 @@ const {users}  = useContext(Context)
  
      const newRec = () => {
        try {
-        ReleaseDateUpdate();
-        resultUpdate();
-        numberReturnDocumentUdate();
-        plantDocumentNumberUpdate();
-        movingToDefectWarehouseUpdate();
+          setTimeout(() => {
+            fullUdate()
+          }, 300);
+        // ReleaseDateUpdate();
+        //resultUpdate();
+        // numberReturnDocumentUdate();
+       // plantDocumentNumberUpdate();
+       // movingToDefectWarehouseUpdate();
         Update()
         
         setDate("");

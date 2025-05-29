@@ -38,21 +38,21 @@ const [error, setError] = useState(" ");
             examination.SetExamination(data)        
           })
     
-          fetchExamCharger(null, null).then(data => {
-            examinationcharger.SetExaminationCharger(data)
-          })
+         // fetchExamCharger(null, null).then(data => {
+           // examinationcharger.SetExaminationCharger(data)
+         // })
     
-          fetchExamWorks(null, null).then(data => {
-            examinationworks.SetExaminationWorks(data)
-          })
+        //  fetchExamWorks(null, null).then(data => {
+          //  examinationworks.SetExaminationWorks(data)
+        //  })
     
-          fetchExamReady(null, null).then(data => {             
-            examinationready.SetExaminationReady(data)                        
-          })
-          fetchExamArhive().then((data) => {
-            examinationarhive.SetExaminationArhive(data);
-          });
-        }
+        //  fetchExamReady(null, null).then(data => {             
+          //  examinationready.SetExaminationReady(data)                        
+        //  })
+        //  fetchExamArhive().then((data) => {
+          //  examinationarhive.SetExaminationArhive(data);
+        //  });
+      }
 
 const handleClick = () => {
   onHide();
