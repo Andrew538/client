@@ -1,54 +1,32 @@
 import { observer } from 'mobx-react-lite'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-
 import classes from './GeneralStyles/GeneralStyles.module.css'
-
-
-
 import { Context } from '../..';
 import { fetchExam} from '../http/guaranteeAPI';
 import AddEntry from '../UI/modals/AddEntry';
-
 import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
-
-import SelectSort from '../UI/Select/SelectSort/SelectSort';
 import TabelList from '../UI/TabelList/TabelList';
 import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
 
 
 
 
-
-
-const  NewCheck = observer(() => {
-  const {examination, status}  = useContext(Context)
+const NewCheck = observer(() => {
+  const { examination, status } = useContext(Context);
   const [modalShow, setModalShow] = useState(false);
-    const [manager, setManager] = useState([]);
-  
+  const [manager, setManager] = useState([]);
 
   const [items, setItems] = useState([]);
 
+  useEffect(() => {
+    fetchExam().then((data) => {
+      examination.SetExamination(data);
+      status.SetStatus(data);
+    });
+  }, [examination]);
 
-
-  useEffect(() => {   
-    fetchExam().then(data => {
-      examination.SetExamination(data)
-      status.SetStatus(data)
-
-            
-      
-    })
-
-   
-  },[examination, ])
-
-
-
-
-
-
-  const [sort, setSort] = useState('')
-  const [sortCity, setSortCity] = useState('')
+  const [sort, setSort] = useState("");
+  const [sortCity, setSortCity] = useState("");
 
   let sorted = useMemo(() => {
     if (sort) {
@@ -65,17 +43,20 @@ const  NewCheck = observer(() => {
     }
   }, [sort, sortCity, examination.examination]);
 
-    let optionsCity = useMemo(() => {
-      const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
-       const newun = examination.examination.map((item) => {return item.city})
-      setItems(newun) 
-            return newI.map((item) => (
-              <option key={item} value={item.toLowerCase()}>
-                {item}
-              </option>
-            ));
-          
-        }, [examination.examination]);
+  let optionsCity = useMemo(() => {
+    const newI = items.filter(
+      (item, index) => (items.indexOf(item) == index) & (item != "")
+    );
+    const newun = examination.examination.map((item) => {
+      return item.city;
+    });
+    setItems(newun);
+    return newI.map((item) => (
+      <option key={item} value={item.toLowerCase()}>
+        {item}
+      </option>
+    ));
+  }, [examination.examination]);
 
   let optionsManager = useMemo(() => {
     const listManager = manager.filter(
@@ -93,7 +74,6 @@ const  NewCheck = observer(() => {
     ));
   }, [sort, examination.examination]);
 
-
   return (
     <div className={classes.list}>
       <button
@@ -103,21 +83,18 @@ const  NewCheck = observer(() => {
         Добавить запись
       </button>
       <AddEntry show={modalShow} onHide={() => setModalShow(false)} />
-     <ListSelectSort
+      <ListSelectSort
         sort={sort}
         setSort={setSort}
         optionsManager={optionsManager}
         sortCity={sortCity}
         setSortCity={setSortCity}
         optionsCity={optionsCity}
-     />
+      />
       <WarrantyTableHeader />
-
-        <TabelList
-          list={sorted}
-        />
+      <TabelList list={sorted} />
     </div>
   );
-})
+});
 
-export default NewCheck
+export default NewCheck;
