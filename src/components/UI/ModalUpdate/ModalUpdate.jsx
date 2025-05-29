@@ -126,7 +126,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
 
  
-     const newRec = async (e) => {
+     const newRec = (e) => {
         e.preventDefault();
       
        try {
