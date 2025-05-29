@@ -126,8 +126,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
 
  
-     const newRec = (e) => {
-        e.preventDefault();
+     const newRec = () => {
+
       
        try {
    
@@ -165,7 +165,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 
       <div  className={classes.modal__wrapper}> 
   
-          <form className={classes.modal__box} onSubmit={()=>newRec(addRec.id)} >
+          <form className={classes.modal__box}  >
           <h2 className={classes.modal__title}>Редактировать запись</h2>
             <div className={classes.madal__content}>
             <div className={classes.modal__left}>
@@ -285,8 +285,8 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
                   {/* <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button> */}
                   <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
 
-                  {/* <button className={classes.modal__btn} onClick={() => newRec(addRec.id)}>Сохранить</button>            */}
-                  <button className={classes.modal__btn} type='submit'>Сохранить</button>           
+                  <button className={classes.modal__btn} onClick={() => newRec(addRec.id)}>Сохранить</button>           
+                  {/* <button className={classes.modal__btn} type='submit'>Сохранить</button>            */}
               </div>
                
           </form>         
