@@ -11,6 +11,7 @@ import { useAuth } from '../../hook/useAuth';
 import { check } from '../../http/userAPI';
 import { keys } from 'mobx';
 import { useMemo } from 'react';
+import {Spinner} from "react-bootstrap";
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
@@ -31,7 +32,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
   const [statusExam, setStatus] = useState(addRec.setStatus)
-
+const [loading, setLoading] = useState(true)
     const id = +props
        
     function fullUdate() {
@@ -99,7 +100,7 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       if(show === show && props && addRec) {
       try {        
           fetchOneExam(id).
-          then(data => setAddRec(data)) 
+          then(data => setAddRec(data))
         }        
        catch (error) {
         console.log(error)
@@ -123,7 +124,6 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
         examinationready.SetExaminationReady(data)                        
       })
     }
-
 
  
      const newRec = () => {
@@ -150,8 +150,6 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
          console.log(error);
        }
      };
-
-
 
   return (
     <Modal
