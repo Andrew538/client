@@ -15,8 +15,8 @@
 .form__select {
     margin: 15px 0px 15px 0px;
     border-color: rgb(41, 180, 41);
-    /* border: 2px solid rgb(41, 180, 41); */
-    border-radius: 0px;
+     border: 2px solid var(--table-border-color); 
+    border-radius: 6px;
 }
 .form__button {
     display: block;

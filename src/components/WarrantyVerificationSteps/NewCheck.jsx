@@ -91,8 +91,11 @@ const NewCheck = observer(() => {
         setSortCity={setSortCity}
         optionsCity={optionsCity}
       />
-      <WarrantyTableHeader />
-      <TabelList list={sorted} />
+      <div className={classes.Tadel__wrapper} >
+          <WarrantyTableHeader/>
+          <TabelList list={sorted} />
+      </div>
+      
     </div>
   );
 });

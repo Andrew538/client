@@ -6,19 +6,13 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
 import {fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks, fetchOneExam, updateMovingToDefectWarehouse, updateNumberReturnDocument, updatePlantDocumentNumber, updateRecord, updateReleaseDate } from '../../http/guaranteeAPI';
 import Select from 'react-select';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hook/useAuth';
-import { check } from '../../http/userAPI';
-import { keys } from 'mobx';
-import { useMemo } from 'react';
-import {Spinner} from "react-bootstrap";
+import fullUdate from '../../function/function';
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
 
  const {examination, examinationcharger, examinationworks, examinationready} = useContext(Context)
 
-  const [itemProps, setItemProps] = useState()
   const [dateOne, setDate] = useState('')
   const [client, setclient] = useState('')
   const [city, setCity] = useState('')
@@ -32,57 +26,65 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
   const [result, setResult] = useState('')  
   const [addRec, setAddRec] = useState({})
   const [statusExam, setStatus] = useState(addRec.setStatus)
-const [loading, setLoading] = useState(true)
-    const id = +props
-       
-    function fullUdate() {
-        function resultUpdate() {
-            if (result === "") {
-              const result = addRec.result;
-               updateRecord(id, result, statusExam);
-            } else if (result.length) {
-               updateRecord(id, result, statusExam);
-            }
-          }
-          resultUpdate()
-           function numberReturnDocumentUdate() {
-            if (numberReturnDocument === "") {
-              const numberReturnDocument = addRec.numberReturnDocument;
-               updateNumberReturnDocument(id, numberReturnDocument, statusExam);
-            } else {
-               updateNumberReturnDocument(id, numberReturnDocument, statusExam);
-            }
-          }
-          numberReturnDocumentUdate()
-         function plantDocumentNumberUpdate() {
-            if (plantDocumentNumber === "") {
-              const plantDocumentNumber = addRec.plantDocumentNumbert;
-               updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
-            } else {
-               updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
-            }
-          }
-          plantDocumentNumberUpdate()
 
-         function movingToDefectWarehouseUpdate() {
-            if (movingToDefectWarehouse === "") {
-              const movingToDefectWarehouse = addRec.movingToDefectWarehouse;
-               updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
-            } else {
-               updateMovingToDefectWarehouse(id, movingToDefectWarehouse, statusExam);
-            }
-          }
-          movingToDefectWarehouseUpdate()
-           function ReleaseDateUpdate() {
-            if (releaseDate === "") {
-              const releaseDate = addRec.releaseDate;
-               updateReleaseDate(id, releaseDate, statusExam);
-            } else {
-               updateReleaseDate(id, releaseDate, statusExam);
-            }
-          }
-          ReleaseDateUpdate()
-    }
+    const id = +props;
+
+    // function fullUdate() {
+    //   function resultUpdate() {
+    //     if (result === "") {
+    //       const result = addRec.result;
+    //       updateRecord(id, result, statusExam);
+    //     } else if (result.length) {
+    //       updateRecord(id, result, statusExam);
+    //     }
+    //   }
+    //   resultUpdate();
+    //   function numberReturnDocumentUdate() {
+    //     if (numberReturnDocument === "") {
+    //       const numberReturnDocument = addRec.numberReturnDocument;
+    //       updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+    //     } else {
+    //       updateNumberReturnDocument(id, numberReturnDocument, statusExam);
+    //     }
+    //   }
+    //   numberReturnDocumentUdate();
+    //   function plantDocumentNumberUpdate() {
+    //     if (plantDocumentNumber === "") {
+    //       const plantDocumentNumber = addRec.plantDocumentNumbert;
+    //       updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+    //     } else {
+    //       updatePlantDocumentNumber(id, plantDocumentNumber, statusExam);
+    //     }
+    //   }
+    //   plantDocumentNumberUpdate();
+
+    //   function movingToDefectWarehouseUpdate() {
+    //     if (movingToDefectWarehouse === "") {
+    //       const movingToDefectWarehouse = addRec.movingToDefectWarehouse;
+    //       updateMovingToDefectWarehouse(
+    //         id,
+    //         movingToDefectWarehouse,
+    //         statusExam
+    //       );
+    //     } else {
+    //       updateMovingToDefectWarehouse(
+    //         id,
+    //         movingToDefectWarehouse,
+    //         statusExam
+    //       );
+    //     }
+    //   }
+    //   movingToDefectWarehouseUpdate();
+    //   function ReleaseDateUpdate() {
+    //     if (releaseDate === "") {
+    //       const releaseDate = addRec.releaseDate;
+    //       updateReleaseDate(id, releaseDate, statusExam);
+    //     } else {
+    //       updateReleaseDate(id, releaseDate, statusExam);
+    //     }
+    //   }
+    //   ReleaseDateUpdate();
+    // }
            
 
     const options = [
@@ -131,7 +133,7 @@ const [loading, setLoading] = useState(true)
       
        try {
    
-        fullUdate()
+        fullUdate(id, numberReturnDocument,  plantDocumentNumber, movingToDefectWarehouse, releaseDate, result, statusExam, addRec)
         Update()
         setDate("");
         setclient("");

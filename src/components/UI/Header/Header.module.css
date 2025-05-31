@@ -37,3 +37,9 @@
     background-color: lavender;
 
 }
+
+@media (max-width: 1240px) {
+    .nav{
+        max-width: 100%;
+    }
+}

@@ -31,6 +31,7 @@
 }
 .item {
     cursor: pointer;
+    width: 1687px;
 }
 .item:hover {
     background-color: rgba(102, 51, 153, .1);
@@ -53,6 +54,9 @@
     display: grid;
     grid-template-columns: 90px 150px 175px 180px 135px 135px 135px 135px 135px 135px 135px;
 
+}
+.table__wrapper {
+    overflow: auto;
 }
 .table__item {
     text-align: left;

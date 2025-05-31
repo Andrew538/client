@@ -28,7 +28,10 @@
     border:  2px solid transparent;
     color: rgb(253, 253, 253);
 
+}.Tadel__wrapper{
+    overflow: auto;
 }
+
 /* .list__button__box {
     display: flex;
     justify-content: end;

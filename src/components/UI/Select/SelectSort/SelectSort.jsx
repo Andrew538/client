@@ -34,8 +34,6 @@ const {examination, examinationcharger, examinationworks, examinationready, exam
             examinationarhive.SetExaminationArhive(data);
           });
         }
-
-// console.log(options)
   return (
     <div className={classNames(classes.box)}>
         <select className={classNames(classes.sort)}
@@ -50,8 +48,6 @@ const {examination, examinationcharger, examinationworks, examinationready, exam
         className={classNames(classes.button)}
         onClick={() => onChange('')}
       ></button>
-
-
     </div>
    
   )
