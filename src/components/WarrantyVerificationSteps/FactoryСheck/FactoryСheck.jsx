@@ -68,6 +68,7 @@ const [manager, setManager] = useState([])
       
   const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
 
+
       let optionsManager = useMemo(() => {
          const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
       setManager(newManager)  
@@ -78,6 +79,8 @@ const [manager, setManager] = useState([])
       );
     }, [ setManager ,examinationworks.examinationworks]);
 
+
+    console.log(optionsManager)
 
   return (
     <div className={classes.list}>

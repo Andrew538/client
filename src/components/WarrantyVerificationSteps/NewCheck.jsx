@@ -1,15 +1,12 @@
-import { observer } from 'mobx-react-lite'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-import classes from './GeneralStyles/GeneralStyles.module.css'
-import { Context } from '../..';
-import { fetchExam} from '../http/guaranteeAPI';
-import AddEntry from '../UI/modals/AddEntry';
-import WarrantyTableHeader from './WarrantyTableHeader/WarrantyTableHeader';
-import TabelList from '../UI/TabelList/TabelList';
-import ListSelectSort from '../UI/ListSelectSort/ListSelectSort';
-
-
-
+import { observer } from "mobx-react-lite";
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import classes from "./GeneralStyles/GeneralStyles.module.css";
+import { Context } from "../..";
+import { fetchExam } from "../http/guaranteeAPI";
+import AddEntry from "../UI/modals/AddEntry";
+import WarrantyTableHeader from "./WarrantyTableHeader/WarrantyTableHeader";
+import TabelList from "../UI/TabelList/TabelList";
+import ListSelectSort from "../UI/ListSelectSort/ListSelectSort";
 
 const NewCheck = observer(() => {
   const { examination, status } = useContext(Context);
@@ -91,11 +88,10 @@ const NewCheck = observer(() => {
         setSortCity={setSortCity}
         optionsCity={optionsCity}
       />
-      <div className={classes.Tadel__wrapper} >
-          <WarrantyTableHeader/>
-          <TabelList list={sorted} />
+      <div className={classes.Tadel__wrapper}>
+        <WarrantyTableHeader />
+        <TabelList list={sorted} />
       </div>
-      
     </div>
   );
 });

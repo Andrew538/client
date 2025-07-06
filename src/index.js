@@ -8,6 +8,7 @@ import GuaranteeStore from './components/store/GuaranteeStore';
 import Home from './components/pages/Home/Home';
 import { useAuth } from './components/hook/useAuth';
 import { check } from './components/http/userAPI';
+import DirectionStore from './components/store/DirectionStore';
 // import AllUserStore from './components/store/AllUserStore';
 
 
@@ -71,14 +72,16 @@ root.render(
     <BrowserRouter>
       <Context.Provider value={{ 
         users: new UserStore(),
-        // allUser: new UserStore(),
+        allUser: new UserStore(),
+        direction: new DirectionStore(),
+        alldirection: new DirectionStore(),
+        allcity: new DirectionStore(),
         status: new GuaranteeStore(),
         examination: new GuaranteeStore(),
         examinationworks: new GuaranteeStore(),
         examinationarhive: new GuaranteeStore(),
         examinationready: new GuaranteeStore(),
         examinationcharger: new GuaranteeStore(),
-
         }}>
           <App />
 

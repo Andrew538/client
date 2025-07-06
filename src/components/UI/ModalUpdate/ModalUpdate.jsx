@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
 import {fetchExam, fetchExamCharger, fetchExamReady, fetchExamWorks, fetchOneExam, updateMovingToDefectWarehouse, updateNumberReturnDocument, updatePlantDocumentNumber, updateRecord, updateReleaseDate } from '../../http/guaranteeAPI';
 import Select from 'react-select';
-import fullUdate from '../../function/function';
+
 
 
 const ModalUpdate = observer(({show, onHide,  props}) => {
@@ -93,7 +93,6 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       { value: 'Works', label: 'Проверка на заводе'},
       { value: 'Ready', label: 'Готов к отправке клиенту'},
       { value: 'Arhive', label: 'В архив (выдан клиенту или обмен брака )'},
-
     ];
 
 
@@ -162,138 +161,155 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-
-      <div  className={classes.modal__wrapper}> 
-  
-          <form className={classes.modal__box}  >
+      <div className={classes.modal__wrapper}>
+        <form className={classes.modal__box}>
           <h2 className={classes.modal__title}>Редактировать запись</h2>
-            <div className={classes.madal__content}>
+          <div className={classes.madal__content}>
             <div className={classes.modal__left}>
-          <label className={classes.modal__label} htmlFor="">
-                  Дата поступления
-                </label>               
-                <input                 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                Дата поступления
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.date}
                 value={dateOne}
-                onChange={e => setDate(e.target.value)}
-                />
-                <label className={classes.modal__label} htmlFor="">Клиент</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+                onChange={(e) => setDate(e.target.value)}
+              />
+              <label className={classes.modal__label} htmlFor="">
+                Клиент
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.client}
                 value={client}
-                onChange={e => setclient(e.target.value)}
-                />
+                onChange={(e) => setclient(e.target.value)}
+              />
 
-                <label className={classes.modal__label} htmlFor="">Город</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                Город
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.city}
                 value={city}
-                onChange={e => setCity(e.target.value)}
-                />
+                onChange={(e) => setCity(e.target.value)}
+              />
 
-                <label className={classes.modal__label} htmlFor="">Менеджер</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                Менеджер
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.manager}
                 value={manager}
-                onChange={e => setManager(e.target.value)}
-                />
-                <label className={classes.modal__label} htmlFor="">Название товар</label>
-                <input                 
-                className={classes.modal__input} 
-                type="text" 
+                onChange={(e) => setManager(e.target.value)}
+              />
+              <label className={classes.modal__label} htmlFor="">
+                Название товар
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.product}
                 value={product}
-                onChange={e => setProduct(e.target.value)}
-                />
+                onChange={(e) => setProduct(e.target.value)}
+              />
 
-                <label className={classes.modal__label} htmlFor="">Дата выпуска "Маркировка"</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                Дата выпуска "Маркировка"
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.productionDate}
                 value={productionDate}
-                onChange={e => setProductionDate(e.target.value)}
-                />
-          </div>
-                
-          <div className={classes.modal__right}>
+                onChange={(e) => setProductionDate(e.target.value)}
+              />
+            </div>
 
-             <label className={classes.modal__label} htmlFor="">№ документа возврата от клиента</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+            <div className={classes.modal__right}>
+              <label className={classes.modal__label} htmlFor="">
+                № документа возврата от клиента
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.numberReturnDocument}
                 value={numberReturnDocument}
-                onChange={e => setNumberReturnDocument(e.target.value)}
-                />
+                onChange={(e) => setNumberReturnDocument(e.target.value)}
+              />
 
-
-          <label className={classes.modal__label} htmlFor="">№ акта для завода</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                № акта для завода
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.plantDocumentNumber}
                 value={plantDocumentNumber}
-                onChange={e => setplantDocumentNumber(e.target.value)}
-                />
+                onChange={(e) => setplantDocumentNumber(e.target.value)}
+              />
 
-                   <label className={classes.modal__label} htmlFor="">№ перемещения на склад БРАК</label>
-                <input 
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                № перемещения на склад БРАК
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.movingToDefectWarehouse}
                 value={movingToDefectWarehouse}
-                onChange={e => setMovingToDefectWarehouse(e.target.value)}
-                />
+                onChange={(e) => setMovingToDefectWarehouse(e.target.value)}
+              />
 
-               
-                <label className={classes.modal__label} htmlFor="">Дата выдачи</label>
-                <input            
-                className={classes.modal__input} 
-                type="text" 
+              <label className={classes.modal__label} htmlFor="">
+                Дата выдачи
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.releaseDate}
                 value={releaseDate}
-                onChange={e => setReleaseDate(e.target.value)}
-                />
-                <label className={classes.modal__label} htmlFor="">Заключение</label>
-                <input               
-                className={classes.modal__input} 
-                type="text" 
+                onChange={(e) => setReleaseDate(e.target.value)}
+              />
+              <label className={classes.modal__label} htmlFor="">
+                Заключение
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
                 placeholder={addRec.result}
                 value={result}
-                onChange={e => setResult(e.target.value)}
-                />
-                <Select className={classes.modal__select}
-                        defaultValue={options[0]}
-                        onChange={(status) => setStatus(status.value)}
-                        options={options}
-                      />
+                onChange={(e) => setResult(e.target.value)}
+              />
+              <Select
+                className={classes.modal__select}
+                defaultValue={options[0]}
+                onChange={(status) => setStatus(status.value)}
+                options={options}
+              />
+            </div>
           </div>
 
-            </div>
-     
-                
-              <div className={classes.modal__btn_box}>
-                  {/* <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button> */}
-                  <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button>
+          <div className={classes.modal__btn_box}>
+            {/* <Button className={classes.modal__btn} onClick={onHide} >Закрыть</Button> */}
+            <Button className={classes.modal__btn} onClick={onHide}>
+              Закрыть
+            </Button>
 
-                  <button className={classes.modal__btn} onClick={() => newRec(addRec.id)}>Сохранить</button>           
-                  {/* <button className={classes.modal__btn} type='submit'>Сохранить</button>            */}
-              </div>
-               
-          </form>         
-      </div>                        
-      
-      
-      
+            <button
+              className={classes.modal__btn}
+              onClick={() => newRec(addRec.id)}
+            >
+              Сохранить
+            </button>
+            {/* <button className={classes.modal__btn} type='submit'>Сохранить</button>            */}
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 })

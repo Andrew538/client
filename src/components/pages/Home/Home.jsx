@@ -25,6 +25,7 @@ const  Home = observer(() => {
       users.setIsAuth(true)
       users.setRole(data.role)
       users.setEmail(data.email)
+      users.setID(+data.id)
       setEmail('')
       setPassword('')
       singin(users, () => navigate('/map', {replace: true}))

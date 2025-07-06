@@ -23,7 +23,7 @@ export const login = async (email, password) => {
 export const check = async () => {
 
     const {data} = await  $authHost.get('api/user/auth')
-    
+   
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 
@@ -31,18 +31,16 @@ export const check = async () => {
 }
 
 
-// export const allUsers = async (id, email, name, role, surname) => {
-//     const {data} = await $authHost.get('api/user/user', {params: 
-//        {id, email, name, role, surname}
-//     })
+export const allUsers = async () => {
+    const {data} = await $authHost.get('api/user/allmanagers')
 
-//     // console.log(data)
+    // console.log(data)
     
-//     return data
+    return data
     
-// }
+}
 
-
+// allUsers()
 
 // // export const surname = async ( surname) => {
 // //     const {data} = await $authHost.get('api/user/surname', {params: 

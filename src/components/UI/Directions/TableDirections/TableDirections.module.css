@@ -1,0 +1,19 @@
+:root {
+    --table-border-color: rgba(213, 218, 218, .2);
+}
+
+.list {
+
+}
+
+.list__item {
+    border: 1px solid var(--table-border-color);
+}
+.list__content {
+    display: grid;
+    border: 1px solid rgba(19, 19, 233, .3);
+    grid-template-columns: 150px 250px 250px 300px 300px;
+    text-align: left;
+    padding: 0px 10px 0px 10px;
+    margin: 5px 0px 0px 0px;
+}

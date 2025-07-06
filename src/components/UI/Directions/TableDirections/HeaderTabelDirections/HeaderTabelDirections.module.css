@@ -1,0 +1,6 @@
+.box{ 
+    display: grid;
+   grid-template-columns: 167px 250px 255px 303px 300px;
+   /*grid-template-columns: 150px 250px 250px 300px 300px;*/
+    text-align: left;
+}

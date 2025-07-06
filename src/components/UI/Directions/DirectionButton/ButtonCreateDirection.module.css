@@ -1,0 +1,12 @@
+.button {
+    border: 1px solid #1313e9;
+    padding: 7px;
+    border-radius: 10px;
+    transition: all ease-out .3s;
+}
+
+.button:hover {
+    background: rgba(19, 19, 233, .5);
+    border: 1px solid transparent;
+    color: rgb(253, 253, 253);
+}

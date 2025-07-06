@@ -32,6 +32,8 @@
 .item {
     cursor: pointer;
     width: 1687px;
+    list-style-type: decimal;
+
 }
 .item:hover {
     background-color: rgba(102, 51, 153, .1);

@@ -42,6 +42,7 @@ const App = observer(() => {
             users.setIsAuth(true);
             users.setRole(data.role);
             users.setEmail(data.email);
+            users.setID(data.id)
           } else if (localStorage.getItem(" ") && !data) {
             localStorage.clear();
             navigate("/", { replace: true });

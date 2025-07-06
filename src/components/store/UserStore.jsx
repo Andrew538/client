@@ -8,8 +8,11 @@ export default class UserStore {
         this._role = ''
         this._email = ''
         this._surname = ''
-
+        this._id = +''
         makeAutoObservable(this)
+    }
+    setID(id) {
+        this._id = id 
     }
 
     setIsAuth(bool) {
@@ -29,6 +32,10 @@ export default class UserStore {
     }
     setSurname(surname) {
         this._surname = surname
+    }
+     
+    get id() {
+        return this._id
     }
 
     get isAuth() {

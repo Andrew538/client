@@ -1,9 +1,31 @@
-html ,body {
+/* html ,body {
   position: relative;
 }
 *{
   font-size: 16px;
+  text-decoration: none;
+  list-style-type: none;
+  
 }
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: Ubuntu;
+}
+.App {
+  text-align: center;
+  height: 100%;
+  position: relative;
+  font-size: 16px;
+}
+.App__box {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+} */
+ 
 .App {
   text-align: center;
   height: 100%;

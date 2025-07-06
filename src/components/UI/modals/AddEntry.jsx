@@ -110,7 +110,7 @@ const addRecrod = async (e) => {
       setCity("");
       setСomment("");
       setResult("");
-      onHide();
+      onHide(); 
     }
   } catch (error) {
     setError(error.response.data.message);
