@@ -27,7 +27,6 @@ export const createCity = async (city, region, directionid, userid) => {
    return data
 }
 
-
 // export const fetchRegion = async ( directionId ) => {
 //     const {data} = await $authHost.get('api/direction/allregions', {params: {
 //             directionId
