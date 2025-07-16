@@ -23,7 +23,7 @@ const Arhive = observer(() => {
       examinationarhive.SetExaminationArhive(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [sort, sortCity, examinationarhive]);
+  }, [sort, sortCity, examinationarhive, status]);
 
   const newI = items.filter(
     (item, index) => (items.indexOf(item) == index) & (item != "")

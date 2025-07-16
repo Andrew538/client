@@ -54,11 +54,11 @@ export const delExam = async (id) => {
   
 }
 
-export const updateRecord = async (id, result,    statusExam) => {
+export const updateRecord = async (id, result, statusExam) => {
     const {data} = await $authHost.post('api/examination/upgrade', {
      id, result,    statusExam
     })
-  console.log(data)
+  
   return data
 }
 
@@ -66,14 +66,14 @@ export const updateNumberReturnDocument = async (id, numberReturnDocument, statu
     const {data} = await $authHost.post('api/examination/upgradeNumberReturnDocument', {
      id, numberReturnDocument, statusExam
     })
-  console.log(data)
+
   return data
 }
 export const updatePlantDocumentNumber = async (id, plantDocumentNumber, statusExam) => {
     const {data} = await $authHost.post('api/examination/upgradePlantDocumentNumber', {
      id, plantDocumentNumber, statusExam
     })
-  console.log(data)
+
   return data
 }
 
@@ -81,7 +81,7 @@ export const updateMovingToDefectWarehouse = async (id, movingToDefectWarehouse,
     const {data} = await $authHost.post('api/examination/upgradeMovingToDefectWarehouse', {
      id, movingToDefectWarehouse, statusExam
     })
-  console.log(data)
+ 
   return data
 }
 
@@ -89,7 +89,7 @@ export const updateReleaseDate = async (id, releaseDate, statusExam) => {
     const {data} = await $authHost.post('api/examination/upgradeUpdateReleaseDate', {
      id, releaseDate, statusExam
     })
-  console.log(data)
+ 
   return data
 }
 

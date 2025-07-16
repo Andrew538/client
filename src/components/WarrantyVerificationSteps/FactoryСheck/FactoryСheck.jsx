@@ -15,13 +15,13 @@ const FactoryСheck = observer(() => {
   const [modalNotification, setModalNotification] = useState(false);
   let [numId, setNumId] = useState("");
   let [notId, setNotId] = useState("");
+  const [manager, setManager] = useState([])
+  const [items, setItems] = useState([]);
+  const [sort, setSort] = useState("");
+  const [sortCity, setSortCity, ] = useState("")
 
   const [itemProps, setItemProps] = useState();
   
-  
-
-
- 
 
   useEffect(() => {
     fetchExamWorks(null, null).then((data) => {
@@ -29,31 +29,34 @@ const FactoryСheck = observer(() => {
       examinationworks.SetExaminationWorks(data);
       status.SetStatus(data.map((i) => i.statusExam));
     });
-  }, [examinationworks]);
-
-  const [sort, setSort] = useState("");
-  const [sortCity, setSortCity] = useState("");
+  }, [examinationworks, status,]);
+;
 
   let sorted = useMemo(() => {
     if (sort) {
       return examinationworks.examinationworks.filter((list) =>
         list.manager.toLowerCase().includes(sort)
       );
-    }
-    else if (sortCity) {
+    } else if (sortCity) {
       return examinationworks.examinationworks.filter((list) =>
         list.city.toLowerCase().includes(sortCity)
       );
-    } else {
+    } else if(sort != sortCity) {
+       examinationworks.examinationworks.filter((list) =>
+        list.manager.toLowerCase().includes(sort)) && examinationworks.examinationworks.filter((list) =>
+        list.city.toLowerCase().includes(sortCity)
+      );
+    }
+    else {
       return examinationworks.examinationworks;
     }
   }, [sort, sortCity, examinationworks.examinationworks]);
 
-const [items, setItems] = useState([]);
   
-  const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
 
   let optionsCity = useMemo(() => {
+  const newI = items.filter((item, index) => items.indexOf(item) == index & item != '')
+
          const newun = examinationworks.examinationworks.map((item) => {return item.city})
         setItems(newun)  
 
@@ -64,12 +67,10 @@ const [items, setItems] = useState([]);
        );
      }, [ sort,examinationworks.examinationworks]);
 
-const [manager, setManager] = useState([])
       
+      let optionsManager = useMemo(() => {
   const listManager = manager.filter((item, index) => manager.indexOf(item) == index & item != '')
 
-
-      let optionsManager = useMemo(() => {
          const newManager = examinationworks.examinationworks.map((item) => {return item.manager})
       setManager(newManager)  
       return listManager.map((item) =>                  
@@ -80,7 +81,7 @@ const [manager, setManager] = useState([])
     }, [ setManager ,examinationworks.examinationworks]);
 
 
-    console.log(optionsManager)
+    // console.log(optionsManager)
 
   return (
     <div className={classes.list}>

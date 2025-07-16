@@ -14,7 +14,10 @@ const TabGuarantee = observer(({items}) => {
     examinationcharger,
     examinationworks,
     examinationready,
+    status
   } = useContext(Context);
+
+    
 
   let number = localStorage.getItem("numberTab");
   const [active, setActive] = useState(number);
@@ -24,7 +27,31 @@ const TabGuarantee = observer(({items}) => {
   const numberAc = localStorage.setItem("numberTab", active);
   const className = localStorage.setItem("cl", "active");
 
-  useEffect(() => {}, [items]);
+  useEffect(() => {
+     if(status.status === 'New') {
+      fetchExam(null, null).then((data) => {
+          examination.SetExamination(data);
+        });
+    } else if(status.status === 'Charger') {
+      fetchExamCharger(null, null).then((data) => {
+            examinationcharger.SetExaminationCharger(data);
+          });
+    } else if(status.status === 'Works') {
+   
+
+    fetchExamWorks(null, null).then((data) => {
+      examinationworks.SetExaminationWorks(data);
+    });
+
+    }
+
+    else if (status.status === 'Ready') 
+    {
+  fetchExamReady(null, null).then((data) => {
+      examinationready.SetExaminationReady(data);
+    });
+  }
+  }, [status ,items]);
 
   const openTab = (e) => {
     Update();
@@ -33,21 +60,32 @@ const TabGuarantee = observer(({items}) => {
   };
 
   function Update() {
-    fetchExam(null, null).then((data) => {
-      examination.SetExamination(data);
-    });
-
-    fetchExamCharger(null, null).then((data) => {
-      examinationcharger.SetExaminationCharger(data);
-    });
+    if(status.status === 'New') {
+      fetchExam(null, null).then((data) => {
+          examination.SetExamination(data);
+        });
+    } else if(status.status === 'Charger') {
+      fetchExamCharger(null, null).then((data) => {
+            examinationcharger.SetExaminationCharger(data);
+          });
+    } else if(status.status === 'Works') {
+   
 
     fetchExamWorks(null, null).then((data) => {
       examinationworks.SetExaminationWorks(data);
     });
 
-    fetchExamReady(null, null).then((data) => {
+    }
+
+    else if (status.status === 'Ready') 
+    {
+  fetchExamReady(null, null).then((data) => {
       examinationready.SetExaminationReady(data);
     });
+    }
+
+ 
+  
   }
 
   return (

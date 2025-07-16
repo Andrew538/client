@@ -5,6 +5,7 @@ import classes from './TableDirections.module.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import HeaderTabelDirections from './HeaderTabelDirections/HeaderTabelDirections';
+import ButtonDelivery from '../../Delivery/ButtonDelivery/ButtonDelivery';
 
 
 
@@ -12,6 +13,8 @@ const TableDirections = observer(({direction}) => {
 
   // const [cl, setCl] = useState()
   
+
+
   // useEffect(() => {
    
   // direction.direction.map((i) => {
@@ -52,16 +55,30 @@ const TableDirections = observer(({direction}) => {
                 <h6 className={classes.title}><span className={classes.title__span}>Город доставки:</span> {m.city}</h6>
                   <HeaderTabelDirections/>
                 {m.client.map((k) => (              
-                  <div className={classNames(classes.list__content)} key={k.id}>                             
+                  
+                  <div className={classNames(classes.list__content)}  key={k.id}>                             
                     <p >{k.payment}</p>
                     <p >{k.client}</p>
                     <p >{k.address}</p>
                     <p >{k.contact}</p>
-                    <p>{k.comment}</p> 
+                    <p>{k.comment}</p>
+
+                    <div>
+                     <ButtonDelivery clientId={k.id}/>
+
+                    </div>
+
                   </div>
-                ))}
+                
+                )
+                
+                )}
+                <div>
+                 
+                </div>
               </div>
             ))}
+
           </li>
         //  :
         //  <div key={i.id}>Привет</div>

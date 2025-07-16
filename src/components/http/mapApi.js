@@ -68,4 +68,17 @@ export const fetchCity = async ( ) => {
     return data
 }
 
+export const fetchOneClient = async (id) => {
+  try {
+     const {data} = await $authHost.get('api/direction/getoneclient', {params: {id}})
+
+  return data
+    
+  } catch (error) {
+    console.log(error);
+    
+  }
+ 
+}
+// fetchOneClient()
 // fetchCity()

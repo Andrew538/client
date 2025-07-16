@@ -32,27 +32,11 @@ const [addRec, setAddRec] = useState();
 
 const [error, setError] = useState(" ");
 
-  function Update () {
-    
-          fetchExam(null, null).then(data => {
-            examination.SetExamination(data)        
-          })
-    
-         // fetchExamCharger(null, null).then(data => {
-           // examinationcharger.SetExaminationCharger(data)
-         // })
-    
-        //  fetchExamWorks(null, null).then(data => {
-          //  examinationworks.SetExaminationWorks(data)
-        //  })
-    
-        //  fetchExamReady(null, null).then(data => {             
-          //  examinationready.SetExaminationReady(data)                        
-        //  })
-        //  fetchExamArhive().then((data) => {
-          //  examinationarhive.SetExaminationArhive(data);
-        //  });
-      }
+  function Update() {
+    fetchExam(null, null).then((data) => {
+      examination.SetExamination(data);
+    });
+  }
 
 const handleClick = () => {
   onHide();
@@ -89,8 +73,9 @@ const addRecrod = async (e) => {
       result,
       statusExam
     );
+      // Удалил null и 1, 2 во всех функциях
 
-    fetchExam(null, null, 1, 2).then((data) => {
+    fetchExam().then((data) => {
       examination.SetExamination(data);
     });
     fetchExam(examination.SetExamination.id).then((data) => {

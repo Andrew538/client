@@ -315,4 +315,3 @@ const ModalUpdate = observer(({show, onHide,  props}) => {
 })
 
 export default ModalUpdate
-
