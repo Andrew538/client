@@ -7,11 +7,12 @@ import { observer } from 'mobx-react-lite';
 
 const ExportToExcel = observer(({ fileName, id }) => {
 
-  const Export = async () => {
+  // const Export = async () => {
     
+     const exportExcel = async () => {
+      
      const retunData = await fetchOneDelivery(id);
      const rData = [retunData];
-     const exportExcel = async () => {
        // 1. Create a new workbook
        const workbook = new ExcelJS.Workbook();
        const worksheet = workbook.addWorksheet("sheet1", {
@@ -88,18 +89,16 @@ const ExportToExcel = observer(({ fileName, id }) => {
 
        saveAs(blob, `${fileName}.xlsx`);
      };
- exportExcel()
+//  exportExcel()
 
       
     
-  }
+  // }
      
 
 
   return (
-    <button onClick={
-      Export
-    }>Скачать карту доставки {fileName}</button>
+    <button onClick={exportExcel}>Скачать карту доставки {fileName}</button>
   );
 });
 
