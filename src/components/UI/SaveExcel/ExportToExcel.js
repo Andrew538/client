@@ -1,7 +1,7 @@
 // import ExcelJS from 'exceljs';
+ import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { fetchOneDelivery } from '../../http/mapApi';
- import * as ExcelJS from 'exceljs';
 
 const ExportToExcel = ({ fileName, id }) => {
 
