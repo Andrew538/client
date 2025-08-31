@@ -66,6 +66,7 @@ export const Context = createContext(null)
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -74,6 +75,8 @@ root.render(
         users: new UserStore(),
         allUser: new UserStore(),
         direction: new DirectionStore(),
+        ready: new DirectionStore(),
+        arhivedelivery: new DirectionStore(),
         alldirection: new DirectionStore(),
         allcity: new DirectionStore(),
         status: new GuaranteeStore(),

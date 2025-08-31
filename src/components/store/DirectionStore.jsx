@@ -5,6 +5,8 @@ export default class DirectionStore {
     this._direction = [];
     this._alldirection = [];
     this._allcity = [];
+    this._ready = [];
+    this._arhivedelivery = [];
 
     makeAutoObservable(this);
   }
@@ -23,6 +25,13 @@ export default class DirectionStore {
     this._allcity = allcity
   }
 
+  SetReady(ready) {
+    this._ready = ready
+  }
+
+   SetArhiveDelivery(arhivedelivery) {
+    this._arhivedelivery = arhivedelivery
+  }
 
   get direction() {
     return this._direction;
@@ -35,5 +44,12 @@ export default class DirectionStore {
   
   get allcity() {
     return this._allcity
+  }
+
+  get ready() {
+    return this._ready
+  }
+    get arhivedelivery() {
+    return this._arhivedelivery
   }
 }

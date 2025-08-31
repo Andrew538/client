@@ -3,7 +3,7 @@ import React from 'react'
 import classes from './TabelList.module.css'
 import classNames from 'classnames';
 import ButtonUpdate from '../ButtonUpdate/ButtonUpdate';
-import ButtonDelete from '../ButtonDelete/ButtonDelete';
+import ButtonDeleteWarranty from '../ButtonDelete/ButtonDeleteWarranty';
 
 const TabelList = observer(({list}) => {
    
@@ -105,7 +105,7 @@ const TabelList = observer(({list}) => {
                     </div>                  
                   <div className={classNames(classes.list__button__box)}>
                     <ButtonUpdate numberId={item.id} />
-                    <ButtonDelete setid={item.id} />
+                    <ButtonDeleteWarranty setid={item.id} />
                   </div>
               </div>
             </li>

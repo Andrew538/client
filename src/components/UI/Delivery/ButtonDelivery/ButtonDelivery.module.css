@@ -1,0 +1,18 @@
+.button__update {
+    width: 22px;
+    height: 32px;
+   background: url(../../icon/delivery.gif) no-repeat;
+    background-size: 22px;
+    background-position: center;
+    background-color: transparent;
+    /* border: 1px solid #b0b0ec; */
+    border: 2px solid rgb(19, 19, 233);
+
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 16px ;
+    transition: all ease-in .1s;
+}
+.button__update:hover {
+    transform: scale(1.2);
+}

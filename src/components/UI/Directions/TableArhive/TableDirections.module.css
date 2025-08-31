@@ -1,0 +1,35 @@
+:root {
+    --table-border-color: rgba(213, 218, 218, .5);
+}
+
+.list {
+
+}
+
+.list__item {
+    border: 1px solid var(--table-border-color);
+}
+.list__content {
+    display: grid;
+    border: 1px solid rgba(19, 19, 233, .3);
+    grid-template-columns: 150px 250px 250px 300px 120px 120px 290px;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    margin: 5px 0px 0px 0px;
+    align-items: center;
+}
+.list__button {
+    display: flex;
+}
+.list__item__title {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.accordion__content {
+  padding: 15px;
+  background-color: #fff;
+  overflow: hidden; /* Для плавного раскрытия */
+  max-height: 100%;
+  transition: max-height 0.8s ease-out; /* Анимация */
+}

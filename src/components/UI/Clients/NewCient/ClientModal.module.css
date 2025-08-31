@@ -1,0 +1,81 @@
+.modal__wrapper {
+    display: flex;
+    justify-self: center;
+     background-color: rgb(193, 223, 223);
+ padding: 20px;
+}
+.modal__content {
+    display: flex;
+    width: 700px;
+    height: 450px;
+    justify-content: space-between;
+   
+    
+}
+.modal__content__left {
+    display: flex;
+    flex-basis: 45%;
+    flex-direction: column;
+}
+.modal__label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal__content__right {
+    display: flex;
+    flex-basis: 45%;
+    flex-direction: column;
+    height: 440px;
+    padding-top: 26px;
+}
+.modal__input {
+    height: 18px;
+    padding: 10px;
+    margin: 0px 0px 15px 0px;
+   display: block;
+}
+
+.client__form__select__list {
+    display: flex;
+flex-basis: 35%;
+    margin: 3px 0px 0px 0px;
+    flex-direction: column;
+    height: 40px;
+    justify-content: space-around;
+    /* padding: 0px 10px 0px 10px; */
+    appearance: none;
+}
+.modal__select {
+      /* flex-basis: 50%;
+       */
+           height: 44px;
+    padding: 0px 10px 0px 10px;
+    /* appearance: none; */
+}
+.modal__textarea {
+    position: relative;
+    z-index: 2;
+    resize: vertical;
+    padding: 10px;
+    min-height: 15px;
+    margin: 0px 0px 15px 0px;
+}
+.modal__btn_box {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px 0px 0px;
+}
+
+.modal__btn {
+    background: white;
+    border: 2px solid teal;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+    flex-basis: 45%;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(20, 8, 8);
+    transition: .3s;
+}

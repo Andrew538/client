@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./ButtonDelete.module.css";
 import ModalNotification from "../ModalNotification/ModalNotification";
 
-const ButtonDelete = ({ setid }) => {
+const ButtonDeleteWarranty = ({ setid }) => {
   const [modalNotification, setModalNotification] = useState(false);
 
   let [id, setId] = useState("");
@@ -26,4 +26,4 @@ const ButtonDelete = ({ setid }) => {
   );
 };
 
-export default ButtonDelete;
+export default ButtonDeleteWarranty;

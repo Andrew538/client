@@ -14,7 +14,7 @@ import classes from './ManagersTab.module.css'
 
 
 const ManagersTab = observer(({items}) => {
-//  let userid = localStorage.getItem("c") 
+//  let userid = localStorage.getItem("c")  
 
   const {direction} = useContext(Context)
     

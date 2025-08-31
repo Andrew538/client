@@ -1,0 +1,46 @@
+:root {
+    --table-border-color: rgb(4, 28, 36);
+}
+
+.list {
+    background-color: #fff;
+    padding: 10px;
+}
+
+
+.list__item{
+   border: 2px solid var(--table-border-color);
+}
+.list__item__box{
+     /* border: 1px solid rgba(19, 19, 233, .7); */
+     margin: 0px 0px 50px 0px;
+}
+.list__item__date {
+    font-size: 18px;
+    font-weight: bold;
+}
+.list__item__title {
+    font-size: 22px;
+    cursor: pointer;
+}
+.list__content {
+    display: grid;
+    border: 1px solid rgba(118, 115, 134, .2);
+    background-color: rgba(128, 128, 128, .05);
+    /* border: 1px solid rgba(19, 19, 233, .3); */
+    grid-template-columns: 80px 250px 250px 300px 100px 100px 290px 1fr;
+    text-align: center;
+    padding: 0px 10px 0px 10px;
+    margin: 5px 0px 0px 0px;
+    align-items: center;
+}
+.list__button {
+    display: flex;
+}
+.button__box {
+    display: flex;
+    justify-content: space-between;
+}
+.list__item__text {
+    font-weight: 560;
+}

@@ -26,6 +26,6 @@ const Friday = (({id}) => {
 
     </div>
   )
-})
+}) 
 
 export default Friday

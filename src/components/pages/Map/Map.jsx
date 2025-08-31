@@ -13,13 +13,14 @@ import Tuesday from '../../UI/CallDays/CallDaysPages/Tuesday ';
 import Wednesday from '../../UI/CallDays/CallDaysPages/Wednesday';
 import Thursday from '../../UI/CallDays/CallDaysPages/Thursday';
 import Friday from '../../UI/CallDays/CallDaysPages/Friday';
-import Ready from '../../UI/CallDays/CallDaysPages/Ready';
+
 import SuppliesArchive from '../../UI/CallDays/CallDaysPages/SuppliesArchive';
 import ClientModal from '../../UI/Clients/NewCient/ClientModal';
 import ButtonCreateClient from '../../UI/Clients/NewCient/ClientButton/ButtonCreateClient';
 import ManagersOptList from '../../UI/ManagersOptList/ManagersOptList';
 import classNames from 'classnames';
 import classes from './Map.module.css'
+import Ready from '../../UI/CallDays/CallDaysPages/Ready';
 
 
 
@@ -29,13 +30,13 @@ const Map = observer(() => {
   const [modalClientShow, setModalClientShow] = useState(false);
 
   const { direction } = useContext(Context);
-  const [d, setD] = useState([]);
+
 
   useEffect(() => {
     try {
-      fetchRegion().then((data) => {
-        setD(data);
-      });
+     // fetchRegion().then((data) => {
+     //   setD(data);
+     // });
 
       // check().then((data) => {
       //   const directionID = 1;

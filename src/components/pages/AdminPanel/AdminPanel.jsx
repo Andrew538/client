@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { registration, } from '../../http/userAPI';
+import { addNewUserinDirections, registration, } from '../../http/userAPI';
 import Select from 'react-select';
 import classes from './AdminPanel.module.css'
+import { fetchAllUserId } from '../../http/mapApi';
 function AdminPanel() {
   
   const [email, setEmail] = useState('')
@@ -10,13 +11,31 @@ function AdminPanel() {
   const [surname, setSurname] = useState('')
 
   const [error, setEror] = useState('')
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState('USER')
  
 
   const rgistr = async () => {
 
     try {
       const data  = await registration(email, password, name, role, surname)
+     
+      console.log(data)
+      if(data) {
+ const userid = await data
+     const addID = await addNewUserinDirections(userid)
+
+     if(addID) {
+      setEror(addID.response.data.message)
+      setEmail('')
+      setName('')
+      setEmail('')
+      setPassword('')
+      setSurname('')
+     } 
+     
+      }
+   
+   
     } catch (err) {
       setEror(err.response.data.message)
       setEmail('')

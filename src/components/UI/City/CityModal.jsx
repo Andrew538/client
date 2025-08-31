@@ -7,20 +7,23 @@ import { Context } from "../../..";
 import { useContext } from "react";
 import CitySelect from "./CitySelect/CitySelect";
 import { useEffect } from "react";
+import classes from './CityModal.module.css' 
+
 
 const CityModal = observer(({ show, onHide, props }) => {
   const [listDirection, setListDirection] = useState([]);
   const [region, setRegion] = useState("");
-  const [directionid, setDirectionid] = useState("");
+  // directionid - [0] - id напрвления, [2] - день обзвона
+  const [directionid, setDirectionid] = useState([]);
   const [city, setCity] = useState("");
-
+  const [day, setDay] =  useState('')
+  // console.log(day)
   const { users, alldirection } = useContext(Context);
- // console.log(users)
   const addCity = async (e) => {
     e.preventDefault();
     try {
       const userid = users.id;
-      const addC = await createCity(city, region, directionid, userid);
+      const addC = await createCity(city, directionid[0], day);
 
       if (addC) {
         setDirectionid("");
@@ -45,17 +48,13 @@ const CityModal = observer(({ show, onHide, props }) => {
       fetchRegion().then((data) => {
         alldirection.SetAllDirection(data);
       });
+      setDay(directionid[2])
     } catch (error) {
       console.log(error);
     }
-  }, [alldirection, show]);
+  }, [alldirection, show, directionid]);
 
   let options = useMemo(() => {
-    // const allDirection = listDirection.filter(
-    //   (item, index) => (listDirection.indexOf(item) == index) & (item != "")
-    // );
-      // console.log(allDirection)
-
     const newDirection = alldirection.alldirection.map((item) => {
       return item;
     });
@@ -63,7 +62,7 @@ const CityModal = observer(({ show, onHide, props }) => {
     setListDirection(newDirection);
 
     return listDirection.map((item) => (
-      <option key={item.id} value={item.id}>
+      <option key={item.id} value={[item.id, item.day]}>
         {item.region}
       </option>
     ));
@@ -77,25 +76,35 @@ const CityModal = observer(({ show, onHide, props }) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <div>
-        <h1>Создать направление</h1>
-        <form action="" onSubmit={addCity}>
+      <div className={classes.content}>
+        <h1 className={classes.title}>Добавить город</h1>
+        <form className={classes.form__body} action="" onSubmit={addCity}>
           <CitySelect
             value={directionid}
             onChange={setDirectionid}
             options={options}
             defaultValue="Выберите направление доставки"
             show={show}
+           
           />
           <input
             placeholder="Город"
             type="text"
             onChange={(e) => setCity(e.target.value)}
+            className={classes.form__input}
           ></input>
-          <button type="submit">Сохранить</button>
-          <button type="button" onClick={closeModal}>
-            Закрыть
-          </button>
+          <div className={classes.form__button__box}>
+            <button className={classes.form__button} type="submit">
+              Сохранить
+            </button>
+            <button
+              className={classes.form__button}
+              type="button"
+              onClick={closeModal}
+            >
+              Закрыть
+            </button>
+          </div>
         </form>
       </div>
     </Modal>

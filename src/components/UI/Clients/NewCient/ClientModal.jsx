@@ -2,106 +2,149 @@ import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import classes from './ClientModal.module.css'
-import { createClient, fetchCity } from '../../../http/mapApi';
+import { createClient, fetchCity, fetchDay, fetchRegion } from '../../../http/mapApi';
 import { useEffect } from 'react';
 import ClientsSelectList from './ClientsSelect/ClientsSelectList';
 import { useMemo } from 'react';
 import { useContext } from 'react';
 import { Context } from '../../../..';
 import { allUsers } from '../../../http/userAPI';
-import { useCallback } from 'react';
+import CitySelect from '../../City/CitySelect/CitySelect';
 
 const ClientModal = observer(({ show, onHide, props }) => {
-  const {users, allcity, allUser} = useContext(Context)
+  const {allcity, allUser, alldirection, direction} = useContext(Context)
+  let number = localStorage.getItem("numberTabDay");
+  let managerid = localStorage.getItem("c");
+
   const [client, setClient] = useState("");
   const [payment, setPayment] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
-
-  const [manager, setManager] = useState('');
-  const [cityid, setCityId] = useState('');
-
-  const [weightusedbattery, setWeightUsedBattery] = useState(0)
-  const [weightnewbatteries, setWeightNewBatteries] = useState(0)
+  const [manager, setManager] = useState("");
+  const [cityid, setCityId] = useState("");
+  const [getCity, setGetCity] = useState([])
+  const [directionid, setDirectionid] = useState("");
   const [comment, setCmoment] = useState("");
-
-  // console.log(weightusedbattery)
-
-  const [listCity, setListCity] = useState([])
-  const [listManager, setListManager] = useState([])
+  const [listCity, setListCity] = useState([]);
+  const [listManager, setListManager] = useState([]);
+  const [listDirection, setListDirection] = useState([]);
 
 
+  const addClient = async (e) => {
+      e.preventDefault();
+      try {
+      const weightusedbattery = 0
+      const  weightnewbatteries = 0
+      const newClient = await createClient(client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment )
+        let userid = Number(managerid);
 
-const addClient = async (e) => {
-    e.preventDefault();
+        let day = Number(number) + 1;
+        fetchDay(userid, day).then((data) => {
+          direction.SetDirection(data);
+        });
+        console.log(newClient);
+        if (newClient) {
+          clearForm ()
+          onHide()
+        }
+      } catch (error) {
+        console.log(error)
+      }
+  }
+  const clearForm = () => {
+    setDirectionid("");
+    setListCity([]);
+    setClient("");
+    setPayment("");
+    setAddress("");
+    setContact("");
+    setCmoment("");
+    setCityId("");
+    setManager("");
+  };
+
+  const closeModal = () => {
+    clearForm()
+    onHide()
+  }
+ 
+  useEffect(() =>{
     try {
-     const newClient = await createClient(client, payment, address, contact, manager,cityid, weightusedbattery, weightnewbatteries, comment )
-     console.log(newClient)
-      if(newClient) {
-        setClient('')
-        setPayment('')
-        setAddress('')
-        setContact('')
-        setCmoment('')
-        setCityId('')
-        setManager('')
-        setWeightNewBatteries('')
-        setWeightUsedBattery('')
-        onHide()
+
+      allUsers().then((data) => {
+        allUser.setAllUser(data);
+      });
+      fetchRegion().then((data) => {
+        alldirection.SetAllDirection(data);
+      });
+
+      if (onHide) {
+        clearForm();
       }
     } catch (error) {
       console.log(error)
     }
-}
+  }, [show, onHide, props, ])
 
-  const closeModal = () => {
-    onHide();
+
+
+    let options = useMemo(() => {
+      // const allDirection = listDirection.filter(
+      //   (item, index) => (listDirection.indexOf(item) == index) & (item != "")
+      // );
+      // console.log(allDirection)
+
+      fetchCity(Number(directionid)).then((data) => {
+        allcity.SetAllCity(data);
+       
+      });
+
+      const newDirection = alldirection.alldirection.map((item) => {
+        return item;
+      });
+
+      setListDirection(newDirection);
+
+      return listDirection.map((item) => (
+        <option key={item.id} value={item.id}>
+          {item.region}
+        </option>
+      ));
+    }, [alldirection.alldirection, show]);
+
+  let optionsAllCity = useMemo(() => {
+
+  if(options) {
   
-  };
-
-
-
-  useEffect(() =>{
-    try {
-      fetchCity().then((data) => {
-        allcity.SetAllCity(data)
-      })
-      allUsers().then((data) => {
-        allUser.setAllUser(data)
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [show, onHide, props ])
-
-    let optionsAllCity = useMemo(() => {
+ const newAllCity = allcity.allcity.map((item) => {
+      return item;
+    });
+    setListCity(newAllCity);
+    return listCity.map((item) => (
+      <option key={item.id} value={item.id}>
+        {item.city }   
+      </option>
+    ));
+  }
    
-      const newAllCity = allcity.allcity.map((item) => {
-        return item;
-      });
-      setListCity(newAllCity);
-      return listCity.map((item) => (
-        <option key={item.id} value={item.id}>
-          {item.city}
-        </option>
-      ));
-    }, [ allcity.allcity, show]);
-
-    let optionsManager = useMemo(() => {
-      const newAllManager = allUser.allUser.map((item) => {
-        return item;
-      });
-
-      setListManager(newAllManager);
-
-      return listManager.map((item) => (
-        <option key={item.id} value={item.id}>
-          {item.name + ' ' + item.surname} 
-        </option>
-      ));
-    }, [allUser.allUser, show]);
+  }, [ options ,allcity.allcity, ]);
 
 
+  
+
+  let optionsManager = useMemo(() => {
+    const newAllManager = allUser.allUser.map((item) => {
+      return item;
+    });
+    setListManager(newAllManager);
+    return listManager.map((item) => (
+      <option key={item.id} value={item.id}>
+        {item.name + ' ' + item.surname} 
+      </option>
+    ));
+  }, [options,  allUser.allUser, ]);
+
+ 
   return (
     <Modal
       {...props}
@@ -110,68 +153,93 @@ const addClient = async (e) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <div className={classes.content}>
-        <h1>Добавить клиента</h1>
-        <form action="" onSubmit={addClient}>
-          <input
-            placeholder="Организация"
-            type="text"
-            onChange={(e) => setClient(e.target.value)}
-          />
-           <input
-            placeholder="Способ оплаты"
-            type="text"
-            onChange={(e) => setPayment(e.target.value)}
-          />
-          <input
-            placeholder="Адрес доставки"
-            type="text"
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <input
-            placeholder="Контактные данные"
-            type="text"
-            onChange={(e) => setContact(e.target.value)}
-          />
-             {/* <input
-            placeholder="Менеджер"
-            type="text"
-            onChange={(e) => setManager(e.target.value)}
-          /> */}
-          <ClientsSelectList
-              allCity={cityid}
-              setAllCity={setCityId}
-              optionsAllCity={optionsAllCity}
-              manager={manager}
-              setManager={setManager}
-              optionsManager={optionsManager}
-             
-              
-          />
-      
-            <input
-            placeholder="Вес новых акб"
-            type="number"
-            onChange={(e) => setWeightNewBatteries(e.target.value)}
-          />
-            <input
-            placeholder="Вес б/у"
-            type="number"
-            onChange={(e) => setWeightUsedBattery(e.target.value)}
-          />
-             
-          <input
-            placeholder="Комментарий"
-            type="text"
-            onChange={(e) => setCmoment(e.target.value)}
-          />
-      
-          <button type="submit">Сохранить</button>
-          <button type="button" onClick={closeModal}>Закрыть</button>
+      <div className={classes.modal__wrapper}>
+        <form className={classes.modal__form} onSubmit={addClient}>
+          <h1 className={classes.modal__title}>Добавить клиента</h1>
+          <div className={classes.modal__box}>
+            <div className={classes.modal__content}>
+              <div className={classes.modal__content__left}>
+                <label className={classes.modal__label}>
+                  Название организации
+                  <input
+                    className={classes.modal__input}
+                    placeholder="Организация"
+                    required
+                    type="text"
+                    onChange={(e) => setClient(e.target.value)}
+                  />
+                </label>
+                <label className={classes.modal__label}>
+                  Способ оплаты
+                  <input
+                    className={classes.modal__input}
+                    placeholder="Способ оплаты"
+                    type="text"
+                    required
+                    onChange={(e) => setPayment(e.target.value)}
+                  />
+                </label>
+                <label className={classes.modal__label}>
+                  Адрес доставки
+                  <textarea
+                    cols={28}
+                    className={classes.modal__textarea}
+                    placeholder="Адрес доставки"
+                    type="text"
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </label>
+                <label className={classes.modal__label}>
+                  Контакты
+                  <textarea
+                    cols={28}
+                    className={classes.modal__textarea}  
+                    placeholder="Контактные данные"
+                    type="text"
+                    onChange={(e) => setContact(e.target.value)}
+                  />
+                </label>
+              </div>
+              <div className={classes.modal__content__right}>
+                <CitySelect
+                  value={directionid}
+                  onChange={setDirectionid}
+                  options={options}
+                  defaultValue="Выберите направление доставки"
+                  //show={show}
+                />
+                <ClientsSelectList
+                  allCity={cityid}
+                  // dirId={directionid}
+                  setAllCity={setCityId}
+                  optionsAllCity={optionsAllCity}
+                  manager={manager}
+                  setManager={setManager}
+                  optionsManager={optionsManager}
+                />
+                <label className={classes.modal__label}>
+                  Комментарий
+                  <textarea
+                    cols={28}
+                    className={classes.modal__textarea}
+                    placeholder="Комментарий"
+                    type="text"
+                    onChange={(e) => setCmoment(e.target.value)}
+                  />
+                </label>
+              </div>
+            </div>
+            <div className={classes.modal__btn_box}>
+              <button className={classes.modal__btn} type="submit">Сохранить</button>
+              <button className={classes.modal__btn} type="button" onClick={closeModal}>
+                Закрыть
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </Modal>
-  )
+  );
 })
 
 export default ClientModal

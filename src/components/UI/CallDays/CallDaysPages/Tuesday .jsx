@@ -8,11 +8,14 @@ import { useEffect } from 'react'
 import { fetchDay } from '../../../http/mapApi'
 import { useState } from 'react'
 import ManagersOptList from '../../ManagersOptList/ManagersOptList'
+import ButtonCreateShipment from '../../ButtonCreateShipment/ButtonCreateShipment'
+import ModalCreateShipment from '../../ButtonCreateShipment/ModalCreateShipment'
 
 const Tuesday = observer(({ id }) => {
   const { direction } = useContext(Context);
   let number = localStorage.getItem("numberTabDay");
-  console.log(id)
+    const [modalShow, setModalShow] = useState(false);
+  // console.log(id)
   useEffect(() => {
     let days = 1;
     let userid = id;
@@ -26,6 +29,14 @@ const Tuesday = observer(({ id }) => {
 
   return (
     <div>
+           <ButtonCreateShipment
+         openModal={setModalShow}
+      />
+      <ModalCreateShipment
+      days={number}
+      show={modalShow} 
+          onHide={() => setModalShow(false)} 
+      />
       <TableDirections direction={direction} />
     </div>
   );

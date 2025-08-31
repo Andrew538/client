@@ -1,0 +1,76 @@
+.modal__wrapper {
+    display: flex;
+    justify-self: center;
+}
+
+.modal__title {
+
+}
+.modal__box {
+ background-color: rgb(193, 223, 223);
+ padding: 20px;
+}
+
+.madal__content {
+    display: flex;
+    width: 700px;
+    height: 300px;
+    justify-content: space-between;
+   
+    
+}
+
+.modal__left {
+    display: flex;
+    flex-basis: 45%;
+    flex-direction: column;
+}
+
+.modal__right {
+    display: flex;
+    flex-basis: 45%;
+    flex-direction: column;
+    height: 440px;
+}
+.modal__input {
+    height: 15px;
+    padding: 10px;
+    margin: 0px 0px 25px 0px;
+   
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0; /* Опционально, чтобы убрать отступы */
+}
+.modal__input::placeholder {
+   color: black;
+}
+.modal__btn_box {
+    display: flex
+;
+    justify-content: space-between;
+    margin: 70px 0px 0px 0px;
+}
+
+.modal__btn {
+    background: white;
+    border: 2px solid teal;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+    flex-basis: 45%;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(20, 8, 8);
+    transition: .3s;
+}
+
+.modal__textarea {
+    resize: vertical;
+    padding: 10px;
+    min-height: 15px;
+}
+.modal__label {
+    margin: 0px 0px 10px 0px;
+}

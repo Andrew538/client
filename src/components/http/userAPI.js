@@ -5,8 +5,10 @@ import { jwtDecode } from "jwt-decode";
 export const registration = async (email, password, name, role, surname) => {
     const {data} = await $authHost.post('api/user/registration', {email, password, name, role, surname})
 
-    localStorage.setItem('token', data.token)
-    return jwtDecode(data.token)
+    // localStorage.setItem('token', data.token)
+    // return jwtDecode(data.token)
+    return data
+
 
 }
 
@@ -38,6 +40,14 @@ export const allUsers = async () => {
     
     return data
     
+}
+
+
+
+
+export const addNewUserinDirections = async (userid) => {
+    const {data} = await $authHost.post('api/user/addnewuserindirections', {userid})
+   return data
 }
 
 // allUsers()

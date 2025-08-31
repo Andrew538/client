@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal';
-import classes from './Direction.module.css'
-import { createRegion } from '../../../http/mapApi';
+import classes from './DirectionModal.module.css' 
+import { createRegion, fetchAllUserId } from '../../../http/mapApi';
 import { useState } from 'react';
 import { Context } from '../../../..';
 import Select from 'react-select';
-
+import  './DirectionModal.css'
 
 
 const DirectionModal = observer(({ show, onHide, props }) => {
@@ -20,7 +20,10 @@ const DirectionModal = observer(({ show, onHide, props }) => {
   const addRegion = async (e) => {
     e.preventDefault();
     try {
-      const userid = users.id;
+      const userID = await fetchAllUserId()
+      const arrUserId = await userID.map(user => user.id)
+
+      const userid = await arrUserId;
      
       const addRegion = await createRegion(region, day ,userid);
       if (addRegion) {
@@ -37,6 +40,12 @@ const DirectionModal = observer(({ show, onHide, props }) => {
     setRegion("");
   };
 
+  // useEffect(() => {
+    
+  //   fetchAllUserId().then((data) => {
+  //      console.log(data.map((item) => { console.log(item.id)}))
+  //   })
+  // }, [show])
   
     const options = [
         { label: 'Выберите день обзвона'},
@@ -57,20 +66,27 @@ const DirectionModal = observer(({ show, onHide, props }) => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <div className={classes.content}>
-        <h1>Создать направление</h1>
-        <form action="" onSubmit={addRegion}>
+        <h1 className={classes.title}>Создать направление</h1>
+        <form action="" onSubmit={addRegion} className={classes.form__body}>
           <input
             placeholder="Направление доставки"
             type="text"
             onChange={(e) => setRegion(e.target.value)}
+            className={classes.form__input}
           ></input>
           <Select
-              defaultValue={options[0]}
-              onChange={(day) => setDay(day.value)}
-              options={options}
+            defaultValue={options[0]}
+            onChange={(day) => setDay(day.value)}
+            options={options}
+            classNamePrefix="react-select"
+            className="react-select-container"
           />
-          <button type="submit">Сохранить</button>
-          <button type="button" onClick={closeModal}>Закрыть</button>
+          <div className={classes.form__button__box}>
+            <button className={classes.form__button} type="submit">Сохранить</button>
+            <button className={classes.form__button} type="button" onClick={closeModal}>
+              Закрыть
+            </button>
+          </div>
         </form>
       </div>
     </Modal>

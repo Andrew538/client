@@ -1,27 +1,16 @@
 import React from 'react'
-import { useContext } from 'react';
-import { Context } from '../../../../..';
-import { fetchCity } from '../../../../http/mapApi';
+import classes from '../ClientModal.module.css'
 
-const ClientsSelect = ({ options, defaultValue, value, onChange }) => {
-   const { users, allcity, allUser } = useContext(Context);
-   function getData (){
-     fetchCity().then((data) => {
-       allcity.SetAllCity(data);
-     });
-   };
+const ClientsSelect = ({ options, defaultValue, value, onChange}) => {
+ 
+
   return (
-     <select 
-     value={value} 
-     onChange={(event) => onChange(event.target.value)}
-     onClick={getData}
-     >
-        <option disabled value="">
-          {defaultValue}
-        </option>
-        {options}
-      </select>
-  )
+    <select 
+     className={classes.modal__select} value={value} onChange={(event) => onChange(event.target.value)}>
+      <option value="">{defaultValue}</option>
+      {options}
+    </select>
+  );
 }
 
 export default ClientsSelect

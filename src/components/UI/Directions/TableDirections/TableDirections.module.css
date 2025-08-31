@@ -1,20 +1,61 @@
 :root {
-    --table-border-color: rgba(213, 218, 218, .2);
+    --table-border-color: rgba(213, 218, 218, .1);
 }
 
 .list {
-
+    background-color: #fff;
+    padding: 10px;
 }
 
 .list__item {
-    border: 1px solid var(--table-border-color);
+    /* border: 1px solid var(--table-border-color); */
 }
 .list__content {
     display: grid;
-    border: 1px solid rgba(19, 19, 233, .3);
+    /* border: 1px solid rgba(19, 19, 233, .3); */
+    border: 1px solid rgba(118, 115, 134, .2);
     grid-template-columns: 150px 250px 250px 300px 300px 200px;
     text-align: left;
     padding: 0px 10px 0px 10px;
     margin: 5px 0px 0px 0px;
     align-items: center;
+}
+.button__box {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+
+.list__item__title {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.accordion__content {
+  padding: 15px;
+  background-color: #fff;
+  overflow: hidden; /* Для плавного раскрытия */
+  max-height: 0;
+  transition: max-height 0.3s ease-out; /* Анимация */
+}
+.title__span {
+    font-size: 20px;
+}
+.list__item__date__box {
+    display: flex;
+}
+.arhive {
+    border: 1px solid #1313e9;
+    margin: 0px auto 0px 10px;
+    right: 0;
+    padding: 4px 8px;
+    border-radius: 10px;
+    transition: all ease-out .3s;
+
+}
+.arhive:hover {
+    background: rgba(19, 19, 233, .5);
+    border: 1px solid transparent;
+    color: rgb(253, 253, 253);
 }

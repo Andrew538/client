@@ -3,15 +3,14 @@ import React from "react";
 import { fetchCity, fetchRegion } from "../../../http/mapApi";
 import { useContext } from "react";
 import { Context } from "../../../..";
+import classes from '../CityModal.module.css' 
 
 const CitySelect = observer(
   ({ options, defaultValue, value, onChange }) => {
- const { users, allcity, allUser, alldirection } = useContext(Context);
+ const {alldirection } = useContext(Context);
 
  function getCity (){
-   fetchCity().then((data) => {
-     allcity.SetAllCity(data);
-   });
+  
    fetchRegion().then((data) => {
     alldirection.SetAllDirection(data)
    })
@@ -22,6 +21,7 @@ const CitySelect = observer(
       value={value} 
       onChange={(event) => onChange(event.target.value)}
       onClick={getCity}
+       className={classes.celect}
       >
         <option disabled value="">
           {defaultValue}

@@ -2,91 +2,55 @@ import { observer } from 'mobx-react-lite'
 import React from 'react'
 import classNames from 'classnames';
 import classes from './TableDirections.module.css'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import './Direction.css'
 import HeaderTabelDirections from './HeaderTabelDirections/HeaderTabelDirections';
 import ButtonDelivery from '../../Delivery/ButtonDelivery/ButtonDelivery';
+import ButtonUpdateClient from '../../ModalUpdateClient/ButtonUpdateClient';
+import ButtonDeleteClient from '../../ButtonDelete/ButtonDeleteClient/ButtonDeleteClient';
+
+const TableDirections = observer(({ direction, id }) => {
 
 
-
-const TableDirections = observer(({direction}) => {
-
-  // const [cl, setCl] = useState()
-  
-
-
-  // useEffect(() => {
-   
-  // direction.direction.map((i) => {
- 
-  //    i.city.map((n) => {
-
-  //     n.client.map((k) =>{
-  //            setCl(k)
-
-  //     })
-  //    })
-  // })
-   
-  // }, [direction.direction, cl,])
-  
-// console.log(direction.direction.map((i) => {
-//    console.log(i.region)
-//     i.city.map((n) => {
-//      console.log(n)
-//      n.client.map((k) =>{
-//             setCl(k.client)
-//
-//      })
-//     })
-//  }))
 
 
   return (
     <div>
-        <ul className={classes.list}>
+      <ul className={classes.list}>
         {direction.direction.map((i) => (
-          
-          //  cl ?
-           <li key={i.id} className={classes.list__item}>
-            <h4>{i.region}</h4>
-            {i.city.map((m) => (
+          <li key={i.id} className={classes.list__item}>
+            <h4>Направление : <span className={classes.title__stan}>{i.region}</span></h4>
+            {i.city.slice().sort((a, b) => a.city > b.city ? 1 : -1).map((m) => (
               <div key={m.id}>
-                <h6 className={classes.title}><span className={classes.title__span}>Город доставки:</span> {m.city}</h6>
-                  <HeaderTabelDirections/>
-                {m.client.map((k) => (              
-                  
-                  <div className={classNames(classes.list__content)}  key={k.id}>                             
-                    <p >{k.payment}</p>
-                    <p >{k.client}</p>
-                    <p >{k.address}</p>
-                    <p >{k.contact}</p>
-                    <p>{k.comment}</p>
-
-                    <div>
-                     <ButtonDelivery clientId={k.id}/>
-
+                <h6 className={classes.title}>                 
+                  {m.city}
+                </h6>
+                <HeaderTabelDirections />
+                {m.client.slice().sort((a, b) => a.client - b.client).map((k) => (
+                    <div
+                      className={classNames(classes.list__content)}
+                      key={k.id}
+                    >
+                      <p>{k.payment}</p>
+                      <p>{k.client}</p>
+                      <p>{k.address}</p>
+                      <p>{k.contact}</p>
+                      <p>{k.comment}</p>                    
+                        <div className={classes.button__box}>
+                          <ButtonDelivery clientId={k.id} cityid={k.cityid}/>
+                          <ButtonUpdateClient clientId={k.id} manager={id} />
+                          <ButtonDeleteClient clientid={k.id}/>
+                        </div>
+                      
                     </div>
-
-                  </div>
+                  ))}
                 
-                )
-                
-                )}
-                <div>
-                 
-                </div>
               </div>
             ))}
-
           </li>
-        //  :
-        //  <div key={i.id}>Привет</div>
-        
         ))}
       </ul>
     </div>
-  )
-})
+  );
+});
 
-export default TableDirections
+export default TableDirections;

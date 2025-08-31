@@ -54,9 +54,12 @@ export const delExam = async (id) => {
   
 }
 
+
+
+
 export const updateRecord = async (id, result, statusExam) => {
     const {data} = await $authHost.post('api/examination/upgrade', {
-     id, result,    statusExam
+     id, result, statusExam
     })
   
   return data
