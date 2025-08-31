@@ -7,9 +7,8 @@ import ExportToExcel from '../../SaveExcel/ExportToExcel';
 import ButtonDeleteDelivery from '../../ButtonDelete/ButtonDeleteDelivery/ButtonDeleteDelivery';
 import ButtonDeleteClient from '../../ButtonDelete/ButtonDeleteClient/ButtonDeleteClient';
 import ChangeStatusButton from '../ChangeStatusButton/ChangeStatusButton';
-import ButtonUpdateClient from '../../ModalUpdateClient/ButtonUpdateClient';
 import ButtonUpdateClientReady from '../../ModalUpdateClientRady/ButtonUpdateClientReady';
-import ButtonExportToExcel from '../../SaveExcel/ButtonExportToExcel';
+
 
 
 
