@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ExcelJS from 'exceljs';
+import{ ExcelJS }from 'exceljs';
 import { saveAs } from 'file-saver';
-import { Context } from '../../..';
-import { fetchDeliveryRedy, fetchOneDelivery } from '../../http/mapApi';
-import { observer } from 'mobx-react-lite';
+import { fetchOneDelivery } from '../../http/mapApi';
 
-const ExportToExcel = observer(({ fileName, id }) => {
+
+const ExportToExcel = ({ fileName, id }) => {
 
   // const Export = async () => {
     
@@ -100,6 +99,6 @@ const ExportToExcel = observer(({ fileName, id }) => {
   return (
     <button onClick={exportExcel}>Скачать карту доставки {fileName}</button>
   );
-});
+};
 
 export default ExportToExcel;
