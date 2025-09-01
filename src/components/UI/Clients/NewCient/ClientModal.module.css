@@ -1,14 +1,19 @@
 .modal__wrapper {
     display: flex;
-    justify-self: center;
+    justify-content: center;
+
+}
+.modal__box{
      background-color: rgb(193, 223, 223);
  padding: 20px;
+
 }
 .modal__content {
     display: flex;
-    width: 700px;
+    width: 750px;
     height: 450px;
     justify-content: space-between;
+     background-color: rgb(193, 223, 223);
    
     
 }

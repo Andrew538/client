@@ -229,7 +229,7 @@ useEffect(() => {
 
 
 
-}, [show, todaysdate,regionid]); 
+}, [show,  ]); 
  
 
 

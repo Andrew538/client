@@ -127,7 +127,7 @@ const ClientModal = observer(({ show, onHide, props }) => {
     ));
   }
    
-  }, [ options ,allcity.allcity, ]);
+  }, [ options, directionid ,allcity.allcity,alldirection.alldirection ]);
 
 
   
@@ -155,9 +155,11 @@ const ClientModal = observer(({ show, onHide, props }) => {
     >
       <div className={classes.modal__wrapper}>
         <form className={classes.modal__form} onSubmit={addClient}>
-          <h1 className={classes.modal__title}>Добавить клиента</h1>
           <div className={classes.modal__box}>
+                      <h1 className={classes.modal__title}>Добавить клиента</h1>
+
             <div className={classes.modal__content}>
+
               <div className={classes.modal__content__left}>
                 <label className={classes.modal__label}>
                   Название организации

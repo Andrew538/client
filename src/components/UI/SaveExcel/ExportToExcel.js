@@ -1,5 +1,5 @@
-// import ExcelJS from 'exceljs';
- import * as ExcelJS from 'exceljs';
+import ExcelJS from 'exceljs';
+//  import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { fetchOneDelivery } from '../../http/mapApi';
 

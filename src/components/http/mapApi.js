@@ -1,6 +1,6 @@
 import { $authHost, $host } from "./index";
 import { jwtDecode } from "jwt-decode";
-
+// Есть 
 export const createRegion = async (region, day, userid) => {
 
     const { data } = await $authHost.post("api/direction/newdirection", {
@@ -13,6 +13,7 @@ export const createRegion = async (region, day, userid) => {
 
 };
 
+//Есть
 export const createClient = async (client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment ) => {
     const {data} = await $authHost.post('api/direction/newclient', {client, payment, address, contact, directionid, manager, cityid, weightusedbattery, weightnewbatteries, comment})
    return data
@@ -95,12 +96,14 @@ export const addStatusDelivery = async (id, statusDelivery) => {
   return data
 }
 
-
+//УЖЕ ЕСТЬ
 export const fetchRegion = async (  ) => {
     const {data} = await $authHost.get('api/direction/allregions')
    
     return data
 }
+
+// ----------------------------------//
 export const fetchOneRegion = async ( id ) => {
     const {data} = await $authHost.get('api/direction/oneregions', {params: {id}})
   //  console.log(data)
@@ -155,7 +158,7 @@ export const fetchDeliveryRedy = async () => {
 }
 
 // fetchDeliveryRedy()
-
+//ЕСТЬ
 export const fetchCity = async ( directionid) => {
 
   const {data} = await $authHost.get('api/direction/getallcity', {params:{directionid}})
@@ -164,6 +167,8 @@ export const fetchCity = async ( directionid) => {
 
     
 }
+
+// ----------------------------//
 
 export const fetchCitysOfDay = async (day) => {
   const {data} = await $authHost.get('api/direction/getcitysofday', {params:{day}})

@@ -46,7 +46,7 @@ export const allUsers = async () => {
 
 
 export const addNewUserinDirections = async (userid) => {
-    const {data} = await $authHost.post('api/user/addnewuserindirections', {userid})
+    const {data} = await $authHost.post('api/user/addneuserindirections', {userid})
    return data
 }
 
