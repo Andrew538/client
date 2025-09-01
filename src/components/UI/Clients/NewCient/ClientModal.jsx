@@ -94,27 +94,27 @@ const ClientModal = observer(({ show, onHide, props }) => {
       // );
       // console.log(allDirection)
 
-      fetchCity(Number(directionid)).then((data) => {
-        allcity.SetAllCity(data);
-       
-      });
+      
 
       const newDirection = alldirection.alldirection.map((item) => {
         return item;
       });
 
       setListDirection(newDirection);
-
+      fetchCity(Number(directionid)).then((data) => {
+        allcity.SetAllCity(data);
+       
+      });
       return listDirection.map((item) => (
         <option key={item.id} value={item.id}>
           {item.region}
         </option>
       ));
-    }, [alldirection.alldirection, show]);
+    }, [alldirection.alldirection, show, directionid]);
 
   let optionsAllCity = useMemo(() => {
 
-  if(options) {
+  if(options.length) {
   
  const newAllCity = allcity.allcity.map((item) => {
       return item;
@@ -127,7 +127,7 @@ const ClientModal = observer(({ show, onHide, props }) => {
     ));
   }
    
-  }, [ options, directionid ,allcity.allcity,alldirection.alldirection ]);
+  }, [ options, allcity.allcity,]);
 
 
   
