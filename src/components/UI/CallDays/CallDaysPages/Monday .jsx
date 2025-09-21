@@ -23,9 +23,9 @@ const Monday = observer(({ id }) => {
       setLoading(true);
       try {
         let userid = Number(id);
-       await fetchDeliveryRedy().then((data) => {
-          // console.log(data)
-        });
+        // await fetchDeliveryRedy().then((data) => {
+        //   // console.log(data)
+        // });
 
         let day = number + 1;
         await fetchDay(userid, day).then((data) => {
@@ -41,10 +41,10 @@ const Monday = observer(({ id }) => {
     // check().then((data) =>{
     //  setUserId(Number(data.id))
     // })
-  }, [direction, number, id,]);
+  }, [direction, number, id]);
 
-  if(loading) {
-   return  <Loader/>
+  if (loading) {
+    return <Loader />;
   }
 
   return (

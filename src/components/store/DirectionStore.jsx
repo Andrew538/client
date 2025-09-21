@@ -7,7 +7,11 @@ export default class DirectionStore {
     this._allcity = [];
     this._ready = [];
     this._arhivedelivery = [];
+    this._totalweghtnewofcity = ''
+    this._totalweghtnewofdirections = ''
+    this._totalweghtused = ''
 
+ 
     makeAutoObservable(this);
   }
 
@@ -20,7 +24,7 @@ export default class DirectionStore {
     this._alldirection = alldirection
   }
 
-    SetAllCity(allcity) {
+  SetAllCity(allcity) {
     // this._allcity = allcity.sort((a, b) => a.city.toLowerCase() > b.city.toLowerCase() ? 1 : -1);
     this._allcity = allcity
   }
@@ -29,8 +33,12 @@ export default class DirectionStore {
     this._ready = ready
   }
 
-   SetArhiveDelivery(arhivedelivery) {
+  SetArhiveDelivery(arhivedelivery) {
     this._arhivedelivery = arhivedelivery
+  }
+
+   SetTotalWeghtNewOfCity (totalweghtnewofcity) {
+    this._totalweghtnewofcity = totalweghtnewofcity
   }
 
   get direction() {
@@ -49,7 +57,11 @@ export default class DirectionStore {
   get ready() {
     return this._ready
   }
-    get arhivedelivery() {
+  get arhivedelivery() {
     return this._arhivedelivery
+  }
+
+   get totalweghtnewofcity() {
+    return this._totalweghtnewofcity
   }
 }

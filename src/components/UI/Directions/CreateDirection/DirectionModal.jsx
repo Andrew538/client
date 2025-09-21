@@ -82,10 +82,11 @@ const DirectionModal = observer(({ show, onHide, props }) => {
             className="react-select-container"
           />
           <div className={classes.form__button__box}>
-            <button className={classes.form__button} type="submit">Сохранить</button>
             <button className={classes.form__button} type="button" onClick={closeModal}>
               Закрыть
             </button>
+            <button className={classes.form__button} type="submit">Сохранить</button>
+
           </div>
         </form>
       </div>

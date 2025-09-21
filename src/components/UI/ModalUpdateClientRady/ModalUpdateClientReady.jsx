@@ -5,15 +5,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { Context } from '../../..';
-import classes from './ModalUpdateClient.module.css'
+import classes from './ModalUpdateClientReady.module.css'
 import Button from 'react-bootstrap/esm/Button';
 import { fetchDeliveryRedy, fetchOneClientDeliveryReady, updateClientDelivery } from '../../http/mapApi';
 const ModalUpdateClientReady = observer(( {show, onHide,  props}) => {
-
-  // console.log(props)
-
-
-  const {ready} = useContext(Context);
+    const {ready} = useContext(Context);
 
     const [payment, setPayment] = useState("");
     const [client, setClient] = useState("");
@@ -24,12 +20,12 @@ const ModalUpdateClientReady = observer(( {show, onHide,  props}) => {
     const [contact, setContact] = useState("");
     const [weightusedbattery, setWeightUsedBattery] = useState(0);
     const [weightnewbatteries, setWeightNewBatteries] = useState(0);
-    const [comment, setCmoment] = useState("");        
+    const [comment, setCmoment] = useState("");
+    const [priceofusedbattery, setPriceUsed] = useState("");        
     const [data, setData] = useState({});
     const [statusOfDelivery, setStatusDelivery] = useState("Dlivery");
     const [error, setError] = useState("");
-      // console.log(weightnewbatteries, weightusedbattery)
-
+ 
 
   function pay() {
     if (payment === "") {
@@ -99,14 +95,21 @@ function deliveryWeightUsedBattery() {
       return commentDelivery;
     }
   }
-
+  function priceUsed() {
+    if (priceofusedbattery === '') {
+      const priceUsed = data.priceofusedbattery;
+      return priceUsed;
+    } else {
+      const priceUsed = priceofusedbattery;
+      return priceUsed;
+    }
+  }
     useEffect(() => {
       let id = +props;
-      console.log(id)
+  
       try {
         if (show && props) {
           fetchOneClientDeliveryReady(id).then((data) => {
-            console.log(data)
           setData(data);
           setCityId(data.cityid);
           setManager(data.manager);
@@ -122,11 +125,9 @@ function deliveryWeightUsedBattery() {
 
     function update() {
       fetchDeliveryRedy().then((data) => {
-             ready.SetReady(data);
-           });
-    //  fetchDay(userid, day).then((data) => {
-     //   direction.SetDirection(data);
-    //  });
+      ready.SetReady(data);
+    });
+
     }
 
 
@@ -144,6 +145,8 @@ function deliveryWeightUsedBattery() {
       const weightusedbattery =  deliveryWeightUsedBattery();
       const weightnewbatteries =  deliveryWeightNewBatteries();
       const comment = commentDelivery();
+    const priceofusedbattery = priceUsed()
+
       const updateOneClient = await updateClientDelivery(
         id,
         payment,
@@ -153,15 +156,16 @@ function deliveryWeightUsedBattery() {
         directionid,
         manager,
         cityid,
-         weightusedbattery,
+        weightusedbattery,
         weightnewbatteries,
         comment,
+      priceofusedbattery
        
       );
       //  console.log(updateOneClient)
       if ( updateOneClient) {
     
-        update()
+        update();
         setClient("");
         setPayment("");
         setAddress("");
@@ -169,10 +173,10 @@ function deliveryWeightUsedBattery() {
         setCmoment("");
         setCityId("");
         setManager("");
-          setWeightNewBatteries("");
-      setWeightUsedBattery("");
+        setWeightNewBatteries("");
+        setWeightUsedBattery("");
         onHide();
-        setError('')
+        setError("");
       }
     } catch (error) {
       // setError(error.response.data.message)
@@ -206,69 +210,94 @@ function deliveryWeightUsedBattery() {
         <div>{error}</div>
         <form className={classes.modal__box} onSubmit={addDelivery}>
           <h2 className={classes.modal__title}>Данные для доставки</h2>
-          <div className={classes.madal__content}>
-            <div className={classes.modal__left}>
-              <label className={classes.modal__label} htmlFor="">
+          <div className={classes.modal__content}>
+            <div className={classes.modal__content__left}>
+              <label className={classes.modal__label}>
                 Способ оплаты
+                <input
+                  className={classes.modal__input}
+                  type="text"
+                  placeholder={data.payment}
+                  value={payment}
+                  onChange={(e) => setPayment(e.target.value)}
+                />
               </label>
-              <input
-                className={classes.modal__input}
-                type="text"
-                placeholder={data.payment}
-                value={payment}
-                onChange={(e) => setPayment(e.target.value)}
-              />
-              <label className={classes.modal__label} htmlFor="">
-                Клиент
-              </label>
-              <input
-                className={classes.modal__input}
-                type="text"
-                placeholder={data.client}
-                value={client}
-                onChange={(e) => setClient(e.target.value)}
-              />
-              <label className={classes.modal__label} htmlFor="">
-                Адрес доставки
-              </label>
-              <input
-                className={classes.modal__input}
-                type="text"
-                placeholder={data.address}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <label className={classes.modal__label} htmlFor="">
-                Контакты
-              </label>
-              <input
-                className={classes.modal__input}
-                type="text"
-                placeholder={data.contact}
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-              />
 
-              <input
-                placeholder={data.weightnewbatteries}
-                type="number"
-                onChange={(e) => setWeightNewBatteries(e.target.value)}
-              />
-              <input
+              <label className={classes.modal__label}>
+                Клиент
+                <input
+                  className={classes.modal__input}
+                  type="text"
+                  placeholder={data.client}
+                  value={client}
+                  onChange={(e) => setClient(e.target.value)}
+                />
+              </label>
+
+              <label className={classes.modal__label}>
+                Адрес доставки
+                <textarea
+                  className={classes.modal__textarea}
+                  type="text"
+                  placeholder={data.address}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </label>
+
+              <label className={classes.modal__label}>
+                Контакты
+                <textarea
+                  className={classes.modal__textarea}
+                  type="text"
+                  placeholder={data.contact}
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className={classes.modal__content__right}>
+              <label className={classes.modal__label}>
+                Вес новых АКБ
+                <input
+                 className={classes.modal__input}
+                  placeholder={data.weightnewbatteries}
+                  type="number"
+                  onChange={(e) => setWeightNewBatteries(e.target.value)}
+                />
+              </label>
+              <label className={classes.modal__label}>
+                Вес Б/У АКБ
+                <input
+                 className={classes.modal__input}
                 placeholder={data.weightusedbattery}
                 type="number"
                 onChange={(e) => setWeightUsedBattery(e.target.value)}
               />
-              <label className={classes.modal__label} htmlFor="">
-                Комментарий
               </label>
-              <input
+              
+              <label className={classes.modal__label} >
+                Цена бу
+                <input
                 className={classes.modal__input}
+                type="text"
+                placeholder={data.priceofusedbattery}
+                value={priceofusedbattery}
+                onChange={(e) => setPriceUsed(e.target.value)}
+              />
+              </label>
+              
+              <label className={classes.modal__label} >
+                Комментарий
+                <textarea
+                className={classes.modal__textarea}
                 type="text"
                 placeholder={data.comment}
                 value={comment}
                 onChange={(e) => setCmoment(e.target.value)}
               />
+              </label>
+              
             </div>
           </div>
 

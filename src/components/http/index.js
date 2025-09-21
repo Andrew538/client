@@ -1,4 +1,5 @@
 import axios from "axios";
+
 //  const $host = axios.create({
 //       baseURL: process.env.REACT_APP_API_URL })  
       
@@ -8,7 +9,7 @@ import axios from "axios";
 
    const $host = axios.create({
      proxy: {
-        host: "45.146.165.155:5000/",
+        host: "5.35.95.57:5000/",
         port: 80,
       protocol: "http",
     },
@@ -16,7 +17,7 @@ import axios from "axios";
 
   const $authHost = axios.create({
     proxy: {
-      host: "45.146.165.155:5000/",
+      host: "5.35.95.57:5000/",
       port: 80,
       protocol: "http",
     },

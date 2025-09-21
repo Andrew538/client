@@ -10,7 +10,7 @@ const ButtonUpdateClientRady = ({clientidRady }) => {
 
 
   return (
-    <div>
+    <>
       <button
         className={classes.button__update}
         onClick={() => {
@@ -23,7 +23,7 @@ const ButtonUpdateClientRady = ({clientidRady }) => {
         show={modalDelivery}
         onHide={() => setModalDelivery(false)}
       />
-    </div>
+    </>
   );
 }
 

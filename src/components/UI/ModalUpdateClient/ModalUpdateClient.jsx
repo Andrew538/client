@@ -12,22 +12,23 @@ import { Context } from '../../..';
 
 const ModalUpdateClient = observer(({show, onHide,  props,}) => {
      
-    const {direction} = useContext(Context);
-    let managerid = localStorage.getItem("c");
-    let number = localStorage.getItem("numberTabDay");
-    const [payment, setPayment] = useState("");
-    const [client, setClient] = useState("");
-    const [cityid, setCityId] = useState("");
-    const [region, setRegion] = useState('')
-    const [address, setAddress] = useState("");
-    const [manager, setManager] = useState();
-    const [contact, setContact] = useState("");
-    const [comment, setCmoment] = useState("");
-    const [data, setData] = useState({});
-    const [statusOfDelivery, setStatusDelivery] = useState("Dlivery")
-    const [error, setError] = useState('')
+  const {direction} = useContext(Context);
+  let managerid = localStorage.getItem("c");
+  let number = localStorage.getItem("numberTabDay");
+  const [payment, setPayment] = useState("");
+  const [client, setClient] = useState("");
+  const [cityid, setCityId] = useState("");
+  const [region, setRegion] = useState('')
+  const [address, setAddress] = useState("");
+  const [manager, setManager] = useState();
+  const [contact, setContact] = useState("");
+  const [comment, setCmoment] = useState("");
+  const [priceofusedbattery, setPriceUsed] = useState("");
+  const [data, setData] = useState({});
+  const [statusOfDelivery, setStatusDelivery] = useState("Dlivery")
+  const [error, setError] = useState('')
 
-  
+  console.log(priceofusedbattery)
  
   function pay() {
     if (payment === "") {
@@ -69,7 +70,6 @@ const ModalUpdateClient = observer(({show, onHide,  props,}) => {
     }
   }
 
-
   function commentDelivery() {
     if (comment === '') {
       const commentDelivery = data.comment;
@@ -80,6 +80,17 @@ const ModalUpdateClient = observer(({show, onHide,  props,}) => {
     }
   }
 
+  
+  function priceUsed() {
+    if (priceofusedbattery === '') {
+      const priceUsed = data.priceofusedbattery;
+      return priceUsed;
+    } else {
+      const priceUsed = priceofusedbattery;
+      return priceUsed;
+    }
+  }
+
 
     useEffect(() => {
       let id = +props;
@@ -87,7 +98,7 @@ const ModalUpdateClient = observer(({show, onHide,  props,}) => {
       try {
         if (show && props) {
           fetchOneClient(id).then((data) => {
-     
+            console.log(data)
             setData(data);
             setCityId(data.cityid);
             setManager(data.manager);
@@ -117,8 +128,10 @@ const addDelivery = async (e) => {
     const contact = clientСontact()
     const directionid = +region
     const comment = commentDelivery()
+    const priceofusedbattery = priceUsed()
+    console.log(comment)
     const updateOneClient = await updateClient(
-        id,
+      id,
       payment,
       client,
       address,
@@ -127,8 +140,9 @@ const addDelivery = async (e) => {
       manager,
       cityid,
       comment,
+      priceofusedbattery
     );
-    //  console.log(newDelivery)
+     console.log(updateOneClient)
     if ( updateOneClient) {
         
       const id = +props
@@ -174,11 +188,11 @@ const closeModal =() => {
       centered
     >
       <div className={classes.modal__wrapper}>
-      <div>{error}</div>
+        <div>{error}</div>
         <form className={classes.modal__box} onSubmit={addDelivery}>
           <h2 className={classes.modal__title}>Данные для доставки</h2>
-          <div className={classes.madal__content}>
-            <div className={classes.modal__left}>
+          <div className={classes.modal__content}>
+            <div className={classes.modal__content__left}>
               <label className={classes.modal__label} htmlFor="">
                 Способ оплаты
               </label>
@@ -191,53 +205,73 @@ const closeModal =() => {
               />
               <label className={classes.modal__label} htmlFor="">
                 Клиент
-              </label>
-              <input
+                <input
                 className={classes.modal__input}
                 type="text"
                 placeholder={data.client}
                 value={client}
                 onChange={(e) => setClient(e.target.value)}
               />
+              </label>
+              
               <label className={classes.modal__label} htmlFor="">
                 Адрес доставки
-              </label>
-              <input
-                className={classes.modal__input}
+                <textarea
+                className={classes.modal__textarea}
                 type="text"
                 placeholder={data.address}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
+              </label>
+              
               <label className={classes.modal__label} htmlFor="">
                 Контакты
-              </label>
-              <input
-                className={classes.modal__input}
+                <textarea
+                className={classes.modal__textarea}
                 type="text"
                 placeholder={data.contact}
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
               />
+              </label>
+              
+            </div>
+            <div  className={classes.modal__content__right }> 
+              <label className={classes.modal__label} htmlFor="">
+                Цена Б/У
+                 <input
+                className={classes.modal__input}
+                type="text"
+                placeholder={data.priceofusedbattery}
+                value={priceofusedbattery}
+                onChange={(e) => setPriceUsed(e.target.value)}
+              />
+              </label>
+
               <label className={classes.modal__label} htmlFor="">
                 Комментарий
-              </label>
-              <input
-                className={classes.modal__input}
+                <textarea
+                className={classes.modal__textarea}
                 type="text"
                 placeholder={data.comment}
                 value={comment}
                 onChange={(e) => setCmoment(e.target.value)}
               />
-
+              </label>
+              
+              
+             
             </div>
           </div>
 
-          <div className={classes.modal__btn_box}>          
-            <Button className={classes.modal__btn}  onClick={closeModal}>
+          <div className={classes.modal__btn_box}>
+            <Button className={classes.modal__btn} onClick={closeModal}>
               Закрыть
-            </Button>           
-             <button className={classes.modal__btn} type='submit'>Сохранить</button>            
+            </Button>
+            <button className={classes.modal__btn} type="submit">
+              Сохранить
+            </button>
           </div>
         </form>
       </div>

@@ -85,6 +85,7 @@ root.render(
         examinationarhive: new GuaranteeStore(),
         examinationready: new GuaranteeStore(),
         examinationcharger: new GuaranteeStore(),
+        totalweghtnewofcity: new DirectionStore()
         }}>
           <App />
 

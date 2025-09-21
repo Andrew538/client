@@ -10,32 +10,50 @@ import { useState } from 'react'
 import ManagersOptList from '../../ManagersOptList/ManagersOptList'
 import ButtonCreateShipment from '../../ButtonCreateShipment/ButtonCreateShipment'
 import ModalCreateShipment from '../../ButtonCreateShipment/ModalCreateShipment'
+import Loader from '../../Loader/Loader'
 
 const Tuesday = observer(({ id }) => {
   const { direction } = useContext(Context);
   let number = localStorage.getItem("numberTabDay");
-    const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+      const [loading, setLoading] = useState(false)
+  
   // console.log(id)
   useEffect(() => {
-    let days = 1;
-    let userid = id;
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        let days = 1;
+      let userid = id;
 
-    let day = Number(number) + days;
+      let day = Number(number) + days;
 
-    fetchDay(userid, day).then((data) => {
-      direction.SetDirection(data);
-    });
+      await fetchDay(userid, day).then((data) => {
+        direction.SetDirection(data);
+      });
+      } catch (error) {
+        
+      } finally {
+        setLoading(false);
+
+      }
+      
+    };
+    fetchData();
   }, [direction, number, id]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
 
   return (
     <div>
-           <ButtonCreateShipment
-         openModal={setModalShow}
-      />
+      <ButtonCreateShipment openModal={setModalShow} />
       <ModalCreateShipment
-      days={number}
-      show={modalShow} 
-          onHide={() => setModalShow(false)} 
+        days={number}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
       />
       <TableDirections direction={direction} />
     </div>

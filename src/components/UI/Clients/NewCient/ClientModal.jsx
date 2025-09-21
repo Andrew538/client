@@ -25,6 +25,8 @@ const ClientModal = observer(({ show, onHide, props }) => {
   const [getCity, setGetCity] = useState([])
   const [directionid, setDirectionid] = useState("");
   const [comment, setCmoment] = useState("");
+  const [priceofusedbattery, setPriceOfUsedBattery] = useState("");
+
   const [listCity, setListCity] = useState([]);
   const [listManager, setListManager] = useState([]);
   const [listDirection, setListDirection] = useState([]);
@@ -35,7 +37,7 @@ const ClientModal = observer(({ show, onHide, props }) => {
       try {
       const weightusedbattery = 0
       const  weightnewbatteries = 0
-      const newClient = await createClient(client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment )
+      const newClient = await createClient(client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment, priceofusedbattery )
         let userid = Number(managerid);
 
         let day = Number(number) + 1;
@@ -156,7 +158,7 @@ const ClientModal = observer(({ show, onHide, props }) => {
       <div className={classes.modal__wrapper}>
         <form className={classes.modal__form} onSubmit={addClient}>
           <div className={classes.modal__box}>
-                      <h1 className={classes.modal__title}>Добавить клиента</h1>
+              <h1 className={classes.modal__title}>Добавить клиента</h1>
 
             <div className={classes.modal__content}>
 
@@ -232,10 +234,10 @@ const ClientModal = observer(({ show, onHide, props }) => {
               </div>
             </div>
             <div className={classes.modal__btn_box}>
-              <button className={classes.modal__btn} type="submit">Сохранить</button>
               <button className={classes.modal__btn} type="button" onClick={closeModal}>
-                Закрыть
-              </button>
+                Закрыть </button>
+              <button className={classes.modal__btn} type="submit">Сохранить</button>
+
             </div>
           </div>
         </form>

@@ -30,11 +30,12 @@ const TableDirections = observer(({ direction, id }) => {
                       className={classNames(classes.list__content)}
                       key={k.id}
                     >
-                      <p>{k.payment}</p>
-                      <p>{k.client}</p>
-                      <p>{k.address}</p>
-                      <p>{k.contact}</p>
-                      <p>{k.comment}</p>                    
+                      <p className={classNames(classes.list__text)}>{k.payment}</p>
+                      <p className={classNames(classes.list__text)}>{k.client}</p>
+                      <p className={classNames(classes.list__text)}>{k.address}</p>
+                      <p className={classNames(classes.list__text)}>{k.contact}</p>
+                      <p className={classNames(classes.list__text)}>{k.comment}</p>
+                      <p className={classNames(classes.list__text)}>{k.priceofusedbattery}</p>                    
                         <div className={classes.button__box}>
                           <ButtonDelivery clientId={k.id} cityid={k.cityid}/>
                           <ButtonUpdateClient clientId={k.id} manager={id} />

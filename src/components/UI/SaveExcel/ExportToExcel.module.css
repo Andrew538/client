@@ -1,0 +1,17 @@
+.button__export{
+    min-width: 200px;
+    height: 32px;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    border: 2px solid rgb(19, 19, 233);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 16px ;
+    transition: all ease-in .2s;
+}
+.button__export:hover {
+    background: rgba(19, 19, 233, .5);
+    border: 2px solid transparent;
+    color: rgb(253, 253, 253);
+}

@@ -14,8 +14,8 @@ export const createRegion = async (region, day, userid) => {
 };
 
 //Есть
-export const createClient = async (client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment ) => {
-    const {data} = await $authHost.post('api/direction/newclient', {client, payment, address, contact, directionid, manager, cityid, weightusedbattery, weightnewbatteries, comment})
+export const createClient = async (client, payment, address, contact, directionid, manager, cityid,  weightusedbattery, weightnewbatteries, comment, priceofusedbattery ) => {
+    const {data} = await $authHost.post('api/direction/newclient', {client, payment, address, contact, directionid, manager, cityid, weightusedbattery, weightnewbatteries, comment, priceofusedbattery})
    return data
 }
 
@@ -65,20 +65,20 @@ export const createCityDirectionsRady = async (cId, dirId) => {
    
 }
 
-export const createDelivery = async (payment, client,  address, contact, directionid, manager, cityid, clientid, weightusedbattery, weightnewbatteries, comment, dateofcreation, directionsredyid, citydirectionsradyId) => {
-   const {data} = await $authHost.post('api/direction/newdelivery', {payment, client,  address, contact, directionid, manager,cityid, clientid, weightusedbattery, weightnewbatteries, comment, dateofcreation, directionsredyid, citydirectionsradyId})
+export const createDelivery = async (payment, client,  address, contact, directionid, manager, cityid, clientid, weightusedbattery, weightnewbatteries, comment, dateofcreation, directionsredyid, citydirectionsradyId, priceofusedbattery) => {
+   const {data} = await $authHost.post('api/direction/newdelivery', {payment, client,  address, contact, directionid, manager,cityid, clientid, weightusedbattery, weightnewbatteries, comment, dateofcreation, directionsredyid, citydirectionsradyId, priceofusedbattery})
    return data
   
    
 }
 
-export const updateClient = async (id, payment, client,  address, contact,directionid, manager,cityid,  comment) => {
-    const {data} = await $authHost.post('api/direction/updateclient', {id ,payment, client,  address, contact, directionid, manager,cityid, comment})
+export const updateClient = async (id, payment, client,  address, contact,directionid, manager,cityid,  comment, priceofusedbattery) => {
+    const {data} = await $authHost.post('api/direction/updateclient', {id ,payment, client,  address, contact, directionid, manager,cityid, comment, priceofusedbattery})
    return data
 }
 
-export const updateClientDelivery = async (id, payment, client,  address, contact,directionid, manager,cityid, weightusedbattery, weightnewbatteries, comment) => {
-    const {data} = await $authHost.post('api/direction/updateclientdelivery', {id ,payment, client,  address, contact, directionid, manager,cityid, weightusedbattery, weightnewbatteries, comment})
+export const updateClientDelivery = async (id, payment, client,  address, contact,directionid, manager,cityid, weightusedbattery, weightnewbatteries, comment, priceofusedbattery) => {
+    const {data} = await $authHost.post('api/direction/updateclientdelivery', {id ,payment, client,  address, contact, directionid, manager,cityid, weightusedbattery, weightnewbatteries, comment, priceofusedbattery})
    return data
 }
 
@@ -101,7 +101,7 @@ export const fetchRegion = async (  ) => {
     const {data} = await $authHost.get('api/direction/allregions')
    
     return data
-}
+} 
 
 // ----------------------------------//
 export const fetchOneRegion = async ( id ) => {
@@ -153,7 +153,7 @@ export const fetchDelivery = async () => {
 export const fetchDeliveryRedy = async () => {
     
     const {data} = await $authHost.get('api/direction/getalldeliveryredy')
-
+// console.log(data)
     return data
 }
 
@@ -224,3 +224,15 @@ export const fetchAllUserId = async () => {
  
     return data
 }
+
+// // Для общего веса, пока на трогать
+// export const fetchAllTotal = async () => {
+    
+//     const {data} = await $authHost.get('api/direction/gettotalweightofnew',)
+ 
+//     console.log(data)
+  
+//     return data
+// }
+
+// fetchAllTotal()

@@ -2,6 +2,7 @@ import ExcelJS from 'exceljs';
 //  import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { fetchOneDelivery } from '../../http/mapApi';
+import classes from './ExportToExcel.module.css'
 
 const ExportToExcel = ({ fileName, id }) => {
 
@@ -96,7 +97,7 @@ const ExportToExcel = ({ fileName, id }) => {
 
 
   return (
-    <button onClick={exportExcel}>Скачать карту доставки {fileName}</button>
+    <button className={classes.button__export} onClick={exportExcel}>Скачать карту доставки: {fileName}</button>
   );
 };
 

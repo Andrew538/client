@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { fetchDeliveryRedy, updateDeliveryNumber } from "../../../http/mapApi";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../../..";
-import classes from '../TableDirections/TableDirections.module.css'
+import classes from '../TableReady/TableReady.module.css'
 
 const ChangeStatusButton = observer(({ id }) => {
   const { ready } = useContext(Context);
@@ -27,7 +27,7 @@ const ChangeStatusButton = observer(({ id }) => {
     }
   }, [status]);
 
-  return <button className={classes.arhive} onClick={updateStatus}>В архив</button>;
+  return <button className={classes.button__arhive} onClick={updateStatus}>В архив</button>;
 });
 
 export default ChangeStatusButton;

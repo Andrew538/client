@@ -9,7 +9,7 @@ import { Context } from '../../../..';
 
 const ModalDelivery = observer(({show, onHide,  props,}) => {
 
-    const {allcity, allUser, alldirection, direction} = useContext(Context)
+    const { direction} = useContext(Context)
   
 
   let number = localStorage.getItem("numberTabDay");
@@ -33,6 +33,7 @@ const ModalDelivery = observer(({show, onHide,  props,}) => {
   const [weightnewbatteries, setWeightNewBatteries] = useState(0);
   const [contact, setContact] = useState("");
   const [comment, setCmoment] = useState("");
+  const [priceofusedbattery, setPriceUsed] = useState("");
   const [data, setData] = useState({});
 //  console.log(props)
   const [statusOfDelivery, setStatusDelivery] = useState("")
@@ -105,7 +106,16 @@ const ModalDelivery = observer(({show, onHide,  props,}) => {
       return commentDelivery;
     }
   }
-
+  
+  function priceUsed() {
+    if (priceofusedbattery === '') {
+      const priceUsed = data.priceofusedbattery;
+      return priceUsed;
+    } else {
+      const priceUsed = priceofusedbattery;
+      return priceUsed;
+    }
+  }
 const createCityDireRedy = async (dirId, cId) => {
   const r1 = await fetchOneCityDirectionsRady(dirId, cId);
   if (!r1) {
@@ -123,9 +133,6 @@ const addDelivery = async (e) => {
     const fetch1 = await fetchOneTodaysDirections(regionid, todaysdate)
     const dirId = await fetch1.id
     const cId =  cityid
-     
-  //  console.log(createN(dirId, cId))
-      
     const payment = pay();
     const client = oneClient()
     const address = clientAddress()
@@ -137,6 +144,7 @@ const addDelivery = async (e) => {
     const comment = commentDelivery()
     const dateofcreation = todaysdate
     const citydirectionsradyId = await createCityDireRedy(dirId, cId)
+    const priceofusedbattery = priceUsed()
 
   const newDelivery = await createDelivery(
       payment,
@@ -152,7 +160,8 @@ const addDelivery = async (e) => {
       comment,
       dateofcreation,
       directionsredyid,
-      citydirectionsradyId
+      citydirectionsradyId,
+      priceofusedbattery
     );
    
     if (newDelivery) {
@@ -171,13 +180,7 @@ const addDelivery = async (e) => {
 
     } 
   } catch (error) {
- 
-
     setError(error.response.data.message)
-      // console.log(error)
-
-
-    // console.log(error);
   }
 };
 
@@ -191,20 +194,19 @@ const addDelivery = async (e) => {
 
     useEffect(() => {
       try {
-        if (show ) {
+        if (show) {
           setTodaysDate(dateofcreation);
 
           let id = +props;
-
           fetchOneClient(id).then((data) => {
-            setData(data);
-            setCityId(data.cityid);
-            setManager(data.manager);
-            setRegionId(data.directionid);
+          setData(data);
+          setCityId(data.cityid);
+          setManager(data.manager);
+          setRegionId(data.directionid);
           });
         }
       } catch (error) {}
-    }, [show, props,]);
+    }, [show, props]);
 
     useEffect(() => {
       if (regionid) {
@@ -212,24 +214,21 @@ const addDelivery = async (e) => {
         fetchOneRegion(id).then((data) => {
           setRegion(data.region);
           setDayCall(data.day);
-         
         });
-        
       }
-      
     }, [data, error]); 
 
 useEffect(() => {
   if (regionid && todaysdate) {
     fetchOneTodaysDirections(regionid, todaysdate).then((data) => {
-      setDirectionsRedyid(data.id);
+      if (!data) {
+        alert("Создайт. поставку");
+      } else {
+        setDirectionsRedyid(data.id);
+      }
     });
   }
-
-
-
-
-}, [show,  ]); 
+}, [show, regionid, todaysdate]); 
  
 
 
@@ -343,8 +342,19 @@ const closeModal =() => {
                 value={comment}
                 onChange={(e) => setCmoment(e.target.value)}
               />
+                <label className={classes.modal__label} htmlFor="">
+                Цена бу
+              </label>
+              <input
+                className={classes.modal__input}
+                type="text"
+                placeholder={data.priceofusedbattery}
+                value={priceofusedbattery}
+                onChange={(e) => setPriceUsed(e.target.value)}
+              />
             </div>
            
+            
           </div>
            <div className={classes.modal__btn_box}>
             <Button className={classes.modal__btn}  onClick={closeModal}>

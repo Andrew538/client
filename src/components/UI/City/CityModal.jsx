@@ -94,15 +94,16 @@ const CityModal = observer(({ show, onHide, props }) => {
             className={classes.form__input}
           ></input>
           <div className={classes.form__button__box}>
-            <button className={classes.form__button} type="submit">
-              Сохранить
-            </button>
+           
             <button
               className={classes.form__button}
               type="button"
               onClick={closeModal}
             >
               Закрыть
+            </button>
+             <button className={classes.form__button} type="submit">
+              Сохранить
             </button>
           </div>
         </form>

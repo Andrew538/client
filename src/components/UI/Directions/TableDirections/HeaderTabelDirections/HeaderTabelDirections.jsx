@@ -17,6 +17,8 @@ const HeaderTabelDirections = ({ready, arhive}) => {
           <div className={classes.box__item}>Вес новых</div>
           <div className={classes.box__item}>Вес б/у</div>
           <div className={classes.box__item}>Комментарий</div>
+          <div className={classes.box__item}>Цена б/у</div>
+
         </div>
       ) : (
         <div className={classes.box}>
@@ -25,6 +27,7 @@ const HeaderTabelDirections = ({ready, arhive}) => {
           <div className={classes.box__item}>Адрес доставки</div>
           <div className={classes.box__item}>Контакты</div>
           <div className={classes.box__item}>Комментарий</div>
+          <div className={classes.box__item}>Цена б/у</div>
         </div>
       )}
     </>
