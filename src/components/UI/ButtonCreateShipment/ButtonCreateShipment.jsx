@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { createDeliveryNumber } from '../../http/mapApi';
+import React from "react";
+import classes from './ButtonandModalCreateShipment.module.css'
 
-const ButtonCreateShipment = ({openModal}) => {
 
-   
+const ButtonCreateShipment = ({ openModal }) => {
+  return <button 
+    className={classes.button__create}
+    onClick={() => openModal(true)}>
+      Создать поставку
+    </button>;
+};
 
-    // console.log(newDate)
-  return (
-    <button
-onClick={() => openModal(true)}
-    >Создать поставку</button>
-  )
-}
-
-export default ButtonCreateShipment
+export default ButtonCreateShipment;

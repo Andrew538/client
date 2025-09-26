@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { createDeliveryNumber, createDirectionsRady, fetchCitysOfDay, fetchOneDeliveryNumber, fetchTodaysDirections } from '../../http/mapApi';
-import ButtonAddCityDirections from './ModalAddCityDirections/ButtonAddCityDirections';
-import ModalAddCityDirections from './ModalAddCityDirections/ModalAddCityDirections';
+import classes from './ButtonandModalCreateShipment.module.css'
+
 
 
 
@@ -22,8 +22,8 @@ const ModalCreateShipment = ({ show, onHide, props, days }) => {
   const numberDay = Number(number) + 1;
   const [newDate, setNewDate] = useState("");
   const [today, setToday] = useState(null)
-  const [region, setRegion] = useState('')
-  const [directionid, setDirectionid] = useState(null)
+  // const [region, setRegion] = useState('')
+  // const [directionid, setDirectionid] = useState(null)
   const [deliverynumberid, setDeliveryNumberid] = useState(null)
   const [allDirections, setAllDirections] = useState([])
   console.log(allDirections, today, days)
@@ -140,7 +140,9 @@ const ModalCreateShipment = ({ show, onHide, props, days }) => {
   }, [ dateofcreation, number]);
 
 
-
+const closeModal =() => {
+  onHide()
+}
 
    
 
@@ -153,19 +155,30 @@ const ModalCreateShipment = ({ show, onHide, props, days }) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <div>
-        <h1>Добавить клиента</h1>
-        {/* <ButtonAddCityDirections
-            openModal={setModalShow}/>
-        <ModalAddCityDirections
-          show={modalShow} 
-          onHide={() => setModalShow(false)} 
-        /> */}
-        <form action="">
-          <button type="submit">Сохранить</button>
-          <button onClick={() => NewShipment()} type='button'>Создать поставку</button>
-          <button type="button">Закрыть</button>
-        </form>
+      <div className={classes.modal__wrapper}>
+        <div className={classes.modal__box}>
+          <h1 className={classes.modal__title}>Создать поставку</h1>
+
+          {/* <form action=""> */}
+          {/* <button type="submit">Сохранить</button> */}
+          <div className={classes.modal__btn__box}>
+            <button className={classes.modal__btn} 
+            type="button"
+            onClick={closeModal}
+            >
+              Закрыть
+            </button>
+            <button
+              className={classes.modal__btn}
+              onClick={() => NewShipment()}
+              type="button"
+            >
+              Создать поставку
+            </button>
+          </div>
+        </div>
+
+        {/* </form> */}
       </div>
     </Modal>
   );

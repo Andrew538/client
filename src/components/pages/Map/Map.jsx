@@ -24,6 +24,7 @@ import Ready from '../../UI/CallDays/CallDaysPages/Ready';
 
 
 
+
 const Map = observer(() => {
   const [modalShow, setModalShow] = useState(false);
   const [modalCityShow, setModalCityShow] = useState(false);
@@ -53,12 +54,12 @@ const Map = observer(() => {
   const items = [
     { title: "Понедельник", content: <Monday />, indexd: 0 },
     { title: "Вторник", content: <Tuesday />, indexd: 1 },
-    { title: "Среда", content: <Wednesday />, indexd: 2 },
-    { title: "Четверг", content: <Thursday />, indexd: 3 },
+    { title: "Среда", content: <Thursday />, indexd: 2 },
+    { title: "Четверг", content: <Wednesday/>, indexd: 3 },
     { title: "Пятница", content: <Friday />, indexd: 4 },
     { title: "Готовы к отгрузке", content: <Ready />, indexd: 5 },
     { title: "Архив поставок", content: <SuppliesArchive />, indexd: 6 },
-  ];
+  ]; 
 
   return (
     <div className={classes.box}>

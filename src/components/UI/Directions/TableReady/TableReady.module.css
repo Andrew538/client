@@ -51,6 +51,13 @@
     font-weight: 560;
 }
 
+.list__item__title__box {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
 .box__button__arhive {
     width: 100%;
     display: flex;

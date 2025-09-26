@@ -18,22 +18,11 @@ import { Context } from '../../../..';
 const TableReady = observer(({ready, totalweghtnewofcity }) => {
  
 
-    // const { totalweghtnewofcity } = useContext(Context)
-console.log(totalweghtnewofcity)
-
-const [count, setCount] = useState('')
-
-const tot = (weightnewbatteries) => {
-    return weightnewbatteries
-}
-
-console.log(tot())
-
 useEffect(() => {
       
   ready.ready.map((item) => {
     item.directionsredy.map((d) => {
-      console.log(d.dateofcreation)
+      // console.log(d.dateofcreation)
     })
   })
  
@@ -46,7 +35,7 @@ useEffect(() => {
         {ready.ready.map((i) => (
           <li key={i.id} className={classes.list__item}>
             <div className={classes.box__button__arhive}>
-              <ChangeStatusButton id={i.id}/>
+              <ChangeStatusButton id={i.id} />
             </div>
             {i.directionsredy.map((d) => (
               <div key={d.id} className={classes.list__item__box}>
@@ -59,14 +48,40 @@ useEffect(() => {
                   <div>
                     <h2 className={classes.list__item__title}>
                       Направление доставки {d.region}
+                       <div>
+                          Вес новых акб &nbsp;
+                          {d.weightnewbatteries.reduce((sum, del) => {
+                            return sum + del;
+                          }, 0)}
+                        </div>
+                        <div>
+                          Вес БУ &nbsp;
+                           {d.weightusedbattery.reduce((sum, del) => {
+                            return sum + del;
+                          })}  
+                        </div>
                     </h2>
                   </div>
                   {d.citydirectionsredy.map((c) => (
                     <div key={c.id}>
-                      <h3>
-                        {c.city.city}
-                        {/* {c.delivery.map((dc) => tot(dc.weightnewbatteries))} */}
-                      </h3>
+                      <div className={classes.list__item__title__box}>
+                        <h3>{c.city.city}
+                                           
+                        </h3>
+                        <span>
+                          Вес новых акб &nbsp;
+                          {c.weightnewbatteries.reduce((sum, del) => {
+                            return sum + del;
+                          }, 0)}
+                        </span>
+                        <div>
+                          Вес БУ &nbsp;
+                           {c.weightusedbattery.reduce((sum, del) => {
+                            return sum + del;
+                          })}  
+                        </div>
+                      </div>
+
                       <HeaderTabelDirections ready={ready} />
 
                       {c.delivery.map((d) => (

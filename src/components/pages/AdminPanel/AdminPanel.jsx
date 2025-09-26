@@ -21,7 +21,7 @@ function AdminPanel() {
      
       console.log(data)
       if(data) {
- const userid = await data
+      const userid = await data
      const addID = await addNewUserinDirections(userid)
 
      if(addID) {

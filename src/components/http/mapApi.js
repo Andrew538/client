@@ -153,7 +153,7 @@ export const fetchDelivery = async () => {
 export const fetchDeliveryRedy = async () => {
     
     const {data} = await $authHost.get('api/direction/getalldeliveryredy')
-// console.log(data)
+console.log(data)
     return data
 }
 

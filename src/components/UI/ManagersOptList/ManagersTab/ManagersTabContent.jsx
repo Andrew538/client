@@ -18,8 +18,8 @@ const ManagersTabContent = observer(({ id, name, direction }) => {
   const items = [
     { title: "Понедельник", content: <Monday id={id} />, indexd: 0 },
     { title: "Вторник", content: <Tuesday id={id} />, indexd: 1 },
-    { title: "Среда", content: <Wednesday id={id} />, indexd: 2 },
-    { title: "Четверг", content: <Thursday id={id} />, indexd: 3 },
+    { title: "Среда", content: <Thursday id={id} />, indexd: 2 },
+    { title: "Четверг", content: <Wednesday id={id} />, indexd: 3 },
     { title: "Пятница", content: <Friday id={id} />, indexd: 4 },
     { title: "Готовы к отгрузке", content: <Ready />, indexd: 5 },
     { title: "Архив поставок", content: <SuppliesArchive />, indexd: 6 },

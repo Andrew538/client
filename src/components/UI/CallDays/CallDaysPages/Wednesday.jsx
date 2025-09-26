@@ -6,11 +6,14 @@ import TableDirections from "../../Directions/TableDirections/TableDirections";
 import { Context } from "../../../..";
 import { fetchDay } from "../../../http/mapApi";
 import Loader from "../../Loader/Loader";
+import ButtonCreateShipment from "../../ButtonCreateShipment/ButtonCreateShipment";
+import ModalCreateShipment from "../../ButtonCreateShipment/ModalCreateShipment";
 
 const Wednesday = observer(({ id }) => {
   const { direction } = useContext(Context);
   let number = localStorage.getItem("numberTabDay");
   const [loading, setLoading] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +42,13 @@ const Wednesday = observer(({ id }) => {
 
   return (
     <div>
+        <ButtonCreateShipment
+         openModal={setModalShow}
+      />
+      <ModalCreateShipment
+      show={modalShow} 
+          onHide={() => setModalShow(false)} 
+      />
       <TableDirections direction={direction} />
     </div>
   );

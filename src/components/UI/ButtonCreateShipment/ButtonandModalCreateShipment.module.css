@@ -1,0 +1,56 @@
+.button__create {
+    border: 1px solid #1313e9;
+    margin: 20px 20px 0px 0px;
+    right: 0;
+    padding: 4px 8px;
+    border-radius: 10px;
+    transition: all ease-out .3s;
+}
+
+.button__create:hover {
+    background: rgba(19, 19, 233, .5);
+    border: 1px solid transparent;
+    color: rgb(253, 253, 253);
+}
+
+/* .modal-content {
+        width: 400px;
+    display: flex
+;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    align-items: center;
+} */
+
+.modal__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.modal__title {
+    font-size: 25px;
+}
+.modal__box {
+    width: 470px;
+    text-align: center;
+ background-color: rgb(193, 223, 223);
+ padding: 20px;
+}
+.modal__btn__box {
+    display: flex
+;
+    justify-content: space-between;
+    margin: 70px 0px 0px 0px;
+}
+.modal__btn {
+    background: white;
+    border: 2px solid teal;
+    padding: 10px 0px 10px 0px;
+    cursor: pointer;
+    flex-basis: 45%;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(20, 8, 8);
+    transition: .3s;
+}

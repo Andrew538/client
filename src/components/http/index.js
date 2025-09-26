@@ -1,27 +1,27 @@
 import axios from "axios";
 
-//  const $host = axios.create({
-//       baseURL: process.env.REACT_APP_API_URL })  
+ const $host = axios.create({
+      baseURL: process.env.REACT_APP_API_URL })  
       
-//       const $authHost = axios.create({ baseURL: 'http://localhost:5000/'
-//   })
+      const $authHost = axios.create({ baseURL: 'http://localhost:5000/'
+  })
 
 
-   const $host = axios.create({
-     proxy: {
-        host: "5.35.95.57:5000/",
-        port: 80,
-      protocol: "http",
-    },
-  });
+//    const $host = axios.create({
+//      proxy: {
+//         host: "5.35.95.57:5000/",
+//         port: 80,
+//       protocol: "http",
+//     },
+//   });
 
-  const $authHost = axios.create({
-    proxy: {
-      host: "5.35.95.57:5000/",
-      port: 80,
-      protocol: "http",
-    },
-  });
+//   const $authHost = axios.create({
+//     proxy: {
+//       host: "5.35.95.57:5000/",
+//       port: 80,
+//       protocol: "http",
+//     },
+//   });
 
 const authInterceptor = config => {
    

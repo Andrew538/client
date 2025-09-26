@@ -15,36 +15,31 @@ const ExportToExcel = ({ fileName, id }) => {
        // 1. Create a new workbook
        const workbook = new ExcelJS.Workbook();
        const worksheet = workbook.addWorksheet("sheet1", {
-         pageSetup: { paperSize: 9, orientation: " landscape" },
+         pageSetup: { paperSize: 9, orientation: "landscape" },
        });
 
        // 2. Define the table headers
        worksheet.columns = [
          { header: "Оплата", key: "payment" },
-         { header: "Населенный пункт", key: "name",
-            
-         },
-          { header: "Клиент", key: "client" },
-        
-         //   { header: 'Name', key: 'name', width: 30 },
-       
+         { header: "Населенный пункт", key: "city",},
+        { header: "Клиент", key: "client" },                        
          { header: "Адрес", key: "address" },
          { header: "Контакты", key: "contact" },
          { header: "Комментарий", key: "comment" },
+        //  { header: "Вес новых акб", key: "weightnewbatteries"},
+        //  { header: "Вес Б/У акб", key: "weightusedbattery" },
+         { header: "Цена Б/У", key: "priceofusedbattery"},
+
        ];
 
       
        rData.map((item) => {
-         worksheet.addRow({
-           // name: `Направление ${item.region}`,
-           // email: item.email,
-           // joinDate: item.joinDate,
-         });
+       
          {
            item.directionsredy.map((d) => {
              d.citydirectionsredy.map((c) => {
                worksheet.addRow({
-                 name: c.city.city,
+                 city: c.city.city,
                });
                {
                  c.delivery.map((d) => {
@@ -52,17 +47,20 @@ const ExportToExcel = ({ fileName, id }) => {
                      client: d.client,
                      address: d.address,
                      contact: d.contact,
+                     priceofusedbattery: d.priceofusedbattery,
                      comment: d.comment,
+                    //  weightnewbatteries: d.weightnewbatteries,
+                    //  weightusedbattery: d.weightusedbattery,
                    });
                  });
                }
              });
            });
-         }
+         } 
        });
        // await autoFitAllColumns(worksheet)
        // 4. Style the header
-       worksheet.getRow(4).eachCell((cell) => {
+       worksheet.getRow().eachCell((cell) => {
          cell.font = { bold: true };
          cell.alignment = { horizontal: "center", wrapText: true };
        });
